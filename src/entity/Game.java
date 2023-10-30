@@ -66,7 +66,7 @@ class Game {
         return this.currQuestion.getQuestion();
     }
 
-    public String getAns()
+    public int getAns()
     {
         return this.currQuestion.getAnswer();
     }
