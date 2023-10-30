@@ -1,4 +1,4 @@
-import entity.*;
+package entity;
 
 import java.util.ArrayList;
 
@@ -33,29 +33,42 @@ class Game {
     {
 
     }
-    void computePoints()
+    public float computePoints()
     {
+        float points = 10 * this.timeLeft;
+        return points;
 
     }
 
-    void getPlayerAns()
+    String getPlayerAns()
     {
+        return "";
+    }
+
+    public boolean checkCorrect(int playerAnswer)
+    {
+        int correctAnswer = this.getAns();
+
+        if (playerAnswer == correctAnswer){
+            return true;
+        }
+
+        else {
+            return false;
+        }
+
+
 
     }
 
-    void checkCorrect()
+    public String getQuestion()
     {
-
+        return this.currQuestion.getQuestion();
     }
 
-    void getQuestion()
+    public String getAns()
     {
-
-    }
-
-    void getAns()
-    {
-
+        return this.currQuestion.getAnswer();
     }
 
 }
