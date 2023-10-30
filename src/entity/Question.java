@@ -1,22 +1,25 @@
+
 package entity;
 
 import java.util.List;
 
-public class Question {
-    private String question;
-    private String correctAnswer;
-    private List<String> inCorrectAnswer;
+    public class Question {
+        private String question;
+        private List<String> possibleAnswer;
+        private String correctAnswer;
 
-    public Question(String question, String correctAnswer, List<String> inCorrectAnswer) {
-        this.question = question;
-        this.correctAnswer = correctAnswer;
-        this.inCorrectAnswer = inCorrectAnswer;
+
+        public Question(String question, List<String> possibleAnswer, String correctAnswer) {
+            this.question = question;
+            this.possibleAnswer = possibleAnswer;
+            this.correctAnswer = correctAnswer;
+        }
+
+        public int getAnswer() {
+            return possibleAnswer.indexOf(correctAnswer);
+        }
+        public String getQuestion() {
+            return question;
+        }
     }
 
-    public String getAnswer() {
-        return correctAnswer;
-    }
-    public String getQuestion() {
-        return question;
-    }
-}
