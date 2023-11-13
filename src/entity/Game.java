@@ -9,6 +9,8 @@ public class Game {
 
     private ArrayList<Question> questionList;
 
+    private int questionnumber = 0;
+
     Game(String currCategory, float timeLeft, Question currQuestion, ArrayList<Question> questionList)
     {
         this.currCategory = currCategory;
@@ -17,10 +19,9 @@ public class Game {
         this.questionList = questionList;
     }
 
-    public float computePoints()
+    public int computePoints()
     {
-        float points = 10 * this.timeLeft;
-        return points;
+        return Math.round(100 * this.timeLeft);
 
     }
 
@@ -52,9 +53,14 @@ public class Game {
         return this.currQuestion.getAnswer();
     }
 
-    public void setCurrQuestion(Question newQuestion)
+    public void nextQuestion()
     {
-        this.currQuestion = newQuestion;
+        if (questionnumber < questionList.size()) {
+            this.currQuestion = questionList.get(++questionnumber);
+        }
+        else {
+            //code for game end
+        }
     }
 
 }
