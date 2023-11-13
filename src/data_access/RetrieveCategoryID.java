@@ -3,6 +3,7 @@ package data_access;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -10,7 +11,7 @@ public class RetrieveCategoryID {
 
     private HashMap<String, Integer> category;
 
-    private final String[] skipCategories = {"Japanese Anime & Manga"};
+    private final String[] skipCategories = {"Entertainment: Japanese Anime & Manga"};
 
     public RetrieveCategoryID () throws IOException {
         category = new HashMap<>();
@@ -54,7 +55,9 @@ public class RetrieveCategoryID {
             String categoryName = splitid[1].substring((splitid[1].indexOf(':')));
             int categoryNumber = Integer.parseInt(strCategoryNumber);
             categoryName = categoryName.substring((categoryName.indexOf('"') + 1), categoryName.lastIndexOf('"'));
-            category.put(categoryName, categoryNumber);
+            if (!Arrays.asList(skipCategories).contains(categoryName)) {
+                category.put(categoryName, categoryNumber);
+            }
         }
 
     }
