@@ -2,7 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 
-class Game {
+public class Game {
     private String currCategory;
     private float timeLeft;
     private Question currQuestion;
