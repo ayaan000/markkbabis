@@ -17,22 +17,6 @@ public class Game {
         this.questionList = questionList;
     }
 
-    void pauseGame()
-    {
-        //Code to pause game
-    }
-    void playGame()
-    {
-        //Code to begin game
-    }
-    void restartGame()
-    {
-        //Code to reload game
-    }
-    void returnToLobby()
-    {
-        //Code to return to lobby
-    }
     public float computePoints()
     {
         float points = 10 * this.timeLeft;
