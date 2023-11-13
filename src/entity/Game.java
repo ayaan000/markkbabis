@@ -11,6 +11,8 @@ public class Game {
 
     private int questionnumber = 0;
 
+    private boolean gameEnd = false;
+
     Game(String currCategory, float timeLeft, Question currQuestion, ArrayList<Question> questionList)
     {
         this.currCategory = currCategory;
@@ -59,7 +61,7 @@ public class Game {
             this.currQuestion = questionList.get(++questionnumber);
         }
         else {
-            //code for game end
+            this.gameEnd = true;
         }
     }
 
