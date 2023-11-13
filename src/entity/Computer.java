@@ -1,6 +1,7 @@
 package entity;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class Computer {
 
@@ -34,7 +35,24 @@ public class Computer {
         return totalPoints;
     }
 
+//    public Integer getPoints() {
+//        return Game.getCompPoints;
+//    }
+
     public void updateCompPoints(Integer points) {
         totalPoints += points;
+    }
+
+    public boolean getComResult() {
+        Random r = new Random();
+        int randomNum = r.nextInt(100);
+        int result = randomNum + 1;
+        if (difficultyRating.equals("Easy")) {
+            return result <= 33;
+        } else if (difficultyRating.equals("Medium")) {
+            return result <= 66;
+        } else {
+            return result <= 99;
+        }
     }
 }
