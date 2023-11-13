@@ -2,12 +2,14 @@ package entity;
 
 import java.util.ArrayList;
 
-class Game {
+public class Game {
     private String currCategory;
     private float timeLeft;
     private Question currQuestion;
 
     private ArrayList<Question> questionList;
+
+    private int questionnumber = 0;
 
     Game(String currCategory, float timeLeft, Question currQuestion, ArrayList<Question> questionList)
     {
@@ -17,26 +19,9 @@ class Game {
         this.questionList = questionList;
     }
 
-    void pauseGame()
+    public int computePoints()
     {
-
-    }
-    void playGame()
-    {
-
-    }
-    void restartGame()
-    {
-
-    }
-    void returnToLobby()
-    {
-
-    }
-    public float computePoints()
-    {
-        float points = 10 * this.timeLeft;
-        return points;
+        return Math.round(100 * this.timeLeft);
 
     }
 
@@ -56,9 +41,6 @@ class Game {
         else {
             return false;
         }
-
-
-
     }
 
     public String getQuestion()
@@ -66,9 +48,19 @@ class Game {
         return this.currQuestion.getQuestion();
     }
 
-    public String getAns()
+    public int getAns()
     {
         return this.currQuestion.getAnswer();
+    }
+
+    public void nextQuestion()
+    {
+        if (questionnumber < questionList.size()) {
+            this.currQuestion = questionList.get(++questionnumber);
+        }
+        else {
+            //code for game end
+        }
     }
 
 }
