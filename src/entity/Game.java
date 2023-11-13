@@ -45,11 +45,11 @@ class Game {
         return "";
     }
 
-    public boolean checkCorrect(String playerAnswer)
+    public boolean checkCorrect(int playerAnswer)
     {
-        String correctAnswer = this.getAns();
+        int correctAnswer = this.getAns();
 
-        if (playerAnswer.equals(correctAnswer)){
+        if (playerAnswer == correctAnswer){
             return true;
         }
 
