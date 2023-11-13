@@ -19,19 +19,19 @@ class Game {
 
     void pauseGame()
     {
-
+        //Code to pause game
     }
     void playGame()
     {
-
+        //Code to begin game
     }
     void restartGame()
     {
-
+        //Code to reload game
     }
     void returnToLobby()
     {
-
+        //Code to return to lobby
     }
     public float computePoints()
     {
@@ -45,20 +45,17 @@ class Game {
         return "";
     }
 
-    public boolean checkCorrect(int playerAnswer)
+    public boolean checkCorrect(String playerAnswer)
     {
-        int correctAnswer = this.getAns();
+        String correctAnswer = this.getAns();
 
-        if (playerAnswer == correctAnswer){
+        if (playerAnswer.equals(correctAnswer)){
             return true;
         }
 
         else {
             return false;
         }
-
-
-
     }
 
     public String getQuestion()
@@ -69,6 +66,11 @@ class Game {
     public int getAns()
     {
         return this.currQuestion.getAnswer();
+    }
+
+    public void setCurrQuestion(Question newQuestion)
+    {
+        this.currQuestion = newQuestion;
     }
 
 }
