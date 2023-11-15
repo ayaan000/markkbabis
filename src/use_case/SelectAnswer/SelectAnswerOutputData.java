@@ -1,9 +1,9 @@
-package use_case.Answer;
+package use_case.SelectAnswer;
 
 import java.time.Duration;
 import java.util.ArrayList;
 
-public class AnswerOutputData {
+public class SelectAnswerOutputData {
     private int playerPoints;
     private int compPoints;
     private ArrayList<String> questions;
@@ -11,7 +11,7 @@ public class AnswerOutputData {
     private Duration timeLeft;
     private boolean correctness;
 
-    public AnswerOutputData(int playerPoints, int compPoints, ArrayList<String> questions, String answer,
+    public SelectAnswerOutputData(int playerPoints, int compPoints, ArrayList<String> questions, String answer,
                             Duration timeLeft, boolean correctness) {
         this.playerPoints = playerPoints;
         this.compPoints = compPoints;
