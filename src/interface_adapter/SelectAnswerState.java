@@ -1,2 +1,4 @@
-package interface_adapter;public class SelectAnswerState {
+package interface_adapter;
+
+public class SelectAnswerState {
 }

@@ -18,7 +18,7 @@ public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
         int questionAnswer = question.getIndexAnswer();
         int userAnswer = selectAnswerInputData.getAnswer();
         if (userAnswer != questionAnswer) {
-            userPresenter.prepareFailView(" Wrong =( ");
+            userPresenter.prepareFailView(" Wrong answer ");
         } else {
             SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(question.getCorrectAnswer());
             userPresenter.prepareSuccessView(selectAnswerOutputData);

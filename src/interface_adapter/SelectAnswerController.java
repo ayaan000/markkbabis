@@ -1,6 +1,6 @@
 package interface_adapter;
 
-import use_case.SelectAnswer;
+import entity.Question;
 import use_case.SelectAnswerInputBoundary;
 import use_case.SelectAnswerInputData;
 
@@ -10,8 +10,8 @@ public class SelectAnswerController {
         this.userSelectAnswerInteractor = userSignupUseCaseInteractor;
     }
 
-    public void execute(int answer) {
-        SelectAnswerInputData selectAnswerInputData = new SelectAnswerInputData(answer);
+    public void execute(Question question, int answer) {
+        SelectAnswerInputData selectAnswerInputData = new SelectAnswerInputData(question, answer);
         userSelectAnswerInteractor.execute(selectAnswerInputData);
     }
 }

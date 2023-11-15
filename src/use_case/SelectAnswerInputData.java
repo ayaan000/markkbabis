@@ -8,13 +8,13 @@ public class SelectAnswerInputData {
     public SelectAnswerInputData(Question question, int answer) {
         this.answer = answer;
     }
-    public Question getQuestion(Question question) {
+    public Question getQuestion() {
         return question;
     }
     public void setQuestion(Question question) {
         this.question = question;
     }
-    public int getAnswer(int answer) {
+    public int getAnswer() {
         return answer;
     }
     public void setAnswer(int answer) {
