@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Game {
     private String currCategory;
-    private float timeLeft;
     private Question currQuestion;
 
     private ArrayList<Question> questionList;
@@ -16,7 +15,6 @@ public class Game {
     Game(String currCategory, float timeLeft, Question currQuestion, ArrayList<Question> questionList)
     {
         this.currCategory = currCategory;
-        this.timeLeft = timeLeft;
         this.currQuestion = currQuestion;
         this.questionList = questionList;
     }
