@@ -1,17 +1,19 @@
 package use_case.SelectAnswer;
 
+import entity.Question;
+
 import java.time.Duration;
 import java.util.ArrayList;
 
 public class SelectAnswerOutputData {
     private int playerPoints;
     private int compPoints;
-    private ArrayList<String> questions;
+    private ArrayList<Question> questions;
     private String answer;
     private Duration timeLeft;
     private boolean correctness;
 
-    public SelectAnswerOutputData(int playerPoints, int compPoints, ArrayList<String> questions, String answer,
+    public SelectAnswerOutputData(int playerPoints, int compPoints, ArrayList<Question> questions, String answer,
                             Duration timeLeft, boolean correctness) {
         this.playerPoints = playerPoints;
         this.compPoints = compPoints;
@@ -29,7 +31,7 @@ public class SelectAnswerOutputData {
         return compPoints;
     }
 
-    public ArrayList<String> getQuestions() {
+    public ArrayList<Question> getQuestions() {
         return questions;
     }
 
