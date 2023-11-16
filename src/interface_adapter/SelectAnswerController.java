@@ -5,9 +5,14 @@ import use_case.SelectAnswerInputBoundary;
 import use_case.SelectAnswerInputData;
 
 public class SelectAnswerController {
+
+    SelectAnswerInputBoundary selectAnswerInputBoundary;
+
+    public SelectAnswerController(){
+
     final SelectAnswerInputBoundary userSelectAnswerInteractor;
-    public SelectAnswerController(SelectAnswerInputBoundary userSignupUseCaseInteractor) {
-        this.userSelectAnswerInteractor = userSignupUseCaseInteractor;
+    public SelectAnswerController(SelectAnswerInputBoundary selectAnswerInputBoundary) {
+        this.selectAnswerInputBoundary = selectAnswerInputBoundary;
     }
 
     public void execute(Question question, int answer) {

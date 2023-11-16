@@ -1,5 +1,5 @@
 package use_case;
 
 public interface SelectAnswerInputBoundary {
-    void execute(SelectAnswerInputData signupInputData);
+    void execute(SelectAnswerInputData selectAnswerInputData);
 }
