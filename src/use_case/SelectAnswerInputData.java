@@ -1,11 +1,23 @@
 package use_case;
 
-public class SelectAnswerInputData {
-    final private int answer;
+import entity.Question;
 
-    public SelectAnswerInputData(int answer){
+public class SelectAnswerInputData {
+    private Question question;
+    private int answer;
+    public SelectAnswerInputData(Question question, int answer) {
         this.answer = answer;
     }
-
-    int getAnswer(){return answer;}
+    public Question getQuestion() {
+        return question;
+    }
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+    public int getAnswer() {
+        return answer;
+    }
+    public void setAnswer(int answer) {
+        this.answer = answer;
+    }
 }
