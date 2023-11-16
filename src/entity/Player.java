@@ -3,27 +3,25 @@ import entity.*;
 import java.util.*;
 
 public class Player {
-    private int totalPoints1;
+    private int totalPoints;
     private List<Byte> avatar;
     private List<GameStats> games;
-    private Game currGame;
-    private int numCorrectAns;
+    private  Game currGame;
 
     // POTENTIAL ADDITIONAL ATTRIBUTES: currAnswerChoice
 
     // constructor
     Player(int totalPoints, List<Byte> avatar, List<GameStats> games, Game currGame) {
-        this.totalPoints1 = totalPoints;
+        this.totalPoints = totalPoints;
         this.avatar = avatar;
         this.games = games;
         this.currGame = currGame;
-        this.numCorrectGames = 0;
     }
 
     // getters and setters
-    public int getTotalPoints1() {return totalPoints1;}
+    public int getTotalPoints() {return totalPoints;}
     public void setTotalPoints(int newTotalPoints) {         // might need another entity to use this method?
-        totalPoints1 = newTotalPoints;
+        totalPoints = newTotalPoints;
     }
     public List<Byte> getAvatar() {return avatar;}
     public void setAvatar(String avatarName) {
@@ -41,11 +39,12 @@ public class Player {
         this.currGame = game;
     }
 
-    public void setNumCorrectAns(int numCorrectAns) {
-        this.numCorrectAns = numCorrectAns;
-    }
-
-    public int getNumCorrectAns() {
-        return numCorrectAns;
+    // other methods
+    public void chooseAnswer() {
+        // IDEA FOR IMPLEMENTATION
+        // will need some sort of interaction between the view/viewmodel and this method
+        // QUESTION: how do we select an answer? Is it via keys?
+        // taking the actor input and connect it to a certain answer
+        // QUESTION: is this in player or somewhere else?
     }
 }

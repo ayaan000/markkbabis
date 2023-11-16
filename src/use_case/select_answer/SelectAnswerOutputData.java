@@ -1,7 +1,5 @@
 package use_case.select_answer;
 
-import entity.Question;
-
 import java.time.Duration;
 import java.util.ArrayList;
 
@@ -17,12 +15,12 @@ public class SelectAnswerOutputData {
 =======
     private int playerPoints;
     private int compPoints;
-    private ArrayList<Question> questions;
+    private ArrayList<String> questions;
     private String answer;
     private Duration timeLeft;
     private boolean correctness;
 
-    public SelectAnswerOutputData(int playerPoints, int compPoints, ArrayList<Question> questions, String answer,
+    public SelectAnswerOutputData(int playerPoints, int compPoints, ArrayList<String> questions, String answer,
                             Duration timeLeft, boolean correctness) {
         this.playerPoints = playerPoints;
         this.compPoints = compPoints;
@@ -43,7 +41,7 @@ public class SelectAnswerOutputData {
         return compPoints;
     }
 
-    public ArrayList<Question> getQuestions() {
+    public ArrayList<String> getQuestions() {
         return questions;
     }
 

@@ -3,16 +3,6 @@ package use_case.select_answer;
 import entity.Question;
 
 public class SelectAnswerInputData {
-<<<<<<< HEAD
-
-    private int answer;
-    public SelectAnswerInputData(int answer) {
-        this.answer = answer;
-    }
-    public int getAnswer() {
-        return answer;
-    }
-=======
     private Question question;
     private int answer;
     public SelectAnswerInputData(Question question, int answer) {
@@ -30,5 +20,4 @@ public class SelectAnswerInputData {
     public void setAnswer(int answer) {
         this.answer = answer;
     }
->>>>>>> 0f8f05a (Completed use case for selecting answer other than interactor)
 }
