@@ -1,8 +1,7 @@
-package use_case;
+package use_case.select_answer;
 
+import entity.Game;
 import entity.Question;
-
-import java.time.LocalDateTime;
 
 public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
     // final SelectAnswerDataAccessInterface userDataAccessObject;
@@ -15,8 +14,9 @@ public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
     @Override
     public void execute(SelectAnswerInputData selectAnswerInputData) {
         Question question = selectAnswerInputData.getQuestion();
-        int questionAnswer = question.getIndexAnswer();
+        String questionAnswer = question.getCorrectAnswer();
         int userAnswer = selectAnswerInputData.getAnswer();
+
         if (userAnswer != questionAnswer) {
             userPresenter.prepareFailView(" Wrong answer ");
         } else {
