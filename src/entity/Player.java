@@ -39,12 +39,4 @@ public class Player {
         this.currGame = game;
     }
 
-    // other methods
-    public void chooseAnswer() {
-        // IDEA FOR IMPLEMENTATION
-        // will need some sort of interaction between the view/viewmodel and this method
-        // QUESTION: how do we select an answer? Is it via keys?
-        // taking the actor input and connect it to a certain answer
-        // QUESTION: is this in player or somewhere else?
-    }
 }
