@@ -8,8 +8,8 @@ public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
     // final SelectAnswerDataAccessInterface userDataAccessObject;
     final SelectAnswerOutputBoundary userPresenter;
 
-    public SelectAnswerInteractor(SelectAnswerOutputBoundary signupOutputBoundary) {
-        this.userPresenter = signupOutputBoundary;
+    public SelectAnswerInteractor(SelectAnswerOutputBoundary selectAnswerOutputBoundary) {
+        this.userPresenter = selectAnswerOutputBoundary;
     }
 
     @Override
