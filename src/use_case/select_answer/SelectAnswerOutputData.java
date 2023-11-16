@@ -1,4 +1,4 @@
-package use_case.SelectAnswer;
+package use_case.select_answer;
 
 import entity.Question;
 
