@@ -52,7 +52,7 @@ public class Game {
 
     public int getAns()
     {
-        return this.currQuestion.getAnswer();
+        return this.currQuestion.getIndexAnswer();
     }
 
     public void nextQuestion()

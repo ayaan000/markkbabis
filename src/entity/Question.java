@@ -14,8 +14,11 @@ import java.util.List;
             this.possibleAnswer = possibleAnswer;
             this.correctAnswer = correctAnswer;
         }
+        public String getCorrectAnswer() {
+            return correctAnswer;
+        }
 
-        public int getAnswer() {
+        public int getIndexAnswer() {
             return possibleAnswer.indexOf(correctAnswer);
         }
         public String getQuestion() {
