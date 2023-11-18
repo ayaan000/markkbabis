@@ -9,45 +9,44 @@ import java.util.Scanner;
 
 public class RetrieveCategoryID {
 
-    private HashMap<String, Integer> category;
 
-    private final String[] skipCategories = {"Entertainment: Japanese Anime & Manga"};
 
-    public RetrieveCategoryID () throws IOException {
-        category = new HashMap<>();
-        this.setCategory();
+    private static final String[] skipCategories = {"Entertainment: Japanese Anime & Manga"};
+    //change this to skip any category in the database
 
-    }
+    public static String APISingleLineString(){
+        try {
+            URL url = new URL("https://opentdb.com/api_category.php");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
 
-    public String APISingleLineString() throws IOException {
-        URL url = new URL("https://opentdb.com/api_category.php");
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.connect();
+            int responseCode = conn.getResponseCode();
 
-        int responseCode = conn.getResponseCode();
+            if (responseCode != 200) {
+                throw new RuntimeException("HttpResponseCode" + responseCode);
+            } else {
+                StringBuilder informationString = new StringBuilder();
+                Scanner scanner = new Scanner(url.openStream());
 
-        if (responseCode != 200) {
-            throw new RuntimeException("HttpResponseCode" + responseCode);
-        } else {
-            StringBuilder informationString = new StringBuilder();
-            Scanner scanner = new Scanner(url.openStream());
+                while (scanner.hasNext()) {
+                    String line = scanner.nextLine();
+                    informationString.append(line);
+                }
+                scanner.close();
+                return informationString.toString();
 
-            while (scanner.hasNext()) {
-                String line = scanner.nextLine();
-                informationString.append(line);
             }
-            scanner.close();
-            return informationString.toString();
-
+        } catch (IOException e){
+            throw new RuntimeException(e);
         }
 
     }
 
-    public void setCategory () throws IOException {
+    public static HashMap<String, Integer> getCategory (){
+        HashMap<String, Integer> category = new HashMap<>();
         String informationString = APISingleLineString();
         informationString = informationString.substring(22,informationString.length()-2); //Remove 'trivia_categories'
-        System.out.println(informationString);
         String[] splitComma = informationString.split("},");
         for (String s : splitComma) {
             String[] splitid = s.split(",");
@@ -59,18 +58,9 @@ public class RetrieveCategoryID {
                 category.put(categoryName, categoryNumber);
             }
         }
-
+        return category;
+        //WHY ARE MY TWO BRANCHES THE SAME BRUHHH
     }
 
 
-
-
-    public static void main(String[] args) throws IOException {
-        RetrieveCategoryID testObject = new RetrieveCategoryID();
-        testObject.setCategory();
-        for (String name: testObject.category.keySet()){
-            System.out.println(name + " " + testObject.category.get(name) );
-        }
-        //this code in the main branch is only for testing purposes, we can remove it later
-    }
 }
