@@ -22,7 +22,7 @@ public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
         } else {
             SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(userAnswer, timeleft, true);
             userPresenter.prepareSuccessView(selectAnswerOutputData);
-
+            player.point = player.point + 100 + round(10 * timeleft); // 100 for correct answer, 10 * timeleft for time taken to answer but how to access entity
         }
     }
 }
