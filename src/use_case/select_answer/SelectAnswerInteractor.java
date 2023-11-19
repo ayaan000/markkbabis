@@ -13,15 +13,16 @@ public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
 
     @Override
     public void execute(SelectAnswerInputData selectAnswerInputData) {
-        Question question = selectAnswerInputData.getQuestion();
-        String questionAnswer = question.getCorrectAnswer();
         int userAnswer = selectAnswerInputData.getAnswer();
+        // int questionAnswer = currentQuestion.answer; where to access the Question? Which has Question as parameter? Is it Game/
 
         if (userAnswer != questionAnswer) {
             userPresenter.prepareFailView(" Wrong answer ");
+            // player.point += 0;
         } else {
-            SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(question.getCorrectAnswer());
+            SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(userAnswer, timeleft, true);
             userPresenter.prepareSuccessView(selectAnswerOutputData);
+
         }
     }
 }
