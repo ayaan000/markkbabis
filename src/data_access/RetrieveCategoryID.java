@@ -59,7 +59,6 @@ public class RetrieveCategoryID {
             }
         }
         return category;
-        //WHY ARE MY TWO BRANCHES THE SAME BRUHHH
     }
 
 

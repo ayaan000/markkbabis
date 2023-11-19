@@ -46,6 +46,7 @@ public class TriviaDataAccessObject implements InitializeGameDataAccessInterface
                 throw new RuntimeException("HttpResponseCode" + responseCode);
             } else {
                 StringBuilder informationString = new StringBuilder();
+                TimeUnit.SECONDS.sleep(6);
                 Scanner scanner = new Scanner(url.openStream());
 
                 while (scanner.hasNext()) {
