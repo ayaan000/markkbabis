@@ -26,5 +26,6 @@ public class SelectAnswerOutputData {
         return correctness;
     }
 
-    public String getCorrectAnswer() {return correctAnswer;}
+    public String getCorrectAnswer() {
+        return correctAnswer;}
 }
