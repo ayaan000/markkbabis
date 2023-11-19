@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package use_case.calculate_point;
 
 public class CalculatePointInputData {
@@ -8,4 +9,7 @@ public class CalculatePointInputData {
     public boolean getCorrectness() {
         return correctness;
     }
+=======
+package use_case.calculate_point;public interface CalculatePointInputData {
+>>>>>>> b21a1d0 (Implement of CalculatePointInputBoundary)
 }

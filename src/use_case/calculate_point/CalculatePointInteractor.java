@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package use_case.calculate_point;
 
 public class CalculatePointInteractor implements CalculatePointInputBoundary{
@@ -24,4 +25,7 @@ public class CalculatePointInteractor implements CalculatePointInputBoundary{
             execute CalulatePointPresenter; //idea only because hasn't able to access DAO
         }
     }
+=======
+package use_case.calculate_point;public class CalculatePointInteractor {
+>>>>>>> b21a1d0 (Implement of CalculatePointInputBoundary)
 }

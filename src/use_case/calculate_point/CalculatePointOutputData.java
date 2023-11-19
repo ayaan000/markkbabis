@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package use_case.calculate_point;
 
 public class CalculatePointOutputData {
@@ -19,4 +20,7 @@ public class CalculatePointOutputData {
     public void setTotalPoint(int totalPoint) {
         this.totalPoint = totalPoint;
     }
+=======
+package use_case.calculate_point;public class CalculatePointOutputData {
+>>>>>>> b21a1d0 (Implement of CalculatePointInputBoundary)
 }
