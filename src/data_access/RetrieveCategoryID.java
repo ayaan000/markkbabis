@@ -11,7 +11,7 @@ public class RetrieveCategoryID {
 
 
 
-    private static final String[] skipCategories = {"Entertainment: Japanese Anime & Manga"};
+    private static final String[] skipCategories = {"Entertainment: Japanese Anime & Manga", "Entertainment: Musicals & Theatres", "Art", "Science: Mathematics", "Mythology", "Celebrities", "Science: Gadgets"};
     //change this to skip any category in the database
 
     public static String APISingleLineString(){
