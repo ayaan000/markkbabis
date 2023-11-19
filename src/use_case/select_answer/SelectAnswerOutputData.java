@@ -11,8 +11,7 @@ public class SelectAnswerOutputData {
     private Duration timeLeft;
     private boolean correctness;
 
-    public SelectAnswerOutputData(String answer,
-                            Duration timeLeft, boolean correctness) {
+    public SelectAnswerOutputData(String answer, Duration timeLeft, boolean correctness) {
         this.correctAnswer = answer;
         this.timeLeft = timeLeft;
         this.correctness = correctness;
