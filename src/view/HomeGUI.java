@@ -20,7 +20,6 @@ public class HomeGUI implements ActionListener {
                         public void actionPerformed(ActionEvent e) {
                             if (e.getSource().equals(singlePlayer)) {
                                 SettingsGUI settingsGUI = new SettingsGUI(1);
-                                settingsGUI.display();
                             }
                         }
                     }
