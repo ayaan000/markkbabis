@@ -39,9 +39,9 @@ public class Computer {
 //        return Game.getCompPoints;
 //    }
 
-    public void updateCompPoints(Integer points) {
-        totalPoints += points;
-    }
+//    public void updateCompPoints(Integer points) {
+//        totalPoints += points;
+//    }
 
     public boolean getComResult() {
         Random r = new Random();
