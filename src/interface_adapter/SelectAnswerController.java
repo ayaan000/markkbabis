@@ -13,7 +13,7 @@ public class SelectAnswerController {
     }
 
     public void execute(Question question, int answer) {
-        SelectAnswerInputData selectAnswerInputData = new SelectAnswerInputData(question, answer);
+        SelectAnswerInputData selectAnswerInputData = new SelectAnswerInputData(answer);
         selectAnswerInputBoundary.execute(selectAnswerInputData);
     }
 }
