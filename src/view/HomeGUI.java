@@ -13,7 +13,7 @@ public class HomeGUI extends JFrame implements ActionListener {
             JPanel buttonPanel = new JPanel();
             JFrame frame = new JFrame();
 
-            JButton singlePlayer = new JButton("Single Player");
+            JButton singlePlayer = new JButton("Play");
             singlePlayer.addActionListener(
                     new ActionListener() {
                         @Override
@@ -26,7 +26,6 @@ public class HomeGUI extends JFrame implements ActionListener {
                         }
                     }
             );
-
 
 
             JButton help = new JButton("Help");
