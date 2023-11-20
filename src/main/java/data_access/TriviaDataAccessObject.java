@@ -8,9 +8,9 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import org.apache.commons.lang3.StringEscapeUtils;
 import use_case.initialize_game.InitializeGameDataAccessInterface;
 
-//TODO: Add interfaces it implements
 public class TriviaDataAccessObject implements InitializeGameDataAccessInterface {
 
     private final File csvFile;
@@ -24,8 +24,8 @@ public class TriviaDataAccessObject implements InitializeGameDataAccessInterface
     }
 
     @Override
-    public void callApi(String category, String difficulty, int numberOfQuestions) {
-
+    public String callApi(String category, String difficulty, int numberOfQuestions) {
+        //Returns a String representation of the decoded JSONObject
         try {
             String createURL = "https://opentdb.com/api.php?";
             String amountURL = "amount=" + numberOfQuestions + "&";
@@ -51,14 +51,18 @@ public class TriviaDataAccessObject implements InitializeGameDataAccessInterface
                     informationString.append(line);
                 }
                 scanner.close();
-                System.out.println(informationString); //for testing purposes
+                return decodeHtmlEntity(informationString.toString());
+                //System.out.println(informationString);
             }
 
         } catch (IOException | InterruptedException e){
             throw new RuntimeException(e);
         }
 
+    }
 
+    private String decodeHtmlEntity(String encodedString){
+        return StringEscapeUtils.unescapeHtml4(encodedString);
     }
 
     private int convertCategory(String category) {
@@ -66,10 +70,4 @@ public class TriviaDataAccessObject implements InitializeGameDataAccessInterface
        return categoryHashMap.get(category);
     }
 
-    public static void main(String[] args) {
-        TriviaDataAccessObject testObject = new TriviaDataAccessObject("");
-        testObject.callApi("Sports", "medium", 5);
-
-        //WHY 429 error?
-    }
 }

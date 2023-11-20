@@ -5,6 +5,6 @@ import java.net.MalformedURLException;
 
 public interface InitializeGameDataAccessInterface {
 
-    void callApi(String category, String difficulty, int numberOfQuestions) throws IOException, InterruptedException;
+    String callApi(String category, String difficulty, int numberOfQuestions) throws IOException, InterruptedException;
 
 }
