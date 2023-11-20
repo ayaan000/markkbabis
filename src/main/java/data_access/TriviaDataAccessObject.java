@@ -8,7 +8,6 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
 import use_case.initialize_game.InitializeGameDataAccessInterface;
 
 //TODO: Add interfaces it implements
@@ -33,8 +32,6 @@ public class TriviaDataAccessObject implements InitializeGameDataAccessInterface
             String categoryURL = "category=" + convertCategory(category) + "&";
             String difficultyURL = "difficulty=" + difficulty;
             String finalURL = createURL + amountURL + categoryURL + difficultyURL;
-            TimeUnit.SECONDS.sleep(10);
-            //TODO: Change delay time after figuring it out
             URL url = new URL(finalURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -46,7 +43,7 @@ public class TriviaDataAccessObject implements InitializeGameDataAccessInterface
                 throw new RuntimeException("HttpResponseCode" + responseCode);
             } else {
                 StringBuilder informationString = new StringBuilder();
-                TimeUnit.SECONDS.sleep(6);
+                TimeUnit.SECONDS.sleep(6); //API only allows one call every 5 seconds
                 Scanner scanner = new Scanner(url.openStream());
 
                 while (scanner.hasNext()) {
@@ -56,6 +53,7 @@ public class TriviaDataAccessObject implements InitializeGameDataAccessInterface
                 scanner.close();
                 System.out.println(informationString); //for testing purposes
             }
+
         } catch (IOException | InterruptedException e){
             throw new RuntimeException(e);
         }
@@ -65,12 +63,13 @@ public class TriviaDataAccessObject implements InitializeGameDataAccessInterface
 
     private int convertCategory(String category) {
        HashMap<String, Integer> categoryHashMap = RetrieveCategoryID.getCategory();
-        return categoryHashMap.get(category);
+       return categoryHashMap.get(category);
     }
 
     public static void main(String[] args) {
         TriviaDataAccessObject testObject = new TriviaDataAccessObject("");
         testObject.callApi("Sports", "medium", 5);
+
         //WHY 429 error?
     }
 }
