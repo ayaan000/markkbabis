@@ -81,8 +81,7 @@ public class SettingsGUI {
 
         frame.add(textFields, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Task Manager");
-        frame.setSize(500, 500);
+        frame.setTitle("Settings");
         frame.pack();
         frame.setVisible(true);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

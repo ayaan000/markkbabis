@@ -48,7 +48,7 @@ public class HomeGUI extends JFrame implements ActionListener {
 
             frame.add(buttonPanel, BorderLayout.CENTER);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setTitle("Task Manager");
+            frame.setTitle("Home");
 
             frame.pack();
             frame.setVisible(true);
