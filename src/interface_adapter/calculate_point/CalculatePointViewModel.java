@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package interface_adapter.calculate_point;
 
 import interface_adapter.ViewModel;
@@ -35,3 +36,7 @@ public class CalculatePointViewModel extends ViewModel {
     }
 }
 
+=======
+package interface_adapter.calculate_point;public class CalculatePointViewModel {
+}
+>>>>>>> 980e33e (abstract class ViewModel)

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import interface_adapter.ViewModel;
 import interface_adapter.select_answer.SelectAnswerState;
@@ -37,4 +38,7 @@ public class SelectAnswerViewModel extends ViewModel {
     public SelectAnswerState getState() {
         return state;
     }
+=======
+package interface_adapter.select_answer;public class SelectAnswerViewModel {
+>>>>>>> 980e33e (abstract class ViewModel)
 }
