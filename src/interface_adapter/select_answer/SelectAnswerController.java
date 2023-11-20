@@ -1,4 +1,4 @@
-package interface_adapter;
+package interface_adapter.select_answer;
 
 import entity.Question;
 import use_case.select_answer.SelectAnswerInputBoundary;
@@ -12,7 +12,7 @@ public class SelectAnswerController {
         this.selectAnswerInputBoundary = selectAnswerInputBoundary;
     }
 
-    public void execute(Question question, int answer) {
+    public void execute(int answer) {
         SelectAnswerInputData selectAnswerInputData = new SelectAnswerInputData(answer);
         selectAnswerInputBoundary.execute(selectAnswerInputData);
     }
