@@ -3,25 +3,27 @@ import entity.*;
 import java.util.*;
 
 public class Player {
-    private int totalPoints;
+    private int totalPoints1;
     private List<Byte> avatar;
     private List<GameStats> games;
-    private  Game currGame;
+    private Game currGame;
+    private int numCorrectGames;
 
     // POTENTIAL ADDITIONAL ATTRIBUTES: currAnswerChoice
 
     // constructor
     Player(int totalPoints, List<Byte> avatar, List<GameStats> games, Game currGame) {
-        this.totalPoints = totalPoints;
+        this.totalPoints1 = totalPoints;
         this.avatar = avatar;
         this.games = games;
         this.currGame = currGame;
+        this.numCorrectGames = 0;
     }
 
     // getters and setters
-    public int getTotalPoints() {return totalPoints;}
+    public int getTotalPoints1() {return totalPoints1;}
     public void setTotalPoints(int newTotalPoints) {         // might need another entity to use this method?
-        totalPoints = newTotalPoints;
+        totalPoints1 = newTotalPoints;
     }
     public List<Byte> getAvatar() {return avatar;}
     public void setAvatar(String avatarName) {
@@ -39,4 +41,7 @@ public class Player {
         this.currGame = game;
     }
 
+    public int getNumCorrectGames() {
+        return numCorrectGames;
+    }
 }

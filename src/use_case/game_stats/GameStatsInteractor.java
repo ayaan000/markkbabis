@@ -1,5 +1,8 @@
 package use_case.game_stats;
 
+import entity.Computer;
+import entity.Game;
+
 import java.time.Duration;
 
 public class GameStatsInteractor implements GameStatsInputBoundary {
@@ -12,16 +15,18 @@ public class GameStatsInteractor implements GameStatsInputBoundary {
     public void execute() {
 
         // List of inputs to create gameStatsOutputData
-        String category = ;
-        String difficulty = ;
-        int numQuestions = ;
-        int points1 = ;
-        int points2 = ;
-        int numCorrectAnswers = ;
-        int numCorrectAnswers = ;
-        Duration timePlayed = ;
+        String category = Game.getCurrCategrory();
+        String difficulty = Computer.getDIfficultyRating();
+        int numQuestions = Game.getQuestionList();
+        int points1 = Player.getTotalPoints1();
+        int points2 = Computer.getTotalPoints2();
+        int numCorrectAnswers1 = Player.numCorrectGames();
+        int numCorrectAnswers2 = Computer.numCorrectGames();
+        int timePlayed = Game.getTimePLayed();
 
-        GameStatsOutputData gameStatsOutputData = new GameStatsOutputData();
+        GameStatsOutputData gameStatsOutputData = new GameStatsOutputData(category, difficulty, numQuestions, points1,
+                points2, numCorrectAnswers1, numCorrectAnswers2, timePlayed);
+
         userPresenter.prepareSuccessView(gameStatsOutputData);
     }
 }

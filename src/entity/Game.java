@@ -43,6 +43,11 @@ public class Game {
         return this.currQuestion.getIndexAnswer();
     }
 
+    public ArrayList<Question> getQuestionList()
+    {
+        return this.questionList;
+    }
+
 //    public void nextQuestion()
 //    {
 //        if (questionnumber < questionList.size()) {
