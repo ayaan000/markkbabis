@@ -13,16 +13,6 @@ import use_case.initialize_game.InitializeGameDataAccessInterface;
 
 public class TriviaDataAccessObject implements InitializeGameDataAccessInterface {
 
-    private final File csvFile;
-
-    //private final String category;
-
-    public TriviaDataAccessObject (String csvPath) {
-
-        csvFile = new File(csvPath);
-
-    }
-
     @Override
     public String callApi(String category, String difficulty, int numberOfQuestions) {
         //Returns a String representation of the decoded JSONObject

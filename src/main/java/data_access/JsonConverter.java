@@ -11,12 +11,6 @@ public class JsonConverter {
     String category;
     String difficulty;
     int numberOfQuestions;
-    public JsonConverter (String category, String difficulty, int numberOfQuestions) {
-        this.category = category;
-        this.difficulty = difficulty;
-        this.numberOfQuestions = numberOfQuestions;
-
-    }
 
     // OLD VERSION
 //    public void convert(String jsonString) {
@@ -101,9 +95,10 @@ class MyObject {        // temp name
 }
 
     public static void main(String[] args) {
-        TriviaDataAccessObject triviaDataAccessObject = new TriviaDataAccessObject(...);    // csv file?
+        TriviaDataAccessObject triviaDataAccessObject = new TriviaDataAccessObject();    // csv file?
         String jsonString = triviaDataAccessObject.callApi("Animals", "medium", 5);
-        JsonConverter.convert(jsonString);  // whyyyyyyy
+        JsonConverter myObj = new JsonConverter();
+        myObj.convert(jsonString);  // whyyyyyyy
     }
 
 }
