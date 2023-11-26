@@ -41,8 +41,6 @@ public class Player {
         this.currGame = game;
     }
 
-    public voic set
-
     public void setNumCorrectAns(int numCorrectAns) {
         this.numCorrectAns = numCorrectAns;
     }
