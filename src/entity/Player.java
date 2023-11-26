@@ -7,7 +7,7 @@ public class Player {
     private List<Byte> avatar;
     private List<GameStats> games;
     private Game currGame;
-    private int numCorrectGames;
+    private int numCorrectAns;
 
     // POTENTIAL ADDITIONAL ATTRIBUTES: currAnswerChoice
 
@@ -41,7 +41,13 @@ public class Player {
         this.currGame = game;
     }
 
-    public int getNumCorrectGames() {
-        return numCorrectGames;
+    public voic set
+
+    public void setNumCorrectAns(int numCorrectAns) {
+        this.numCorrectAns = numCorrectAns;
+    }
+
+    public int getNumCorrectAns() {
+        return numCorrectAns;
     }
 }

@@ -8,7 +8,7 @@ public class Computer {
     private final String difficultyRating;
     private final Duration timeDelay;
     private int totalPoints2;
-    private int numCorrectGames;
+    private int numCorrectAns;
 
     Computer(String difficultyRating) {
         this.difficultyRating = difficultyRating;
@@ -22,7 +22,7 @@ public class Computer {
         }
 
         this.totalPoints2 = 0;
-        this.numCorrectGames = 0;
+        this.numCorrectAns = 0;
 
     }
 
@@ -38,8 +38,12 @@ public class Computer {
         return totalPoints2;
     }
 
-    public int getNumCorrectGames() {
-        return numCorrectGames;
+    public void setNumCorrectAns(int numCorrectAns) {
+        this.numCorrectAns = numCorrectAns;
+    }
+
+    public int getNumCorrectAns() {
+        return numCorrectAns;
     }
 
 //    public Integer getPoints() {
