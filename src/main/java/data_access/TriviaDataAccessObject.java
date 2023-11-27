@@ -13,6 +13,7 @@ import use_case.initialize_game.InitializeGameDataAccessInterface;
 
 public class TriviaDataAccessObject implements InitializeGameDataAccessInterface {
 
+
     @Override
     public String callApi(String category, String difficulty, int numberOfQuestions) {
         //Returns a String representation of the decoded JSONObject
@@ -21,7 +22,7 @@ public class TriviaDataAccessObject implements InitializeGameDataAccessInterface
             String amountURL = "amount=" + numberOfQuestions + "&";
             String categoryURL = "category=" + convertCategory(category) + "&";
             String difficultyURL = "difficulty=" + difficulty;
-            String finalURL = createURL + amountURL + categoryURL + difficultyURL;
+            String finalURL = createURL + amountURL + categoryURL + difficultyURL + "&type=multiple";
             URL url = new URL(finalURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -41,18 +42,13 @@ public class TriviaDataAccessObject implements InitializeGameDataAccessInterface
                     informationString.append(line);
                 }
                 scanner.close();
-                return decodeHtmlEntity(informationString.toString());
-                //System.out.println(informationString);
+                return informationString.toString();
             }
 
         } catch (IOException | InterruptedException e){
             throw new RuntimeException(e);
         }
 
-    }
-
-    private String decodeHtmlEntity(String encodedString){
-        return StringEscapeUtils.unescapeHtml4(encodedString);
     }
 
     private int convertCategory(String category) {
