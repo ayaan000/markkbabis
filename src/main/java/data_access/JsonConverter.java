@@ -3,6 +3,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.Question; // QUESTION: is it right for me to just import the class like this?
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,20 +33,32 @@ public class JsonConverter {
                 String question = resultNode.path("question").asText();
                 String correctAnswer = resultNode.path("correct_answer").asText();
 
+                // FOR TESTING
+                System.out.println(question);
+                System.out.println(correctAnswer);
+
                 // Accessing data from the "incorrect_answers" key
                 JsonNode incorrectsNode = resultNode.path("incorrect_answers");
-                String[] incorrectAnswers = new String[3];
+                List<String> incorrectAnswers = new ArrayList<String>();
 
-                int i = 0;
+                int i = 0;      // QUESTION
                 for (Iterator<JsonNode> it = incorrectsNode.elements(); it.hasNext(); ) {
                     JsonNode incorrectNode = it.next();
                     String incorrectAnswer = incorrectNode.asText();
-                    incorrectAnswers[i] = incorrectAnswer;
+                    incorrectAnswers.add(incorrectAnswer);
                     i++;
                 }
 
+                List<String> possibleAnswers = new ArrayList<>();
+                possibleAnswers.add(correctAnswer);
+                possibleAnswers.addAll(incorrectAnswers);
+
+                // FOR TESTING
+                System.out.println(incorrectAnswers);
+                System.out.println(possibleAnswers);
+
                 int j = 0;
-                Question currQuestion = new Question(question, incorrectAnswers, correctAnswer);   // QUESTION: change type in Question?
+                Question currQuestion = new Question(question, possibleAnswers, correctAnswer);
                 data[j] = currQuestion;
                 j++;    // QUESTION: why does it say that j is never used when it is on line 49??
             }
@@ -55,67 +68,6 @@ public class JsonConverter {
             e.printStackTrace();
         }
     }
-
-    // WAY USING SUBCLASS (PROBABLY NOT)
-//    public void convert(String jsonString) {
-//    try {
-//        ObjectMapper objectMapper = new ObjectMapper();
-//
-//        // read from json file and convert "incorrect_answers" array into String array
-//        MyObject myObject = objectMapper.readValue(jsonString, MyObject.class);
-//
-//        // access data
-//        String question = myObject.getQuestion();
-//        String correctAnswer = myObject.getCorrectAnswer();
-//        String[] incorrectAnswers = myObject.getIncorrectAnswers();
-////        for (String incorrectAnswer : myObject.getIncorrectAnswers()) {
-////
-////        }
-////        int i = 0;
-////        while (i < 3) {
-////            incorrectAnswers[i] = myObject.getIncorrectAnswer
-////            i++;
-////        }
-//        System.out.println(question);
-//        System.out.println(correctAnswer);
-//        System.out.println(incorrectAnswers);
-//    }
-//    catch (Exception e) {
-//        e.printStackTrace();
-//    }
-//}
-//
-//class MyObject {        // temp name
-//    private String question;
-//    private String correctAnswer;
-//    private String[] incorrectAnswers;
-//
-//    // Getters and setters
-//
-//    public String getQuestion() {
-//        return question;
-//    }
-//
-//    public void setQuestion(String question) {
-//        this.question = question;
-//    }
-//
-//    public String getCorrectAnswer() {
-//        return correctAnswer;
-//    }
-//
-//    public void setCorrectAnswer(String correctAnswer) {
-//        this.correctAnswer = correctAnswer;
-//    }
-//
-//    public String[] getIncorrectAnswers() {
-//        return incorrectAnswers;
-//    }
-//
-//    public void setIncorrectAnswers(String[] incorrectAnswers) {
-//        this.incorrectAnswers = incorrectAnswers;
-//    }
-//}
 
     public static void main(String[] args) {
         TriviaDataAccessObject triviaDataAccessObject = new TriviaDataAccessObject();
