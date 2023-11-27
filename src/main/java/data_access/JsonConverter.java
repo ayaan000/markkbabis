@@ -2,6 +2,7 @@ package data_access;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.Question; // QUESTION: is it right for me to just import the class like this?
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,10 +15,15 @@ public class JsonConverter {
     String category;
     String difficulty;
     int numberOfQuestions;
-    Question[] data = new Question[numberOfQuestions];
+    Question[] data;
+
+    JsonConverter (int numberOfQuestions){
+        this.numberOfQuestions = numberOfQuestions;
+        data = new Question[numberOfQuestions];
+    }
 
     // ORIGINAL (DIRECT) VERSION
-    public void convert(String jsonString) {
+    public Question[] convert(String jsonString) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
 
@@ -28,10 +34,14 @@ public class JsonConverter {
 
 
             Iterator<JsonNode> resultsIterator = resultsNode.elements();
+            int j = 0;
             while (resultsIterator.hasNext()) {
                 JsonNode resultNode = resultsIterator.next();
                 String question = resultNode.path("question").asText();
                 String correctAnswer = resultNode.path("correct_answer").asText();
+
+                question = decodeHtmlEntity(question);
+                correctAnswer = decodeHtmlEntity(correctAnswer);
 
                 // FOR TESTING
                 System.out.println(question);
@@ -45,6 +55,7 @@ public class JsonConverter {
                 for (Iterator<JsonNode> it = incorrectsNode.elements(); it.hasNext(); ) {
                     JsonNode incorrectNode = it.next();
                     String incorrectAnswer = incorrectNode.asText();
+                    incorrectAnswer = decodeHtmlEntity(incorrectAnswer);
                     incorrectAnswers.add(incorrectAnswer);
                     i++;
                 }
@@ -57,22 +68,26 @@ public class JsonConverter {
                 System.out.println(incorrectAnswers);
                 System.out.println(possibleAnswers);
 
-                int j = 0;
+                //int j = 0;
                 Question currQuestion = new Question(question, possibleAnswers, correctAnswer);
                 data[j] = currQuestion;
                 j++;    // QUESTION: why does it say that j is never used when it is on line 49??
             }
-
         }
         catch (Exception e) {
             e.printStackTrace();
         }
+        return data;
+    }
+
+    private String decodeHtmlEntity(String encodedString){
+        return StringEscapeUtils.unescapeHtml4(encodedString);
     }
 
     public static void main(String[] args) {
         TriviaDataAccessObject triviaDataAccessObject = new TriviaDataAccessObject();
-        String jsonString = triviaDataAccessObject.callApi("Animals", "medium", 5);
-        JsonConverter myObj = new JsonConverter();
+        String jsonString = triviaDataAccessObject.callApi("Sports", "hard", 5);
+        JsonConverter myObj = new JsonConverter(5);
         myObj.convert(jsonString);
     }
 
