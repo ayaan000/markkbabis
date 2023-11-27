@@ -1,9 +1,11 @@
 package interface_adapter.calculate_point;
 
+import interface_adapter.ViewModel;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class CalculatePointViewModel {
+public class CalculatePointViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Total Point";
     public static final String PLAYER_TITLE_LABEL = "Player";
     private CalculatePointState state = new CalculatePointState();
