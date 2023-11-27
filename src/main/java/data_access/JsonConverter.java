@@ -13,9 +13,13 @@ public class JsonConverter {
     int numberOfQuestions;
     Question[] data;
 
-    JsonConverter (int numberOfQuestions){
+    private JsonConverter (int numberOfQuestions){
         this.numberOfQuestions = numberOfQuestions;
         data = new Question[numberOfQuestions];
+    }
+
+    public static JsonConverter create(int numberOfQuestions){
+        return new JsonConverter(numberOfQuestions);
     }
 
     public Question[] convert(String jsonString) {

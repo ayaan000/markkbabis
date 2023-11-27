@@ -1,17 +1,19 @@
-//package use_case.initialize_game;
-//
-//public class InitializeGameInteractor implements InitializeGameInputBoundary{
-//    final InitializeGameDataAccessInterface initializeGameDataAccessObject;
-//    final InitializeGameOutputBoundary initializeGamePresenter;
-//
-//    // these variable names are getting really long, maybe we can shorten them to something else?
-//    // example ideas: initGame, initialize, or ig
-//    public InitializeGameInteractor(InitializeGameDataAccessInterface initializeGameDataAccessInterface,
-//                                    InitializeGameOutputBoundary initializeGameOutputBoundary) {
-//        this.initializeGameDataAccessObject = initializeGameDataAccessInterface;
-//        this.initializeGamePresenter = initializeGameOutputBoundary;
-//    }
-//
+package use_case.initialize_game;
+
+import entity.Question;
+
+import java.io.IOException;
+import data_access.JsonConverter;
+public class InitializeGameInteractor implements InitializeGameInputBoundary{
+    final InitializeGameDataAccessInterface initializeGameDataAccessObject;
+    final InitializeGameOutputBoundary initializeGamePresenter;
+
+    public InitializeGameInteractor(InitializeGameDataAccessInterface initializeGameDataAccessInterface,
+                                    InitializeGameOutputBoundary initializeGameOutputBoundary) {
+        this.initializeGameDataAccessObject = initializeGameDataAccessInterface;
+        this.initializeGamePresenter = initializeGameOutputBoundary;
+    }
+
 //    public void execute() {
 //        // ideas from signup use case in week05
 //        /* do we need any sort of conditions regarding the input from the user?
@@ -27,4 +29,12 @@
 //        initializeGamePresenter.prepareSuccessView(initializeGameOutputData);
 //                    // ^^ in this line we are getting ready to show the user their output data
 //    }
-//}
+
+    @Override
+    public void execute(InitializeGameInputData initializeGameInputData) throws IOException, InterruptedException {
+        String jsonString = initializeGameDataAccessObject.callApi(initializeGameInputData.getCategory(), initializeGameInputData.getDifficulty(), initializeGameInputData.getNumQuestions());
+        JsonConverter JsonObject = JsonConverter.create(initializeGameInputData.getNumQuestions()); //Singleton
+        Question[] questionList = JsonObject.convert(jsonString);
+        InitializeGameOutputData initializeGameOutputData = new InitializeGameOutputData(questionList);
+    }
+}
