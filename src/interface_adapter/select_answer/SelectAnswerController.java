@@ -12,9 +12,8 @@ public class SelectAnswerController {
         this.selectAnswerInputBoundary = selectAnswerInputBoundary;
     }
 
-    public void execute(int answer) {
-        SelectAnswerInputData selectAnswerInputData = new SelectAnswerInputData(answer);
+    public void execute(Question question, int answer) {
+        SelectAnswerInputData selectAnswerInputData = new SelectAnswerInputData(question, answer);
         selectAnswerInputBoundary.execute(selectAnswerInputData);
     }
-
 }
