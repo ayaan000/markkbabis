@@ -1,7 +1,7 @@
 package data_access;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entity.Question; // QUESTION: is it right for me to just import the class like this?
+import entity.Question;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.util.ArrayList;
@@ -10,10 +10,6 @@ import java.util.List;
 
 public class JsonConverter {
 
-    // QUESTION: input from user (use input data or is that backwards?)
-    // still need to define
-    String category;
-    String difficulty;
     int numberOfQuestions;
     Question[] data;
 
@@ -22,7 +18,6 @@ public class JsonConverter {
         data = new Question[numberOfQuestions];
     }
 
-    // ORIGINAL (DIRECT) VERSION
     public Question[] convert(String jsonString) {
         try {
             ObjectMapper objectMapper = new ObjectMapper();
@@ -71,7 +66,7 @@ public class JsonConverter {
                 //int j = 0;
                 Question currQuestion = new Question(question, possibleAnswers, correctAnswer);
                 data[j] = currQuestion;
-                j++;    // QUESTION: why does it say that j is never used when it is on line 49??
+                j++;
             }
         }
         catch (Exception e) {
@@ -84,11 +79,11 @@ public class JsonConverter {
         return StringEscapeUtils.unescapeHtml4(encodedString);
     }
 
-    public static void main(String[] args) {
-        TriviaDataAccessObject triviaDataAccessObject = new TriviaDataAccessObject();
-        String jsonString = triviaDataAccessObject.callApi("Sports", "hard", 5);
-        JsonConverter myObj = new JsonConverter(5);
-        myObj.convert(jsonString);
-    }
+//    public static void main(String[] args) {
+//        TriviaDataAccessObject triviaDataAccessObject = new TriviaDataAccessObject();
+//        String jsonString = triviaDataAccessObject.callApi("Sports", "hard", 5);
+//        JsonConverter myObj = new JsonConverter(5);
+//        myObj.convert(jsonString);
+//    }
 
 }
