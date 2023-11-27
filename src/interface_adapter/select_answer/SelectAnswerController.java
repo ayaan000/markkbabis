@@ -1,4 +1,4 @@
-package interface_adapter;
+package interface_adapter.select_answer;
 
 import entity.Question;
 import use_case.select_answer.SelectAnswerInputBoundary;
