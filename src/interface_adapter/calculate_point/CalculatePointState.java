@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package interface_adapter.calculate_point;
 
 public class CalculatePointState {
@@ -26,3 +27,7 @@ public class CalculatePointState {
     }
 }
 
+=======
+package interface_adapter.calculate_point;public class CalculatePointState {
+}
+>>>>>>> 5a859cf (select answer state)
