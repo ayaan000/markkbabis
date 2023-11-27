@@ -30,6 +30,9 @@ public class Game {
 //        }
 //    }
 
+    public String getCurrCategory() {
+        return currCategory;
+    }
     public String getQuestion()
     {
         return this.currQuestion.getQuestion();
@@ -38,6 +41,11 @@ public class Game {
     public int getAns()
     {
         return this.currQuestion.getIndexAnswer();
+    }
+
+    public ArrayList<Question> getQuestionList()
+    {
+        return this.questionList;
     }
 
 //    public void nextQuestion()

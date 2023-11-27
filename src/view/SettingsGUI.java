@@ -18,7 +18,7 @@ public class SettingsGUI {
         JPanel textFields = new JPanel();
 
 
-        textFields.setBorder(BorderFactory.createEmptyBorder(200, 200, 200, 200));
+        textFields.setBorder(BorderFactory.createEmptyBorder(300, 400, 300, 400));
         textFields.setLayout(new GridLayout(4,2, 20, 20));
 
         //Getting difficulty
@@ -64,7 +64,14 @@ public class SettingsGUI {
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        String category = String.valueOf(categoriesBox.getSelectedItem());
+                        String questionNumber = String.valueOf(questionNumbersBox);
+                        String difficulty = String.valueOf(difficultyBox);
 
+                        //pass the values to API
+
+                        GameGUI Game = new GameGUI();
+                        frame.dispose();
                     }
                 }
         );
@@ -74,10 +81,10 @@ public class SettingsGUI {
 
         frame.add(textFields, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setTitle("Task Manager");
-        frame.setSize(500, 500);
+        frame.setTitle("Settings");
         frame.pack();
         frame.setVisible(true);
+        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 
     }
