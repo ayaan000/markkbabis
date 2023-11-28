@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="commons-io-2.15">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/OneDrive - University of Toronto/UofT/Fall 2023/CSC207/commons-io-2.15.0-bin.zip!/commons-io-2.15.0" />
+      <root url="file://$PROJECT_DIR$" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$" />
+      <root url="file://$PROJECT_DIR$/src" />
+    </SOURCES>
+    <jarDirectory url="jar://$USER_HOME$/OneDrive - University of Toronto/UofT/Fall 2023/CSC207/commons-io-2.15.0-bin.zip!/commons-io-2.15.0" recursive="false" />
+  </library>
+</component>
