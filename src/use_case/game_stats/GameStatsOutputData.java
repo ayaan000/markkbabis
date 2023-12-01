@@ -12,32 +12,27 @@ public class GameStatsOutputData {
     // Computer/ Player 2 amt of correct answers (Indirectly displays the amt of questions)
     // Time played
 
-    private String category;
     private String difficulty;
     private int numQuestions;
     // points1 is  automatically assigned to Player1
-    private int points1;
-    private int points2;
+    private int playerPoints;
+    private int computerPoints;
     //numCorrectAnswers1 is  automatically assigned to Player1
     private int numCorrectAnswers1;
     private int numCorrectAnswers2;
     private Duration timePlayed;
 
-    public GameStatsOutputData(String category, String difficulty, int numQuestions, int points1, int points2,
+    public GameStatsOutputData(String difficulty, int numQuestions, int playerPoints, int computerPoints,
                                int numCorrectAnswers1, int numCorrectAnswers2, Duration timePlayed) {
-    this.category = category;
     this.difficulty = difficulty;
     this.numQuestions = numQuestions;
-    this.points1 = points1;
-    this.points2 = points2;
+    this.playerPoints = playerPoints;
+    this.computerPoints = computerPoints;
     this.numCorrectAnswers1 = numCorrectAnswers1;
     this.numCorrectAnswers2 = numCorrectAnswers2;
     this.timePlayed = timePlayed;
     }
 
-    public String getCategory() {
-        return category;
-    }
 
     public String getDifficulty() {
         return difficulty;
@@ -48,11 +43,11 @@ public class GameStatsOutputData {
     }
 
     public int getPoints1() {
-        return points1;
+        return playerPoints;
     }
 
     public int getPoints2() {
-        return points2;
+        return computerPoints;
     }
 
     public int getNumCorrectAnswers1() {
