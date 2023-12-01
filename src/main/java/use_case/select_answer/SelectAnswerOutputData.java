@@ -7,11 +7,11 @@ public class SelectAnswerOutputData {
     private int playerPoints;
     private int compPoints;
     private ArrayList<String> questions;
-    private String answer;
+    private int answer;
     private Duration timeLeft;
     private boolean correctness;
 
-    public SelectAnswerOutputData(int playerPoints, int compPoints, ArrayList<String> questions, String answer,
+    public SelectAnswerOutputData(int playerPoints, int compPoints, ArrayList<String> questions, int answer,
                             Duration timeLeft, boolean correctness) {
         this.playerPoints = playerPoints;
         this.compPoints = compPoints;
@@ -33,7 +33,7 @@ public class SelectAnswerOutputData {
         return questions;
     }
 
-    public String getAnswer() {
+    public int getAnswer() {
         return answer;
     }
 
