@@ -1,14 +1,12 @@
 package data_access;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-import org.apache.commons.lang3.StringEscapeUtils;
+
 import use_case.initialize_game.InitializeGameDataAccessInterface;
 
 public class TriviaDataAccessObject implements InitializeGameDataAccessInterface {
