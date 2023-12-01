@@ -6,14 +6,16 @@ import use_case.calculate_point.CalculatePointInputData;
 import use_case.select_answer.SelectAnswerInputBoundary;
 import use_case.select_answer.SelectAnswerInputData;
 
+import java.time.Duration;
+
 public class CalculatePointController {
     CalculatePointInputBoundary calculatePointInteractor;
 
-    public void calculatePointController(CalculatePointInputBoundary calculatePointInputBoundary) {
+    public CalculatePointController(CalculatePointInputBoundary calculatePointInputBoundary) {
         this.calculatePointInteractor = calculatePointInputBoundary;
     }
-    public void execute(int answer) {
-        CalculatePointInputData calculatePointInputData = new CalculatePointInputData(answer);
+    public void execute(boolean correctness, Duration timeleft) {
+        CalculatePointInputData calculatePointInputData = new CalculatePointInputData(correctness, timeleft);
         calculatePointInteractor.execute(calculatePointInputData);
     }
 }
