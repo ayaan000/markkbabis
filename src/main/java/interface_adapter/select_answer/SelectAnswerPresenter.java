@@ -3,6 +3,8 @@ package interface_adapter.select_answer;
 import interface_adapter.calculate_point.CalculatePointViewModel;
 import use_case.select_answer.SelectAnswerOutputBoundary;
 import use_case.select_answer.SelectAnswerOutputData;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.calculate_point.CalculatePointState;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,18 +22,14 @@ public class SelectAnswerPresenter implements SelectAnswerOutputBoundary {
         this.viewManagerModel = viewManagerModel;
     }
     @Override
-    public void prepareSuccessView(SelectAnswerOutputData message) {
+    public void prepareSuccessView(SelectAnswerOutputData result) {
         // On success, switch to the CalculatePoint view.
-//        CalculatePointState calculatePointState = calculatePointViewModel.getState();
-//        loginState.setUsername(response.getUsername());
-//        this.loginViewModel.setState(loginState);
-//        loginViewModel.firePropertyChanged();
-//
-//        viewManagerModel.setActiveView(loginViewModel.getViewName());
-//        viewManagerModel.firePropertyChanged();
-    }
+        CalculatePointState calculatePointState = calculatePointViewModel.getState();
+        calculatePointState.set(result.getUsername());
+        this.calculatePointViewModel.setState(calculatePointState);
+        calculatePointViewModel.firePropertyChanged();
 
-    @Override
-    public void prepareFailView(String message) {
+        viewManagerModel.setActiveView(calculatePointViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 }
