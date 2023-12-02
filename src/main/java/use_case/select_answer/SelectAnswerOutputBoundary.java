@@ -1,7 +1,7 @@
 package use_case.select_answer;
 
 public interface SelectAnswerOutputBoundary {
-    void prepareSuccessView(SelectAnswerOutputData user);
+    void prepareSuccessView(String message);
 
-    void prepareFailView(String error);
+    void prepareFailView(String message);
 }
