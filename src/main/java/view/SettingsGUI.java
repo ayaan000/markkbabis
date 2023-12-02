@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class SettingsGUI {
     int players;
-    SettingsGUI(int players)
+    public SettingsGUI(int players)
     {
         this.players = players;
 
