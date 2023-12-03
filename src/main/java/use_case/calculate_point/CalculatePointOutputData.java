@@ -3,27 +3,19 @@ package use_case.calculate_point;
 import java.time.Duration;
 
 public class CalculatePointOutputData {
-    private int answer1;
-    private int answer2;
-    private Duration time1;
-    private Duration time2;
+    private int points1;
+    private int points2;
 
-    public CalculatePointOutputData( int answer1, int answer2, Duration time1, Duration time2) {
-        this.answer1 = answer1;
-        this.answer2 = answer2;
-        this.time1 = time1;
-        this.time2 = time2;
+    public CalculatePointOutputData(int points1, int points2) {
+        this.points1 = points1;
+        this.points2 = points2;
     }
 
-    public int getAnswer2() {
-        return answer2;
+    public int getPoints1() {
+        return points1;
     }
 
-    public Duration getTime1() {
-        return time1;
-    }
-
-    public Duration getTime2() {
-        return time2;
+    public int getPoints2() {
+        return points2
     }
 }
