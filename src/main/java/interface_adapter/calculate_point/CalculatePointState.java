@@ -1,24 +1,37 @@
 package interface_adapter.calculate_point;
 
-import interface_adapter.select_answer.SelectAnswerState;
+import java.time.Duration;
 
 public class CalculatePointState {
-    private int playerPoint;
+    private int answer1 = 0;
+    private int answer2 = 0;
+    private Duration time1 = blank;
+    private Duration time2 = blank;
+
     public CalculatePointState(CalculatePointState copy) {
-        playerPoint = copy.playerPoint;
+        answer1 = copy.answer1;
+        answer2 = copy.answer2;
+        time1 = copy.time1;
+        time2 = copy.time2;
     }
-    // Because of the previous copy constructor, the default constructor must be explicit.
+
     public CalculatePointState() {
+
     }
-    public int getPlayerPoint() {
-            return playerPoint;
+
+    public int getAnswer1() {
+        return answer2;
     }
-    public void setPlayerPoint(int playerPoint) {
-        this.playerPoint = playerPoint;
+
+    public int getAnswer2() {
+        return answer2;
     }
-    public String toString() {
-        return "CalculatePointState{" +
-                "playerPoint='" + playerPoint + '\'' +
-                '}';
+
+    public Duration getTime1() {
+        return time1;
+    }
+
+    public Duration getTime2() {
+        return time2;
     }
 }

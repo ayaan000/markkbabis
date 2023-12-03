@@ -38,6 +38,7 @@ public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
         } else {                                        // false
             SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(playerPoint, computerPoint, false);
             calculatePointController.execute(true, Duration.ofSeconds(5));
+
             userPresenter.prepareSuccessView(selectAnswerOutputData);
         }
     }
