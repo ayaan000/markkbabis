@@ -14,7 +14,7 @@ public class Computer {
         this.difficultyRating = difficultyRating;
 
         if (difficultyRating.equals("Easy")) {
-           this.timeDelay = Duration.ofSeconds(20, 1);
+           this.timeDelay = Duration.ofSeconds(15, 1);
         } else if (difficultyRating.equals("Medium")) {
             this.timeDelay = Duration.ofSeconds(10, 1);
         } else {
@@ -38,12 +38,19 @@ public class Computer {
         return totalPoints2;
     }
 
+    public void setTotalPoints2(int totalPoints2) {
+        this.totalPoints2 = totalPoints2;
+    }
+
     public void setNumCorrectAns(int numCorrectAns) {
         this.numCorrectAns = numCorrectAns;
     }
 
     public int getNumCorrectAns() {
         return numCorrectAns;
+    }
+    public void setAdditionPoints(int additionalPoints) {
+        this.totalPoints2 += additionalPoints;
     }
 
 //    public Integer getPoints() {

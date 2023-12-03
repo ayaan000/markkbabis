@@ -1,13 +1,21 @@
 package use_case.calculate_point;
+
+import java.time.Duration;
+
 public class CalculatePointOutputData {
-    private int point;
-    public CalculatePointOutputData(int point) {
-        this.point = point;
+    private int points1;
+    private int points2;
+
+    public CalculatePointOutputData(int points1, int points2) {
+        this.points1 = points1;
+        this.points2 = points2;
     }
-    public int getPoint() {
-        return point;
+
+    public int getPoints1() {
+        return points1;
     }
-    public void setPoint(int point) {
-        this.point = point;
+
+    public int getPoints2() {
+        return points2;
     }
 }
