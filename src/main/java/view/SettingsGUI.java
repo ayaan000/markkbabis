@@ -6,11 +6,44 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SettingsGUI {
-    int players;
-    public SettingsGUI(int players)
-    {
-        this.players = players;
 
+    private final InitializeGameController initializeGameController;
+
+    public SettingsGUI(InitializeGameController initializeGameController)
+    {
+        this.initializeGameController = initializeGameController;
+
+        //Creating audio file
+        String apikey = "S4mwBQqs-D5XTBqUCZpUR0EA56Ns2QmKGjW0ARPumXN3";
+        IamAuthenticator authenticator = new IamAuthenticator(apikey);
+        TextToSpeech tts = new TextToSpeech(authenticator);
+        tts.setServiceUrl("https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/ed398db9-abab-406a-a985-9aa246224ca8");
+        try {
+            SynthesizeOptions synthesizeOptions =
+                    new SynthesizeOptions.Builder()
+                            .text("Enter the difficulty, number of questions and category")
+                            .accept("audio/wav")
+                            .voice("en-US_AllisonVoice")
+                            .build();
+            InputStream inputStream =
+                    tts.synthesize(synthesizeOptions).execute().getResult();
+            InputStream in = WaveUtils.reWriteWaveHeader(inputStream);
+
+            OutputStream out = new FileOutputStream("settings.wav");
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = in.read(buffer)) > 0) {
+                out.write(buffer, 0, length);
+            }
+            out.close();
+            in.close();
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        //creating UI
         JLabel background = new JLabel();
         JPanel buttonPanel = new JPanel();
         JFrame frame = new JFrame();
@@ -68,7 +101,7 @@ public class SettingsGUI {
                         String questionNumber = String.valueOf(questionNumbersBox);
                         String difficulty = String.valueOf(difficultyBox);
 
-                        //pass the values to API
+
 
                         GameGUI Game = new GameGUI();
                         frame.dispose();

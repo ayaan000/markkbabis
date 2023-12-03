@@ -8,12 +8,12 @@ public class SelectAnswerController {
 
     SelectAnswerInputBoundary selectAnswerInputBoundary;
 
-    public void SelectAnswerController(SelectAnswerInputBoundary selectAnswerInputBoundary) {
+    public SelectAnswerController(SelectAnswerInputBoundary selectAnswerInputBoundary) {
         this.selectAnswerInputBoundary = selectAnswerInputBoundary;
     }
 
-    public void execute(Question question, int answer) {
-        SelectAnswerInputData selectAnswerInputData = new SelectAnswerInputData(question, answer);
+    public void execute(int answer) {
+        SelectAnswerInputData selectAnswerInputData = new SelectAnswerInputData(answer);
         selectAnswerInputBoundary.execute(selectAnswerInputData);
     }
 }
