@@ -4,28 +4,28 @@ import java.time.Duration;
 import java.util.ArrayList;
 
 public class SelectAnswerOutputData {
-    private int playerPoints;
-    private int compPoints;
+    private int playerAnswer;
+    private int correctAnswer;
     // private ArrayList<String> questions;
     // private int answer;
     // private Duration timeLeft;
     private boolean correctness;
 
-    public SelectAnswerOutputData(int playerPoints, int compPoints, boolean correctness) {
-        this.playerPoints = playerPoints;
-        this.compPoints = compPoints;
+    public SelectAnswerOutputData(int playerAnswer, int correctAnswer, boolean correctness) {
+        this.playerAnswer = playerAnswer;
+        this.correctAnswer = correctAnswer;
 //        this.questions = questions;
 //        this.answer = answer;
 //        this.timeLeft = timeLeft;
         this.correctness = correctness;
     }
 
-    public int getPlayerPoints() {
-        return playerPoints;
+    public int getPlayerAnswer() {
+        return playerAnswer;
     }
 
-    public int getCompPoints() {
-        return compPoints;
+    public int getCorrectAnswer() {
+        return correctAnswer;
     }
 
     public boolean getCorrectness() {
@@ -43,14 +43,12 @@ public class SelectAnswerOutputData {
 //    public Duration getTimeLeft() {
 //        return timeLeft;
 //    }
-    public void setPlayerPoints(int playerPoints) {
-        this.playerPoints = playerPoints;
+    public void setPlayerAnswer(int playerAnswer) {
+        this.playerAnswer = playerAnswer;
     }
-
-    public void setCompPoints(int compPoints) {
-        this.compPoints = compPoints;
+    public void setCorrectAnswer(int correctAnswer) {
+        this.correctAnswer = correctAnswer;
     }
-
     public void setCorrectness(boolean correctness) {
         this.correctness = correctness;
     }

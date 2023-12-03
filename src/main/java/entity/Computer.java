@@ -38,6 +38,10 @@ public class Computer {
         return totalPoints2;
     }
 
+    public void setTotalPoints2(int totalPoints2) {
+        this.totalPoints2 = totalPoints2;
+    }
+
     public void setNumCorrectAns(int numCorrectAns) {
         this.numCorrectAns = numCorrectAns;
     }
@@ -45,8 +49,7 @@ public class Computer {
     public int getNumCorrectAns() {
         return numCorrectAns;
     }
-
-    public void setTotalPoints2(int additionalPoints) {
+    public void setAdditionPoints(int additionalPoints) {
         this.totalPoints2 += additionalPoints;
     }
 

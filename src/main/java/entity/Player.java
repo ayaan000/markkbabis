@@ -22,7 +22,11 @@ public class Player {
 
     // getters and setters
     public int getTotalPoints() {return totalPoints;}
-    public void setTotalPoints(int additionalPoints) {         // might need another entity to use this method?
+    public void setTotalPoints(int totalPoints) {
+        this.totalPoints = totalPoints;
+    }
+
+    public void setAdditionalPoints(int additionalPoints) {         // might need another entity to use this method?
         this.totalPoints += additionalPoints;
     }
     public List<Byte> getAvatar() {return avatar;}
