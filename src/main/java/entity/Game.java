@@ -47,6 +47,9 @@ public class Game {
     {
         return this.currQuestion.getQuestion();
     }
+    public Question getCurrQuestion(){
+        return currQuestion;
+    }
 
     public int getAns()
     {

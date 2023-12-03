@@ -14,8 +14,8 @@ public class CalculatePointController {
     public CalculatePointController(CalculatePointInputBoundary calculatePointInputBoundary) {
         this.calculatePointInteractor = calculatePointInputBoundary;
     }
-    public void execute(boolean correctness, Duration timeleft) {
-        CalculatePointInputData calculatePointInputData = new CalculatePointInputData(correctness, timeleft);
+    public void execute(int playerPoint, int computerPoint, boolean correctness, Duration timeleft) {
+        CalculatePointInputData calculatePointInputData = new CalculatePointInputData(playerPoint, computerPoint, correctness, timeleft);
         calculatePointInteractor.execute(calculatePointInputData);
     }
 }
