@@ -1,5 +1,6 @@
 package interface_adapter.initialize_game;
 
+import interface_adapter.ViewManagerModel;
 import use_case.initialize_game.InitializeGameOutputBoundary;
 import use_case.initialize_game.InitializeGameOutputData;
 
@@ -16,6 +17,7 @@ public class InitializeGamePresenter implements InitializeGameOutputBoundary {
 
     @Override
     public void prepareSuccessView(InitializeGameOutputData initializeGameOutputData) {
-
+        //Pass question list from outputdata to GameGUI
+        //TODO: What goes here?
     }
 }
