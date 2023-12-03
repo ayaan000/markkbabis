@@ -32,7 +32,9 @@ public class GameManager {
         SettingsGUI settingViewModel = new SettingsGUI(1);
         //What is the players in SettingsGUI doing??
 
-        TriviaDataAccessObject userDataAccessObject;
+        TriviaDataAccessObject userDataAccessObject = new TriviaDataAccessObject();
+
+        `
 
     }
 }
