@@ -14,10 +14,10 @@ public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
     @Override
     public void execute(SelectAnswerInputData selectAnswerInputData) {
         Question question = selectAnswerInputData.getQuestion();
-        String questionAnswer = question.getCorrectAnswer();
+        int questionAnswer = question.getCorrectAnswer();
         int userAnswer = selectAnswerInputData.getAnswer();
-
-        if (userAnswer != questionAnswer) {
+        boolean correctness = userAnswer == questionAnswer;
+        if (!correctness) {
             userPresenter.prepareFailView(" Wrong answer ");
         } else {
             SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(question.getCorrectAnswer());
