@@ -1,6 +1,7 @@
 package entity;
 
 import java.util.ArrayList;
+import entity.Question;
 
 public class Game {
     private String currCategory;
@@ -43,10 +44,6 @@ public class Game {
         }
     }
 
-    public Question getCurrQuestion()
-    {
-        return this.currQuestion;
-    }
     public Question getCurrQuestion(){
         return currQuestion;
     }
