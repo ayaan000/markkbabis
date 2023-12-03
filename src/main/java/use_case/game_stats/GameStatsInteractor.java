@@ -12,19 +12,18 @@ public class GameStatsInteractor implements GameStatsInputBoundary {
         this.userPresenter = gameStatsOutputBoundary;
     }
 
-    public void execute() {
+    public void execute(GameStatsInputData gameStatsInputData) {
 
         // List of inputs to create gameStatsOutputData
-        String difficulty = Computer.getDIfficultyRating();
-        int numQuestions = Game.getQuestionList();
-        int playerPoints= Player.getTotalPoints();
-        int computerPoints = Computer.getTotalPoints();
-        int numCorrectAnswers1 = Player.getNumCorrectAns();
-        int numCorrectAnswers2 = Computer.getNumCorrectAns();
-        Duration timePlayed = Game.getTimePLayed();
+        String difficulty = gameStatsInputData.getComputer().getDifficultyRating();
+        int numQuestions = gameStatsInputData.getGame().getNumQuestions();
+        int playerPoints= gameStatsInputData.getPlayer().getTotalPoints();
+        int computerPoints = gameStatsInputData.getComputer().getTotalPoints2();
+        int numCorrectAnswers1 = gameStatsInputData.getPlayer().getNumCorrectAns();
+        int numCorrectAnswers2 = gameStatsInputData.getComputer().getNumCorrectAns();
 
         GameStatsOutputData gameStatsOutputData = new GameStatsOutputData(difficulty, numQuestions,
-                playerPoints, computerPoints, numCorrectAnswers1, numCorrectAnswers2, timePlayed);
+                playerPoints, computerPoints, numCorrectAnswers1, numCorrectAnswers2);
 
         userPresenter.prepareSuccessView(gameStatsOutputData);
     }
