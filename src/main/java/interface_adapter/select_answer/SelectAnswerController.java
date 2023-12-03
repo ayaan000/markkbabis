@@ -8,7 +8,7 @@ public class SelectAnswerController {
 
     SelectAnswerInputBoundary selectAnswerInputBoundary;
 
-    public void SelectAnswerController(SelectAnswerInputBoundary selectAnswerInputBoundary) {
+    public SelectAnswerController(SelectAnswerInputBoundary selectAnswerInputBoundary) {
         this.selectAnswerInputBoundary = selectAnswerInputBoundary;
     }
 

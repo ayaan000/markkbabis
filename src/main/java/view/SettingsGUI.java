@@ -6,11 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SettingsGUI {
-    int players;
-    public SettingsGUI(int players)
+    private final InitalizeGameController initializeGameController;
+    public SettingsGUI(InitalizeGameController initializeGameController)
     {
-        this.players = players;
-
+        this.initializeGameController = initializeGameController;
         JLabel background = new JLabel();
         JPanel buttonPanel = new JPanel();
         JFrame frame = new JFrame();
