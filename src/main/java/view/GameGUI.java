@@ -10,21 +10,41 @@ import java.awt.event.ItemListener;
 public class GameGUI extends JFrame {
 
     public GameGUI () {
+
+        // SET UP FOR MAIN CONTAINERS
         JFrame frame = new JFrame();        // frame is essentially the window we see
+        JPanel mainPanel = new JPanel(new BorderLayout());  // panel holds components (label, buttons, etc.)
 
-        JLabel background = new JLabel();   // what is this meant to be used for? Why is it called background?
-        // maybe we need a label for the question?
 
-        JPanel answersPanel = new JPanel(); // panel holds components (label, buttons, etc.)
-        //answersPanel.setBorder(BorderFactory.createEmptyBorder(500, 400, 250, 400));
-        answersPanel.setLayout(new GridLayout(1,3, 100, 100));
-
-        TitledBorder title;
+        // QUESTiON TEXT
         String question = "Which is the best animal?";
-        title = BorderFactory.createTitledBorder(question);
-        title.setTitleJustification(TitledBorder.CENTER);
+        JLabel questionText = new JLabel(question);
+        mainPanel.add(questionText, BorderLayout.NORTH);
 
-        answersPanel.setBorder(title);
+//        TitledBorder title;
+//        String question = "Which is the best animal?";
+//        title = BorderFactory.createTitledBorder(question);
+//        title.setTitleJustification(TitledBorder.CENTER);
+//
+//        answersPanel.setBorder(title);
+
+        // POINTS TEXT
+        Integer playerPtInput = 0;
+        String playerPoint = playerPtInput.toString();
+        String playerTitle = "Player: " + playerPoint;
+        JLabel playerText = new JLabel(playerTitle);
+        mainPanel.add(playerText, BorderLayout.WEST);
+
+        Integer compPtInput = 1;
+        String compPoint = compPtInput.toString();
+        String compTitle = "Computer: " + compPoint;
+        JLabel compText = new JLabel(compTitle);
+        mainPanel.add(compText, BorderLayout.EAST);
+
+        // POSSIBLE ANSWERS
+        JPanel answersPanel = new JPanel();
+        //answersPanel.setBorder(BorderFactory.createEmptyBorder(500, 400, 250, 400));
+//        answersPanel.setLayout(new GridLayout(1,3, 100, 100));
 
         // create the buttons for the possible answers
         // TASK: need to somehow get the answers from somewhere and randomly assign them to different buttons
@@ -47,6 +67,10 @@ public class GameGUI extends JFrame {
         answersPanel.add(answer2);
         answersPanel.add(answer3);
 
+        mainPanel.add(answersPanel, BorderLayout.CENTER);
+
+
+        // ACTION RESPONSE TO THE BUTTONS
         // ItemListener invokes changes based on changed states of buttons
         ItemListener listener = new ItemListener() {
             @Override
@@ -63,8 +87,9 @@ public class GameGUI extends JFrame {
         answer2.addItemListener(listener);
         answer3.addItemListener(listener);
 
-        //frame.add(questionText);
-        frame.add(answersPanel);
+
+        // BUILDING THE FRAME
+        frame.add(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Gameplay");
 
