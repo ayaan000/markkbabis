@@ -29,8 +29,6 @@ public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
         int userAnswer = selectAnswerInputData.getAnswer();
         Question question = game.getCurrQuestion();
         int questionAnswer = question.getIndexAnswer();
-        int playerPoint = player.getTotalPoints();
-        int computerPoint = computer.getTotalPoints2();
         boolean computerCorrectness = computer.getComResult();
         Duration computerTimeLeft = computer.getTimeDelay();
         if (userAnswer == questionAnswer) {             // correct

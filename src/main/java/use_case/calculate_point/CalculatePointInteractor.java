@@ -36,8 +36,8 @@ public class CalculatePointInteractor implements CalculatePointInputBoundary{
         points1 = (timeSeconds1 - 15) / 15;
         points2 = (timeSeconds2 - 15) / 15;
 
-        player.setTotalPoints(points1);
-        computer.setTotalPoints2(points2);
+        player.setAdditionalPoints(points1);
+        computer.setAdditionPoints(points2);
 
         int totalPoints1 = player.getTotalPoints();
         int totalPoints2 = computer.getTotalPoints2();
