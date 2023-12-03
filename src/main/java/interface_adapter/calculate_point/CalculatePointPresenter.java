@@ -1,10 +1,13 @@
 package interface_adapter.calculate_point;
 
 import interface_adapter.ViewModel;
-import use_case.calculate_point.CalculatePointOutputBoundary;
-import use_case.calculate_point.CalculatePointOutputData;
+import entity.Question;
+import interface_adapter.ViewManagerModel;
+import use_case.calculate_point.CalculatePointInputBoundary;
+import use_case.calculate_point.CalculatePointInputData;
 
 public class CalculatePointPresenter implements CalculatePointOutputBoundary {
+  
     private CalculatePointViewModel calculatePointViewModel;
     private ViewModel viewModel;
 
@@ -21,6 +24,5 @@ public class CalculatePointPresenter implements CalculatePointOutputBoundary {
 
     @Override
     public void prepareFailView(String error) {
-
     }
 }
