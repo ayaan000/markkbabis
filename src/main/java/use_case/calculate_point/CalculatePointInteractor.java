@@ -30,13 +30,25 @@ public class CalculatePointInteractor implements CalculatePointInputBoundary{
 
         // Calculate points here
 
+        int  timeSeconds1 = (int) (time1.getSeconds() / 60);
+        int  timeSeconds2 = (int) (time2.getSeconds() / 60);
+
+        points1 = (timeSeconds1 - 15) / 15;
+        points2 = (timeSeconds2 - 15) / 15;
+
+        player.setTotalPoints(points1);
+        computer.setTotalPoints2(points2);
+
+        int totalPoints1 = player.getTotalPoints();
+        int totalPoints2 = computer.getTotalPoints2();
+
 //        if (answer1 == correctAnswer) {
 ////            points1 = Long.valueOf(number).intValue();
 //            points1 = Integer (100 * ((time1.getSeconds()-15) / 15.00);
 //        }
 
         // where am I supposed to do the actual calculations??
-        CalculatePointOutputData calculatePointOutputData = new CalculatePointOutputData(points1, points2);
+        CalculatePointOutputData calculatePointOutputData = new CalculatePointOutputData(totalPoints1, totalPoints2);
 
         userPresenter.prepareSuccessView(calculatePointOutputData);
     }

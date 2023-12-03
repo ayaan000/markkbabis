@@ -16,6 +16,6 @@ public class CalculatePointOutputData {
     }
 
     public int getPoints2() {
-        return points2
+        return points2;
     }
 }
