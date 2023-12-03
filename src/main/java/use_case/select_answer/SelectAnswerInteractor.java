@@ -26,19 +26,22 @@ public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
 
     @Override
     public void execute(SelectAnswerInputData selectAnswerInputData) {
+        int userAnswer = selectAnswerInputData.getAnswer();
         Question question = game.getCurrQuestion();
         int questionAnswer = question.getIndexAnswer();
-        int userAnswer = selectAnswerInputData.getAnswer();
         int playerPoint = player.getTotalPoints();
         int computerPoint = computer.getTotalPoints2();
+        boolean computerCorrectness = computer.getComResult();
+        Duration computerTimeLeft = computer.getTimeDelay();
         if (userAnswer == questionAnswer) {             // correct
-            SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(playerPoint, computerPoint, true);
-            calculatePointController.execute(true, Duration.ofSeconds(5));
+            calculatePointController.execute(true, computerCorrectness, Duration.ofSeconds(5), computerTimeLeft,
+                    player, computer);
+            SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(userAnswer, questionAnswer, true);
             userPresenter.prepareSuccessView(selectAnswerOutputData);
         } else {                                        // false
-            SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(playerPoint, computerPoint, false);
-            calculatePointController.execute(true, Duration.ofSeconds(5));
-
+            calculatePointController.execute(false, computerCorrectness, Duration.ofSeconds(5), computerTimeLeft,
+                    player, computer);
+            SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(userAnswer, questionAnswer, false);
             userPresenter.prepareSuccessView(selectAnswerOutputData);
         }
     }
