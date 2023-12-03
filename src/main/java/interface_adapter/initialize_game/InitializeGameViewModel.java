@@ -1,4 +1,4 @@
 package interface_adapter.initialize_game;
 
-public class InitializeGameView {
+public class InitializeGameViewModel {
 }

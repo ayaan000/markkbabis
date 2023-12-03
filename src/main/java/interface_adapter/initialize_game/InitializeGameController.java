@@ -6,17 +6,18 @@ import use_case.initialize_game.InitializeGameInputData;
 import java.io.IOException;
 
 public class InitializeGameController {
-    InitializeGameInputBoundary initializeGameInputBoundary;
+    InitializeGameInputBoundary initializeGameInteractor;
 
-    public InitializeGameController(InitializeGameInputBoundary initializeGameInputBoundary){
-        this.initializeGameInputBoundary = initializeGameInputBoundary;
+    public InitializeGameController(InitializeGameInputBoundary initializeGameInteractor){
+        this.initializeGameInteractor = initializeGameInteractor;
     }
 
     public void execute(String category, String difficulty, int nquestions){
         try {
             InitializeGameInputData initializeGameInputData =
                     new InitializeGameInputData(category, difficulty, nquestions);
-            initializeGameInputBoundary.execute(initializeGameInputData);
+            initializeGameInteractor.execute(initializeGameInputData);
+            
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (InterruptedException e) {
