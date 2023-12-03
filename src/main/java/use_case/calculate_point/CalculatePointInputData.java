@@ -6,47 +6,44 @@ import entity.Player;
 import java.time.Duration;
 
 public class CalculatePointInputData {
+    private boolean answerCorrectness1;
+    private boolean answerCorrectness2;
+    private Duration time1;
+    private Duration time2;
     private Player player;
     private Computer computer;
-    private boolean playerCorrectness;
-    private boolean computerCorrectness;
-    private Duration playerTimeLeft;
-    private Duration computerTimeLeft;
-    public CalculatePointInputData(boolean playerCorrectness, boolean computerCorrectness, Duration playerTimeLeft, Duration computerTimeLeft,
-                                   Player player, Computer computer) {
+
+    public CalculatePointInputData(boolean answerCorrectness1, boolean answerCorrectness2, Duration time1,
+                                   Duration time2, Player player, Computer computer) {
+        this.answerCorrectness1 = answerCorrectness1;
+        this.answerCorrectness2 = answerCorrectness2;
+        this.time1 = time1;
+        this.time2 = time2;
         this.player = player;
-        this.computer = computer;
-        this.playerCorrectness = playerCorrectness;
-        this.computerCorrectness = computerCorrectness;
-        this.playerTimeLeft = playerTimeLeft;
-        this.computerTimeLeft = computerTimeLeft;
-    }
-    public int getPlayerPoint() {
-        return player.getTotalPoints();
+        this. computer = computer;
     }
 
-    public void setPlayerPoint(int playerPoint) {
-        player.setTotalPoints(playerPoint);
+    public boolean getAnswerCorrectness1() {
+        return answerCorrectness1;
     }
 
-    public int getComputerPoint() {
-        return computer.getTotalPoints2();
+    public boolean getAnswerCorrectness2() {
+        return answerCorrectness2;
     }
 
-    public void setComputerPoint(int computerPoint) {
-        computer. = computerPoint;
+    public Duration getTime1() {
+        return time1;
     }
 
-    public boolean getCorrectness() {
-        return correctness;
+    public Duration getTime2() {
+        return time2;
     }
-    public void setCorrectness(boolean correctness) {
-        this.correctness = correctness;
+
+    public Player getPlayer() {
+        return player;
     }
-    public Duration getTimeLeft() {
-        return timeLeft;
-    }
-    public void setTimeLeft(Duration timeLeft) {
-        this.timeLeft = timeLeft;
+
+    public Computer getComputer() {
+        return computer;
     }
 }
