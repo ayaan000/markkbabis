@@ -46,6 +46,10 @@ public class Computer {
         return numCorrectAns;
     }
 
+    public void setTotalPoints2(int additionalPoints) {
+        this.totalPoints2 += additionalPoints;
+    }
+
 //    public Integer getPoints() {
 //        return Game.getCompPoints;
 //    }

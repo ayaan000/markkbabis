@@ -18,6 +18,7 @@ public class CalculatePointInteractor{
         Duration time1 = Player.getTime();
         Duration time2 = Computer.getTime();
 
+        int points =
 
         // where am I supposed to do the actual calculations??
         CalculatePointOutputData calculatePointOutputData = new CalculatePointOutputData(answer1, answer2, time1,
