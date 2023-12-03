@@ -21,7 +21,7 @@ public class Game {
 
     public int computePoints()
     {
-        return Math.round(100 * this.timeLeft);
+        return Math.round(100);
 
     }
 
