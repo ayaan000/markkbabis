@@ -36,5 +36,6 @@ public class InitializeGameInteractor implements InitializeGameInputBoundary{
         JsonConverter JsonObject = JsonConverter.create(initializeGameInputData.getNumQuestions()); //Singleton
         Question[] questionList = JsonObject.convert(jsonString);
         InitializeGameOutputData initializeGameOutputData = new InitializeGameOutputData(questionList);
+        initializeGamePresenter.prepareSuccessView(initializeGameOutputData);
     }
 }
