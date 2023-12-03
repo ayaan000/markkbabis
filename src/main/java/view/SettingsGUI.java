@@ -16,9 +16,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class SettingsGUI {
+    private final InitializeGameController initializeGameController;
 
-    SettingsGUI(int players)
+    public SettingsGUI(InitializeGameController initializeGameController)
     {
+        this.initializeGameController = initializeGameController;
+
         //Creating audio file
         String apikey = "S4mwBQqs-D5XTBqUCZpUR0EA56Ns2QmKGjW0ARPumXN3";
         IamAuthenticator authenticator = new IamAuthenticator(apikey);
@@ -107,7 +110,7 @@ public class SettingsGUI {
                         String questionNumber = String.valueOf(questionNumbersBox);
                         String difficulty = String.valueOf(difficultyBox);
 
-                        //pass the values to API
+
 
                         GameGUI Game = new GameGUI();
                         frame.dispose();
