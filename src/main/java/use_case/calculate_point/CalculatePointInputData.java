@@ -6,32 +6,29 @@ import entity.Player;
 import java.time.Duration;
 
 public class CalculatePointInputData {
-    private int answer1;
-    private int answer2;
-    private int correctAnswer;
+    private boolean answerCorrectness1;
+    private boolean answerCorrectness2;
     private Duration time1;
     private Duration time2;
     private Player player;
     private Computer computer;
 
-    public CalculatePointInputData(int answer1, int answer2, int correctAnswer, Duration time1, Duration time2,
-                                   Player player, Computer computer) {
-        this.answer1 = answer1;
-        this.answer2 = answer2;
-        this.correctAnswer = correctAnswer;
+    public CalculatePointInputData(boolean answerCorrectness1, boolean answerCorrectness2, Duration time1,
+                                   Duration time2, Player player, Computer computer) {
+        this.answerCorrectness1 = answerCorrectness1;
+        this.answerCorrectness2 = answerCorrectness2;
         this.time1 = time1;
         this.time2 = time2;
+        this.player = player;
+        this. computer = computer;
     }
 
-    public int getAnswer1() {
-        return answer1;
+    public boolean getAnswerCorrectness1() {
+        return answerCorrectness1;
     }
 
-    public int getAnswer2() {
-        return answer2;
-    }
-    public int getCorrectAnswer() {
-        return correctAnswer;
+    public boolean getAnswerCorrectness2() {
+        return answerCorrectness2;
     }
 
     public Duration getTime1() {

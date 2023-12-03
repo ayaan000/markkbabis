@@ -14,7 +14,7 @@ public class Computer {
         this.difficultyRating = difficultyRating;
 
         if (difficultyRating.equals("Easy")) {
-           this.timeDelay = Duration.ofSeconds(20, 1);
+           this.timeDelay = Duration.ofSeconds(15, 1);
         } else if (difficultyRating.equals("Medium")) {
             this.timeDelay = Duration.ofSeconds(10, 1);
         } else {
