@@ -6,18 +6,18 @@ import entity.Question;
 public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
     // final SelectAnswerDataAccessInterface userDataAccessObject;
     final SelectAnswerOutputBoundary userPresenter;
-
-    public SelectAnswerInteractor(SelectAnswerOutputBoundary selectAnswerOutputBoundary) {
+    private Game game;
+    public SelectAnswerInteractor(SelectAnswerOutputBoundary selectAnswerOutputBoundary, Game game) {
         this.userPresenter = selectAnswerOutputBoundary;
+        this.game = game;
     }
 
     @Override
     public void execute(SelectAnswerInputData selectAnswerInputData) {
-        Question question = selectAnswerInputData.getQuestion();
-        String questionAnswer = question.getCorrectAnswer();
+        String question = game.getQuestion();
+        String questionAnswer = .getCorrectAnswer();
         int userAnswer = selectAnswerInputData.getAnswer();
-
-        if (userAnswer != questionAnswer) {
+        if (userAnswer.equals(questionAnswer)) {
             userPresenter.prepareFailView(" Wrong answer ");
         } else {
             SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(question.getCorrectAnswer());
