@@ -13,13 +13,15 @@ import java.time.Duration;
 public class CalculatePointController {
     CalculatePointInputBoundary calculatePointInteractor;
 
-    public void calculatePointController(CalculatePointInputBoundary calculatePointInputBoundary) {
+    public CalculatePointController(CalculatePointInputBoundary calculatePointInputBoundary) {
         this.calculatePointInteractor = calculatePointInputBoundary;
     }
+  
     public void execute(boolean answerCorrectness1, boolean answerCorrectness2, Duration time1, Duration time2,
                         Player player, Computer computer) {
         CalculatePointInputData calculatePointInputData = new CalculatePointInputData(answerCorrectness1,
                 answerCorrectness2, time1, time2, player, computer);
+
         calculatePointInteractor.execute(calculatePointInputData);
     }
 }
