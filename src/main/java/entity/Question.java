@@ -20,8 +20,21 @@ import java.util.List;
         public int getIndexAnswer() {
             return possibleAnswer.indexOf(correctAnswer);
         }
+        public void setCorrectAnswer(String correctAnswer) {
+            this.correctAnswer = correctAnswer;
+        }
+        public List<String> getPossibleAnswer() {
+            return possibleAnswer;
+        }
+        public void setPossibleAnswer(List<String> possibleAnswer) {
+            this.possibleAnswer = possibleAnswer;
+        }
+
         public String getQuestion() {
             return question;
+        }
+        public void setQuestion(String question) {
+            this.question = question;
         }
     }
 
