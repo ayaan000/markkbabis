@@ -188,35 +188,6 @@ public class GameGUI extends JFrame {
         return mainPanel;
     }
 
-    public static void main(String[] args) {
-//        List<String> possibleAnswer = new ArrayList<>();
-//        possibleAnswer.add("ans1");
-//        possibleAnswer.add("ans2");
-//        possibleAnswer.add("ans3");
-//        possibleAnswer.add("ans4");
-//        Question question1 = new Question("Example question", possibleAnswer, "ans2");
-//        Question question2 = new Question("Example question #2", possibleAnswer, "ans3");
-//        Question[] questionlist = new Question[2];
-//        questionlist[0] = question1;
-//        questionlist[1] = question2;
-//        new CardLayoutExample(questionlist);
-        //SwingUtilities.invokeLater(() -> new CardLayoutExample([question1]);
-    }
-
-}
-
-
-class AnswerRadioButton extends JRadioButton {
-    private boolean isCorrect;
-
-    public AnswerRadioButton(String text, boolean isCorrect) {
-        super(text);
-        this.isCorrect = isCorrect;
-    }
-
-    public boolean isCorrect() {
-        return isCorrect;
-
     private void generateSound(Question question){
         String apikey = "S4mwBQqs-D5XTBqUCZpUR0EA56Ns2QmKGjW0ARPumXN3";
         IamAuthenticator authenticator = new IamAuthenticator(apikey);
@@ -250,4 +221,35 @@ class AnswerRadioButton extends JRadioButton {
         }
 
     }
+
+    public static void main(String[] args) {
+//        List<String> possibleAnswer = new ArrayList<>();
+//        possibleAnswer.add("ans1");
+//        possibleAnswer.add("ans2");
+//        possibleAnswer.add("ans3");
+//        possibleAnswer.add("ans4");
+//        Question question1 = new Question("Example question", possibleAnswer, "ans2");
+//        Question question2 = new Question("Example question #2", possibleAnswer, "ans3");
+//        Question[] questionlist = new Question[2];
+//        questionlist[0] = question1;
+//        questionlist[1] = question2;
+//        new CardLayoutExample(questionlist);
+        //SwingUtilities.invokeLater(() -> new CardLayoutExample([question1]);
+    }
+
+}
+
+
+class AnswerRadioButton extends JRadioButton {
+    private boolean isCorrect;
+
+    public AnswerRadioButton(String text, boolean isCorrect) {
+        super(text);
+        this.isCorrect = isCorrect;
+    }
+
+    public boolean isCorrect() {
+        return isCorrect;
+    }
+
 }
