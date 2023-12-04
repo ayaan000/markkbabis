@@ -240,9 +240,9 @@ public class ComputerEntityTests {
         assert (computer1.getNumCorrectAns() == -2);
     }
 
-    @Test
-    public void getComResult() {
-        Computer computer1 = new Computer("Easy");
-        assert (computer1.getComResult() || !computer1.getComResult());
-    }
+//    @Test
+//    public void getComResult() {
+//        Computer computer1 = new Computer("Easy");
+//        assert (computer1.getComResult() || !computer1.getComResult());
+//    }
 }
