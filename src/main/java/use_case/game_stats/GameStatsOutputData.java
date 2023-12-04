@@ -20,17 +20,15 @@ public class GameStatsOutputData {
     //numCorrectAnswers1 is  automatically assigned to Player1
     private int numCorrectAnswers1;
     private int numCorrectAnswers2;
-    private Duration timePlayed;
 
     public GameStatsOutputData(String difficulty, int numQuestions, int playerPoints, int computerPoints,
-                               int numCorrectAnswers1, int numCorrectAnswers2, Duration timePlayed) {
+                               int numCorrectAnswers1, int numCorrectAnswers2) {
     this.difficulty = difficulty;
     this.numQuestions = numQuestions;
     this.playerPoints = playerPoints;
     this.computerPoints = computerPoints;
     this.numCorrectAnswers1 = numCorrectAnswers1;
     this.numCorrectAnswers2 = numCorrectAnswers2;
-    this.timePlayed = timePlayed;
     }
 
 
@@ -56,9 +54,5 @@ public class GameStatsOutputData {
 
     public int getNumCorrectAnswers2() {
         return numCorrectAnswers2;
-    }
-
-    public Duration getTimePlayed() {
-        return timePlayed;
     }
 }

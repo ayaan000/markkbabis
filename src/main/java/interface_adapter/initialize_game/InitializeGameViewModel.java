@@ -1,5 +1,6 @@
 package interface_adapter.initialize_game;
 
+
 import interface_adapter.GameState;
 import interface_adapter.ViewModel;
 
@@ -22,4 +23,4 @@ public class InitializeGameViewModel extends ViewModel {
     public void addPropertyChangeListener(PropertyChangeListener listener) {
 
     }
-}
+

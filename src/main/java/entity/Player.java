@@ -1,3 +1,5 @@
+package entity;
+
 import entity.*;
 
 import java.util.*;
@@ -7,6 +9,7 @@ public class Player {
     private List<Byte> avatar;
     private List<GameStats> games;
     private  Game currGame;
+    private int numCorrectAns;
 
     // POTENTIAL ADDITIONAL ATTRIBUTES: currAnswerChoice
 
@@ -16,12 +19,17 @@ public class Player {
         this.avatar = avatar;
         this.games = games;
         this.currGame = currGame;
+        this.numCorrectAns = 0;
     }
 
     // getters and setters
     public int getTotalPoints() {return totalPoints;}
-    public void setTotalPoints(int newTotalPoints) {         // might need another entity to use this method?
-        totalPoints = newTotalPoints;
+    public void setTotalPoints(int totalPoints) {
+        this.totalPoints = totalPoints;
+    }
+
+    public void setAdditionalPoints(int additionalPoints) {         // might need another entity to use this method?
+        this.totalPoints += additionalPoints;
     }
     public List<Byte> getAvatar() {return avatar;}
     public void setAvatar(String avatarName) {
@@ -39,8 +47,17 @@ public class Player {
         this.currGame = game;
     }
 
+    public void setNumCorrectAns(int numCorrectAns) {
+        this.numCorrectAns = numCorrectAns;
+    }
+
+    public int getNumCorrectAns() {
+        return numCorrectAns;
+
     // other methods
-    public void chooseAnswer() {
+
+//    public void chooseAnswer() {
+
         // IDEA FOR IMPLEMENTATION
         // will need some sort of interaction between the view/viewmodel and this method
         // QUESTION: how do we select an answer? Is it via keys?
