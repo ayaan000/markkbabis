@@ -1,5 +1,7 @@
 package interface_adapter.calculate_point;
 
+import entity.Computer;
+import entity.Player;
 import entity.Question;
 import use_case.calculate_point.CalculatePointInputBoundary;
 import use_case.calculate_point.CalculatePointInputData;
@@ -14,8 +16,12 @@ public class CalculatePointController {
     public CalculatePointController(CalculatePointInputBoundary calculatePointInputBoundary) {
         this.calculatePointInteractor = calculatePointInputBoundary;
     }
-    public void execute(boolean correctness, Duration timeleft) {
-        CalculatePointInputData calculatePointInputData = new CalculatePointInputData(correctness, timeleft);
+  
+    public void execute(boolean answerCorrectness1, boolean answerCorrectness2, Duration time1, Duration time2,
+                        Player player, Computer computer) {
+        CalculatePointInputData calculatePointInputData = new CalculatePointInputData(answerCorrectness1,
+                answerCorrectness2, time1, time2, player, computer);
+
         calculatePointInteractor.execute(calculatePointInputData);
     }
 }

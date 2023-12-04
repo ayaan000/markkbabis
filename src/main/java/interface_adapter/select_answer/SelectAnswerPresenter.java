@@ -27,7 +27,6 @@ public class SelectAnswerPresenter implements SelectAnswerOutputBoundary {
         CalculatePointState calculatePointState = calculatePointViewModel.getState();
         this.calculatePointViewModel.setState(calculatePointState);
         calculatePointViewModel.firePropertyChanged();
-
         viewManagerModel.setActiveView(calculatePointViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

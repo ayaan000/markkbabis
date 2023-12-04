@@ -24,6 +24,11 @@ public class Game {
         return Math.round(100);
 
     }
+//    public int computePoints()
+//    {
+//        return Math.round(100 * this.timeLeft);
+//
+//    }
 
     String getPlayerAns()
     {
@@ -43,14 +48,22 @@ public class Game {
         }
     }
 
-    public String getQuestion()
+    public Question getCurrQuestion()
     {
-        return this.currQuestion.getQuestion();
+        return this.currQuestion;
     }
 
     public int getAns()
     {
         return this.currQuestion.getIndexAnswer();
+    }
+
+    public ArrayList<Question> getQuestionList() {
+        return questionList;
+    }
+
+    public int getNumQuestions() {
+        return questionList.size();
     }
 
     public void nextQuestion()

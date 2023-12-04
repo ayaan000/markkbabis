@@ -17,7 +17,6 @@ import java.util.List;
         public String getCorrectAnswer() {
             return correctAnswer;
         }
-
         public int getIndexAnswer() {
             return possibleAnswer.indexOf(correctAnswer);
         }
