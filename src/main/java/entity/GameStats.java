@@ -16,8 +16,7 @@ public class GameStats {
     private int numCorrectAnswers1;
     private int numCorrectAnswers2;
     public GameStats(Game game, List<Question> questions, String difficulty, int numQuestions,
-                     int playerPoints, int computerPoints, int numCorrectAnswers1, int numCorrectAnswers2,
-                     Duration timePlayers) {
+                     int playerPoints, int computerPoints, int numCorrectAnswers1, int numCorrectAnswers2) {
         this.game = game;
         this.questions = questions;
         this.difficulty = difficulty;

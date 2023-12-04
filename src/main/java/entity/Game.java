@@ -8,11 +8,11 @@ public class Game {
 
     private ArrayList<Question> questionList;
 
-    private int questionnumber = 0;
+    private int questionNumber = 0;
 
     private boolean gameEnd = false;
 
-    Game(String currCategory, float timeLeft, Question currQuestion, ArrayList<Question> questionList)
+    public Game(String currCategory, Question currQuestion, ArrayList<Question> questionList)
     {
         this.currCategory = currCategory;
         this.currQuestion = currQuestion;
@@ -68,8 +68,8 @@ public class Game {
 
     public void nextQuestion()
     {
-        if (questionnumber < questionList.size()) {
-            this.currQuestion = questionList.get(++questionnumber);
+        if (questionNumber < questionList.size()) {
+            this.currQuestion = questionList.get(++questionNumber);
         }
         else {
             this.gameEnd = true;
