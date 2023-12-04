@@ -1,5 +1,6 @@
 package interface_adapter.initialize_game;
 
+import interface_adapter.ViewManagerModel;
 import use_case.initialize_game.InitializeGameOutputBoundary;
 import use_case.initialize_game.InitializeGameOutputData;
 
