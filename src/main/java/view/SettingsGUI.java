@@ -96,9 +96,10 @@ public class SettingsGUI {
         JLabel categorylbl = new JLabel("Category:");
         textFields.add(categorylbl);
         difficultylbl.setAlignmentX(Component.CENTER_ALIGNMENT);
-        String[] categories = {"Film", "Geography", "Cartoon & Animations", "Music", "Books", "Computers",
-                "Science & Nature", "History", "Comics", "Vehicles", "General Knowledge", "Board Games", "Animals",
-                "Television", "Politics", "Video Games", "Sports"};
+        String[] categories = {"Entertainment: Film", "Geography", "Entertainment: Cartoon & Animations",
+                "Entertainment: Music", "Entertainment: Books", "Science: Computers", "Science & Nature", "History",
+                "Entertainment: Comics", "Vehicles", "General Knowledge", "Entertainment: Board Games", "Animals",
+                "Entertainment: Television", "Politics", "Entertainment: Video Games", "Sports"};
         final JComboBox<String> categoriesBox = new JComboBox<String>(categories);
 
         categoriesBox.setMaximumSize(categoriesBox.getPreferredSize());
@@ -113,10 +114,8 @@ public class SettingsGUI {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         String category = String.valueOf(categoriesBox.getSelectedItem());
-                        String questionNumber = String.valueOf(questionNumbersBox);
-                        String difficulty = String.valueOf(difficultyBox);
-
-
+                        String questionNumber = String.valueOf(questionNumbersBox.getSelectedItem());
+                        String difficulty = String.valueOf(difficultyBox.getSelectedItem());
 
                         initializeGameController.execute(category, difficulty, Integer.parseInt(questionNumber));
                         frame.dispose();

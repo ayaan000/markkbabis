@@ -11,16 +11,27 @@ public class InitializeGameViewModel extends ViewModel {
 
     private GameState state = new GameState();
 
-    public void setState(GameState state){this.state = state;}
+    public InitializeGameViewModel(String viewName) {
+        super(viewName);
+    }
 
-    public GameState getState(){ return state;}
+    public void setState(GameState state) {
+        this.state = state;
+    }
+
+    public GameState getState() {
+        return state;
+    }
 
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
-    public void firePropertyChanged() { support.firePropertyChange("state", null, this.state);
+
+    public void firePropertyChanged() {
+        support.firePropertyChange("state", null, this.state);
 
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
 
     }
+}
 
