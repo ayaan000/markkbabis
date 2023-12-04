@@ -130,11 +130,6 @@ public class GameGUI extends JFrame {
                     System.out.println("You selected: " + e.getItem());
                     //cardLayout.next(cardPanel);
                     // add action here (color change, correct answer)
-
-//                    if (e.getItem() == answer0) {
-//                        player.setAdditionalPoints(1);
-//                    }
-
                 }
             }
         };
