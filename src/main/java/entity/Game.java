@@ -19,38 +19,41 @@ public class Game {
         this.questionList = questionList;
     }
 
-    public int computePoints()
-    {
-        return Math.round(100);
-
-    }
+//    public int computePoints()
+//    {
+//        return Math.round(100);
+//
+//    }
 //    public int computePoints()
 //    {
 //        return Math.round(100 * this.timeLeft);
 //
 //    }
+//    String getPlayerAns()
+//    {
+//        return "";
+//    }
 
-    String getPlayerAns()
-    {
-        return "";
-    }
-
-    public boolean checkCorrect(int playerAnswer)
-    {
-        int correctAnswer = this.getAns();
-
-        if (playerAnswer == correctAnswer){
-            return true;
-        }
-
-        else {
-            return false;
-        }
-    }
+//    public boolean checkCorrect(int playerAnswer)
+//    {
+//        int correctAnswer = this.getAns();
+//
+//        if (playerAnswer == correctAnswer){
+//            return true;
+//        }
+//
+//        else {
+//            return false;
+//        }
+//    }
 
     public Question getCurrQuestion()
     {
         return this.currQuestion;
+    }
+
+    public void setCurrQuestion(Question currQuestion) {
+        this.currQuestion = currQuestion;
     }
 
     public int getAns()
@@ -62,6 +65,9 @@ public class Game {
         return questionList;
     }
 
+    public void setQuestionList(ArrayList<Question> questionList) {
+        this.questionList = questionList;
+    }
     public int getNumQuestions() {
         return questionList.size();
     }

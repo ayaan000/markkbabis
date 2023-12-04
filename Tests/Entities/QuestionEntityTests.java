@@ -14,9 +14,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class QuestionEntityTests {
-    private String question;
-    private List<String> possibleAnswer;
-    private String correctAnswer;
     @Before
     public void init(){
         List<String> possibleAnswer = new ArrayList<String>();

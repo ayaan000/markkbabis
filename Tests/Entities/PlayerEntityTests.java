@@ -13,12 +13,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class PlayerEntityTests {
-    private int totalPoints;
-    private List<Byte> avatar;
-    private List<GameStats> games;
-    private Game currGame;
-    private int numCorrectAns;
-
     @Before
     public void init(){
         List<String> possibleAnswer = new ArrayList<String>();
