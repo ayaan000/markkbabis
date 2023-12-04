@@ -25,7 +25,6 @@ public class SelectAnswerPresenter implements SelectAnswerOutputBoundary {
     public void prepareSuccessView(SelectAnswerOutputData result) {
         // On success, switch to the CalculatePoint view.
         CalculatePointState calculatePointState = calculatePointViewModel.getState();
-        calculatePointState.setPlayerPoint(result.getPlayerPoints());
         this.calculatePointViewModel.setState(calculatePointState);
         calculatePointViewModel.firePropertyChanged();
         viewManagerModel.setActiveView(calculatePointViewModel.getViewName());
