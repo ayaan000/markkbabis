@@ -12,7 +12,7 @@ public class Game {
 
     private boolean gameEnd = false;
 
-    Game(String currCategory, float timeLeft, Question currQuestion, ArrayList<Question> questionList)
+    public Game(String currCategory, Question currQuestion, ArrayList<Question> questionList)
     {
         this.currCategory = currCategory;
         this.currQuestion = currQuestion;
@@ -24,6 +24,11 @@ public class Game {
         return Math.round(100);
 
     }
+
+    public String getCurrCategory() {
+        return currCategory;
+    }
+
 //    public int computePoints()
 //    {
 //        return Math.round(100 * this.timeLeft);
