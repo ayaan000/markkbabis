@@ -12,7 +12,7 @@ public class GameGUI extends JFrame {
     public GameGUI () {
 
         // SET UP FOR MAIN CONTAINERS
-        JFrame frame = new JFrame();        // frame is essentially the window we see
+        JFrame frame = new JFrame();                        // frame is essentially the window we see
         JPanel mainPanel = new JPanel(new BorderLayout());  // panel holds components (label, buttons, etc.)
 
 
