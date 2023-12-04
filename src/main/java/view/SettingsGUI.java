@@ -1,9 +1,15 @@
 package view;
 
+import com.ibm.cloud.sdk.core.security.IamAuthenticator;
+import com.ibm.watson.text_to_speech.v1.TextToSpeech;
+import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
+import interface_adapter.initialize_game.InitializeGameController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.InputStream;
 
 public class SettingsGUI {
 
@@ -103,7 +109,7 @@ public class SettingsGUI {
 
 
 
-                        GameGUI Game = new GameGUI();
+                        initializeGameController.execute(category, difficulty, Integer.parseInt(questionNumber));
                         frame.dispose();
                     }
                 }
