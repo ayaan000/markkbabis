@@ -17,5 +17,4 @@ public class CalculatePointPresenter{
         this.viewModel = viewModel;
     }
 
-    public
 }

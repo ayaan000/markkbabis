@@ -1,13 +1,13 @@
 package view;
 
 
+
 import audio.AePlayWave;
 import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
 import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
 import interface_adapter.initialize_game.InitializeGameController;
-
 
 
 import javax.swing.*;
@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+
 
 public class SettingsGUI {
 
@@ -117,7 +118,7 @@ public class SettingsGUI {
 
 
 
-                        GameGUI Game = new GameGUI();
+                        initializeGameController.execute(category, difficulty, Integer.parseInt(questionNumber));
                         frame.dispose();
                     }
                 }
