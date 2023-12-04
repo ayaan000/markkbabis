@@ -10,7 +10,7 @@ public class Computer {
     private int totalPoints2;
     private int numCorrectAns;
 
-    Computer(String difficultyRating) {
+    public Computer(String difficultyRating) {
         this.difficultyRating = difficultyRating;
 
         if (difficultyRating.equals("Easy")) {
@@ -44,6 +44,10 @@ public class Computer {
 
     public void setNumCorrectAns(int numCorrectAns) {
         this.numCorrectAns = numCorrectAns;
+    }
+
+    public void addNumCorrectAns(int addition) {
+        this.numCorrectAns += addition;
     }
 
     public int getNumCorrectAns() {
