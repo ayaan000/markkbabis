@@ -1,5 +1,14 @@
 package view;
 
+
+import audio.AePlayWave;
+import com.ibm.cloud.sdk.core.security.IamAuthenticator;
+import com.ibm.watson.text_to_speech.v1.TextToSpeech;
+import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
+import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
+import interface_adapter.initialize_game.InitializeGameController;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -122,8 +131,5 @@ public class SettingsGUI {
 
     }
 
-    public static void main(String[] args){
-        new SettingsGUI(1);
-    }
 
 }
