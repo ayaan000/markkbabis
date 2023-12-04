@@ -10,17 +10,24 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import entity.Computer;
+import entity.Player;
 import entity.Question;
 
 public class GameGUI extends JFrame {
 
     Question[] questions;
+    Player player;
+    Computer computer;
+
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private int cardCount = 5; // Change this to the number of cards you want
 
-    public GameGUI(Question[] questions) {
+    public GameGUI(Question[] questions, Player player, Computer computer) {
         this.questions = questions;
+        this.player = player;
+        this.computer = computer;
         setTitle("CardLayout Example");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
@@ -71,13 +78,13 @@ public class GameGUI extends JFrame {
 //        answersPanel.setBorder(title);
 
         // POINTS TEXT
-        Integer playerPtInput = 0;
+        Integer playerPtInput = player.getTotalPoints();
         String playerPoint = playerPtInput.toString();
         String playerTitle = "Player: " + playerPoint;
         JLabel playerText = new JLabel(playerTitle);
         mainPanel.add(playerText, BorderLayout.WEST);
 
-        Integer compPtInput = 1;
+        Integer compPtInput = computer.getTotalPoints2();
         String compPoint = compPtInput.toString();
         String compTitle = "Computer: " + compPoint;
         JLabel compText = new JLabel(compTitle);
@@ -123,6 +130,11 @@ public class GameGUI extends JFrame {
                     System.out.println("You selected: " + e.getItem());
                     //cardLayout.next(cardPanel);
                     // add action here (color change, correct answer)
+
+//                    if (e.getItem() == answer0) {
+//                        player.setAdditionalPoints(1);
+//                    }
+
                 }
             }
         };
