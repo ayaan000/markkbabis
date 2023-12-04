@@ -5,6 +5,7 @@ import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
 import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
+import interface_adapter.initialize_game.InitializeGameController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ import java.io.OutputStream;
 public class HomeGUI extends JFrame implements ActionListener {
 
 
-    public HomeGUI(){
+    public HomeGUI(InitializeGameController initializeGameController){
         String apikey = "S4mwBQqs-D5XTBqUCZpUR0EA56Ns2QmKGjW0ARPumXN3";
         IamAuthenticator authenticator = new IamAuthenticator(apikey);
         TextToSpeech tts = new TextToSpeech(authenticator);
@@ -59,7 +60,7 @@ public class HomeGUI extends JFrame implements ActionListener {
                     public void actionPerformed(ActionEvent e) {
                         if (e.getSource().equals(singlePlayer)) {
 
-                            SettingsGUI settingsGUI = new SettingsGUI(1);
+                            SettingsGUI settingsGUI = new SettingsGUI(initializeGameController);
                             frame.dispose();
                         }
                     }
@@ -99,11 +100,6 @@ public class HomeGUI extends JFrame implements ActionListener {
     System.out.println("Cancel not implemented yet.");
 }
 
-
-
-    public static void main(String[] args){
-        new HomeGUI();
-    }
 
 }
 
