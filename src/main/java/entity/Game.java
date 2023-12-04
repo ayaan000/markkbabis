@@ -19,6 +19,11 @@ public class Game {
         this.questionList = questionList;
     }
 
+    public int computePoints()
+    {
+        return Math.round(100);
+
+    }
 //    public int computePoints()
 //    {
 //        return Math.round(100 * this.timeLeft);
