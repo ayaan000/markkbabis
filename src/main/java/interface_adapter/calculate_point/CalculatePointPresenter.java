@@ -16,6 +16,4 @@ public class CalculatePointPresenter{
         this.calculatePointViewModel = calculatePointViewModel;
         this.viewModel = viewModel;
     }
-
-    public
 }
