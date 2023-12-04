@@ -9,10 +9,15 @@ import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
 import interface_adapter.initialize_game.InitializeGameController;
 
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class SettingsGUI {
 
@@ -127,6 +132,8 @@ public class SettingsGUI {
         frame.pack();
         frame.setVisible(true);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        AePlayWave aw = new AePlayWave("settings.wav");
+        aw.start();
 
 
     }
