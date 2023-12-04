@@ -6,7 +6,7 @@ import interface_adapter.ViewManagerModel;
 import use_case.calculate_point.CalculatePointInputBoundary;
 import use_case.calculate_point.CalculatePointInputData;
 
-public class CalculatePointPresenter implements CalculatePointOutputBoundary {
+public class CalculatePointPresenter{
   
     private CalculatePointViewModel calculatePointViewModel;
     private ViewModel viewModel;
@@ -17,12 +17,5 @@ public class CalculatePointPresenter implements CalculatePointOutputBoundary {
         this.viewModel = viewModel;
     }
 
-    @Override
-    public void prepareSuccessView(CalculatePointOutputData user) {
-
-    }
-
-    @Override
-    public void prepareFailView(String error) {
-    }
+    public
 }
