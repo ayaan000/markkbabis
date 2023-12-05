@@ -7,12 +7,12 @@ import entity.Game;
 public class GameStatsInputData {
     private Player player;
     private Computer computer;
-    private Game game;
+//    private Game game;
 
-    public GameStatsInputData(Player player, Computer computer, Game game) {
+    public GameStatsInputData(Player player, Computer computer) {
         this.player = player;
         this.computer = computer;
-        this.game = game;
+//        this.game = game;
     }
 
     public Player getPlayer() {
@@ -23,7 +23,7 @@ public class GameStatsInputData {
         return computer;
     }
 
-    public Game getGame() {
-        return game;
-    }
+//    public Game getGame() {
+//        return game;
+//    }
 }
