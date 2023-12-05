@@ -20,7 +20,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import entity.Computer;
+import entity.Player;
 import entity.Question;
+import interface_adapter.game_stats.GameStatsController;
+import use_case.game_stats.GameStatsInputBoundary;
+import use_case.game_stats.GameStatsInteractor;
+import use_case.game_stats.GameStatsOutputBoundary;
+import use_case.game_stats.GameStatsOutputData;
+
+import interface_adapter.game_stats.GameStatsPresenter;
 import interface_adapter.calculate_point.CalculatePointController;
 import use_case.calculate_point.CalculatePointInputData;
 import use_case.calculate_point.CalculatePointInteractor;
@@ -56,6 +65,7 @@ public class GameGUI extends JFrame {
         this.computer = computer;
         setTitle("CardLayout Example");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setSize(400, 300);
 
         cardLayout = new CardLayout();
@@ -96,7 +106,11 @@ public class GameGUI extends JFrame {
                     aw.start();
                 }
                 else{
-
+                    GameStatsOutputBoundary gameStatsOutputBoundary = new GameStatsPresenter();
+                    GameStatsInputBoundary gameStatsInputInteractor = new GameStatsInteractor(gameStatsOutputBoundary);
+                    GameStatsController gameStatsController = new GameStatsController(gameStatsInputInteractor);
+                    gameStatsController.execute(player, computer);
+                    GameGUI.super.dispose();
                 }
 
             }
@@ -113,9 +127,13 @@ public class GameGUI extends JFrame {
 
     public JPanel createCard(Question question) {
         JPanel mainPanel = new JPanel();
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(500, 350, 300, 400));
+
+        Font largeFont = new Font("Arial", Font.PLAIN, 20);
 
         String q = question.getQuestion();
         JLabel questionText = new JLabel(q);
+        questionText.setFont(largeFont);
         mainPanel.add(questionText, BorderLayout.NORTH);
 
         TitledBorder title;
