@@ -1,6 +1,7 @@
 package view;
 
 import entity.GameStats;
+import use_case.game_stats.GameStatsOutputData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +11,7 @@ import java.awt.event.ActionEvent;
 public class StatsGUI extends JFrame {
 
 
-    public StatsGUI(GameStats gameStats) {
+    public StatsGUI(GameStatsOutputData gameStatsOutputData) {
 
         JLabel background = new JLabel();
         JPanel statsPanel = new JPanel();
@@ -20,8 +21,8 @@ public class StatsGUI extends JFrame {
 
         statsPanel.setBorder(BorderFactory.createEmptyBorder(250, 400, 250, 400));
         statsPanel.setLayout(new GridLayout(3, 2, 10, 10));
-        int playerScore = gameStats.getPlayerPoints();
-        int computerScore = gameStats.getComputerPoints();
+        int playerScore = gameStatsOutputData.getPlayerPoints();
+        int computerScore = gameStatsOutputData.getComputerPoints();
 
         Font font = new Font("Arial", Font.BOLD, 30);
         JLabel playerScoreLbl = new JLabel("Player score:");

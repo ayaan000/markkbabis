@@ -29,6 +29,8 @@ import use_case.game_stats.GameStatsInteractor;
 import use_case.game_stats.GameStatsOutputBoundary;
 import use_case.game_stats.GameStatsOutputData;
 
+import interface_adapter.game_stats.GameStatsPresenter;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -52,6 +54,7 @@ public class GameGUI extends JFrame {
         this.computer = computer;
         setTitle("CardLayout Example");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setSize(400, 300);
 
         cardLayout = new CardLayout();
@@ -87,7 +90,7 @@ public class GameGUI extends JFrame {
                     GameStatsInputBoundary gameStatsInputInteractor = new GameStatsInteractor(gameStatsOutputBoundary);
                     GameStatsController gameStatsController = new GameStatsController(gameStatsInputInteractor);
                     gameStatsController.execute(player, computer);
-
+                    GameGUI.super.dispose();
                 }
 
             }
@@ -104,9 +107,13 @@ public class GameGUI extends JFrame {
 
     public JPanel createCard(Question question) {
         JPanel mainPanel = new JPanel();
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(500, 350, 300, 400));
+
+        Font largeFont = new Font("Arial", Font.PLAIN, 20);
 
         String q = question.getQuestion();
         JLabel questionText = new JLabel(q);
+        questionText.setFont(largeFont);
         mainPanel.add(questionText, BorderLayout.NORTH);
 
         TitledBorder title;

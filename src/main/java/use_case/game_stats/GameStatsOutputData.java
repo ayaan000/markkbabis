@@ -39,11 +39,11 @@ public class GameStatsOutputData {
 //        return numQuestions;
 //    }
 
-    public int getPoints1() {
+    public int getPlayerPoints() {
         return playerPoints;
     }
 
-    public int getPoints2() {
+    public int getComputerPoints() {
         return computerPoints;
     }
 
