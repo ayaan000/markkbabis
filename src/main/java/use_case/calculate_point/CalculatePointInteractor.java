@@ -31,10 +31,10 @@ public class CalculatePointInteractor implements CalculatePointInputBoundary{
         int  timeSeconds1 = (int) (time1);
         int  timeSeconds2 = (int) (time2);
         if (answerCorrectness1) {
-            points1 = (15 - timeSeconds1) / 15;
+            points1 = Math.round(100/timeSeconds1);
         }
         if (answerCorrectness2) {
-            points2 = (15 - timeSeconds2) / 15;
+            points2 = Math.round(100/timeSeconds2);
         }
 
         player.setAdditionalPoints(points1);

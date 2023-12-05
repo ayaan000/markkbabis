@@ -83,7 +83,7 @@ public class GameGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (questionCounter < questions.length) {
-                    CalculatePointInputData calculatePointInputData = new CalculatePointInputData(isCorrect, computer.getComResult(), elapsedTime, computer.getTimeDelay().getSeconds(), player, computer);
+                    CalculatePointInputData calculatePointInputData = new CalculatePointInputData(isCorrect, computer.getComResult(), elapsedTime, computer.getTimeDelay().getSeconds());
                     calculatePointInteractor.execute(calculatePointInputData);
                     System.out.println("Player points: " + player.getTotalPoints());
                     System.out.println("Computer points: " + computer.getTotalPoints2());

@@ -21,7 +21,7 @@ public class CalculatePointController {
     public void execute(boolean answerCorrectness1, boolean answerCorrectness2, long time1, long time2,
                         Player player, Computer computer) {
         CalculatePointInputData calculatePointInputData = new CalculatePointInputData(answerCorrectness1,
-                answerCorrectness2, time1, time2, player, computer);
+                answerCorrectness2, time1, time2);
 
         calculatePointInteractor.execute(calculatePointInputData);
     }
