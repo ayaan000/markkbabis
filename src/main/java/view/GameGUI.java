@@ -92,7 +92,7 @@ public class GameGUI extends JFrame {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (questionCounter < questions.length) {
+                if (questionCounter < questions.length - 1) {
                     CalculatePointInputData calculatePointInputData = new CalculatePointInputData(isCorrect, computer.getComResult(), elapsedTime, computer.getTimeDelay().getSeconds());
                     calculatePointInteractor.execute(calculatePointInputData);
                     System.out.println("Player points: " + player.getTotalPoints());

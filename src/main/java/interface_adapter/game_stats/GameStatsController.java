@@ -17,15 +17,9 @@ public class GameStatsController {
     }
 
     public void execute(Player player, Computer computer){
-        try {
-            GameStatsInputData gameStatsInputData =
-                    new GameStatsInputData(player, computer);
-            gameStatsInteractor.execute(gameStatsInputData);
+        GameStatsInputData gameStatsInputData =
+                new GameStatsInputData(player, computer);
+        gameStatsInteractor.execute(gameStatsInputData);
 
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
