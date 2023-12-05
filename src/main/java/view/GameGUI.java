@@ -20,24 +20,31 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import entity.Computer;
+import entity.Player;
+import entity.Question;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-
 public class GameGUI extends JFrame {
 
     private int questionCounter = 0;
     Question[] questions;
+    Player player;
+    Computer computer;
+
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private int cardCount = 5; // Change this to the number of cards you want
 
-    public GameGUI(Question[] questions) {
+    public GameGUI(Question[] questions, Player player, Computer computer) {
 
         this.questions = questions;
+        this.player = player;
+        this.computer = computer;
         setTitle("CardLayout Example");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
@@ -101,13 +108,13 @@ public class GameGUI extends JFrame {
 //        answersPanel.setBorder(title);
 
         // POINTS TEXT
-        Integer playerPtInput = 0;
+        Integer playerPtInput = player.getTotalPoints();
         String playerPoint = playerPtInput.toString();
         String playerTitle = "Player: " + playerPoint;
         JLabel playerText = new JLabel(playerTitle);
         mainPanel.add(playerText, BorderLayout.WEST);
 
-        Integer compPtInput = 1;
+        Integer compPtInput = computer.getTotalPoints2();
         String compPoint = compPtInput.toString();
         String compTitle = "Computer: " + compPoint;
         JLabel compText = new JLabel(compTitle);

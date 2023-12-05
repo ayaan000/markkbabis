@@ -12,7 +12,7 @@ public class Game {
 
     private boolean gameEnd = false;
 
-    Game(String currCategory, float timeLeft, Question currQuestion, ArrayList<Question> questionList)
+    public Game(String currCategory, float timeLeft, Question currQuestion, ArrayList<Question> questionList)
     {
         this.currCategory = currCategory;
         this.currQuestion = currQuestion;

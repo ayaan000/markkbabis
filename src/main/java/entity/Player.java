@@ -14,7 +14,7 @@ public class Player {
     // POTENTIAL ADDITIONAL ATTRIBUTES: currAnswerChoice
 
     // constructor
-    Player(int totalPoints, List<Byte> avatar, List<GameStats> games, Game currGame) {
+    public Player(int totalPoints, List<Byte> avatar, List<GameStats> games, Game currGame) {
         this.totalPoints = totalPoints;
         this.avatar = avatar;
         this.games = games;
