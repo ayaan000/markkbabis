@@ -11,14 +11,14 @@ import java.time.Duration;
 
 public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
     // final SelectAnswerDataAccessInterface userDataAccessObject;
-    final SelectAnswerOutputBoundary userPresenter;
+    final SelectAnswerOutputBoundary selectAnswerPresenter;
     private Game game;
     private Player player;
     private Computer computer;
     private CalculatePointController calculatePointController;
     public SelectAnswerInteractor(SelectAnswerOutputBoundary selectAnswerOutputBoundary, Game game, Player player,
                                   Computer computer ) {
-        this.userPresenter = selectAnswerOutputBoundary;
+        this.selectAnswerPresenter = selectAnswerOutputBoundary;
         this.game = game;
         this.player = player;
         this.computer = computer;
@@ -35,12 +35,12 @@ public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
             calculatePointController.execute(true, computerCorrectness, Duration.ofSeconds(5), computerTimeLeft,
                     player, computer);
             SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(userAnswer, questionAnswer, true);
-            userPresenter.prepareSuccessView(selectAnswerOutputData);
+            selectAnswerPresenter.prepareSuccessView(selectAnswerOutputData);
         } else {                                        // false
             calculatePointController.execute(false, computerCorrectness, Duration.ofSeconds(5), computerTimeLeft,
                     player, computer);
             SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(userAnswer, questionAnswer, false);
-            userPresenter.prepareSuccessView(selectAnswerOutputData);
+            selectAnswerPresenter.prepareSuccessView(selectAnswerOutputData);
         }
     }
 }

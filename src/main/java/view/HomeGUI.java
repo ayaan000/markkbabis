@@ -21,34 +21,8 @@ public class HomeGUI extends JFrame implements ActionListener {
 
 
     public HomeGUI(InitializeGameController initializeGameController){
-        String apikey = "S4mwBQqs-D5XTBqUCZpUR0EA56Ns2QmKGjW0ARPumXN3";
-        IamAuthenticator authenticator = new IamAuthenticator(apikey);
-        TextToSpeech tts = new TextToSpeech(authenticator);
-        tts.setServiceUrl("https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/ed398db9-abab-406a-a985-9aa246224ca8");
-        try {
-            SynthesizeOptions synthesizeOptions =
-                    new SynthesizeOptions.Builder()
-                            .text("Trivia Game! Play or Help")
-                            .accept("audio/wav")
-                            .voice("en-US_AllisonVoice")
-                            .build();
-            InputStream inputStream =
-                    tts.synthesize(synthesizeOptions).execute().getResult();
-            InputStream in = WaveUtils.reWriteWaveHeader(inputStream);
 
-            OutputStream out = new FileOutputStream("home.wav");
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = in.read(buffer)) > 0) {
-                out.write(buffer, 0, length);
-            }
-            out.close();
-            in.close();
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        generateSound();
         JLabel background = new JLabel();
         JPanel buttonPanel = new JPanel();
         JFrame frame = new JFrame();
@@ -100,6 +74,34 @@ public class HomeGUI extends JFrame implements ActionListener {
     System.out.println("Cancel not implemented yet.");
 }
 
+    private void generateSound(){
+        String apikey = "S4mwBQqs-D5XTBqUCZpUR0EA56Ns2QmKGjW0ARPumXN3";
+        IamAuthenticator authenticator = new IamAuthenticator(apikey);
+        TextToSpeech tts = new TextToSpeech(authenticator);
+        tts.setServiceUrl("https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/ed398db9-abab-406a-a985-9aa246224ca8");
+        try {
+            SynthesizeOptions synthesizeOptions =
+                    new SynthesizeOptions.Builder()
+                            .text("Trivia Game! Play or Help")
+                            .accept("audio/wav")
+                            .voice("en-US_AllisonVoice")
+                            .build();
+            InputStream inputStream =
+                    tts.synthesize(synthesizeOptions).execute().getResult();
+            InputStream in = WaveUtils.reWriteWaveHeader(inputStream);
 
+            OutputStream out = new FileOutputStream("home.wav");
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = in.read(buffer)) > 0) {
+                out.write(buffer, 0, length);
+            }
+            out.close();
+            in.close();
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 

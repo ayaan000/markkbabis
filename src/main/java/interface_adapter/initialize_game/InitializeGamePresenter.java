@@ -21,6 +21,5 @@ public class InitializeGamePresenter implements InitializeGameOutputBoundary {
                 initializeGameOutputData.getPlayer(),
                 initializeGameOutputData.getComputer());
         //Pass question list from outputdata to GameGUI
-        //TODO: What goes here?
     }
 }
