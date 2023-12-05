@@ -74,7 +74,7 @@ public class GameGUI extends JFrame {
         // Create and add cards to the cardPanel
         for (int i = 0; i < questions.length; i++) {
             String cardName = "Card " + (i + 1);
-            JPanel card = createCard(questions[i]);
+            JPanel card = createCard(questions[i], i+1);
             cardPanel.add(card, cardName);
         }
 
@@ -125,16 +125,17 @@ public class GameGUI extends JFrame {
         setVisible(true);
     }
 
-    public JPanel createCard(Question question) {
+    public JPanel createCard(Question question, int questionNumber) {
         JPanel mainPanel = new JPanel();
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(500, 350, 300, 400));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(350, 350, 400, 400));
 
-        Font largeFont = new Font("Arial", Font.PLAIN, 20);
+        Font largeFont = new Font("Calibri", Font.PLAIN, 28);
 
-        String q = question.getQuestion();
+        String q = "Question #" + questionNumber + ": " + question.getQuestion() + "    ";
         JLabel questionText = new JLabel(q);
         questionText.setFont(largeFont);
         mainPanel.add(questionText, BorderLayout.NORTH);
+
 
         TitledBorder title;
 //            String question = "Which is the best animal?";
@@ -145,17 +146,17 @@ public class GameGUI extends JFrame {
 
 
         // POINTS TEXT
-        Integer playerPtInput = player.getTotalPoints();
-        String playerPoint = playerPtInput.toString();
-        String playerTitle = "Player: " + playerPoint;
-        JLabel playerText = new JLabel(playerTitle);
-        mainPanel.add(playerText, BorderLayout.WEST);
-
-        Integer compPtInput = computer.getTotalPoints2();
-        String compPoint = compPtInput.toString();
-        String compTitle = "Computer: " + compPoint;
-        JLabel compText = new JLabel(compTitle);
-        mainPanel.add(compText, BorderLayout.EAST);
+//        Integer playerPtInput = player.getTotalPoints();
+//        String playerPoint = playerPtInput.toString();
+//        String playerTitle = "Player: " + playerPoint;
+//        JLabel playerText = new JLabel(playerTitle);
+//        mainPanel.add(playerText, BorderLayout.WEST);
+//
+//        Integer compPtInput = computer.getTotalPoints2();
+//        String compPoint = compPtInput.toString();
+//        String compTitle = "Computer: " + compPoint;
+//        JLabel compText = new JLabel(compTitle);
+//        mainPanel.add(compText, BorderLayout.EAST);
 
 //        // POSSIBLE ANSWERS
         JPanel answersPanel = new JPanel();
@@ -167,14 +168,19 @@ public class GameGUI extends JFrame {
         // can I get the possible answers from initialize_game use case output data?
         Object[] possibleAnswers = question.getPossibleAnswers().toArray();
 
-        int corrIndex = question.getIndexAnswer();
-        boolean correctness = false;
+        int answerTextSize = 20;
+
+        Font answerFont = new Font("Arial", Font.BOLD, answerTextSize);
 
 
         JRadioButton answer0 = new AnswerRadioButton(possibleAnswers[0].toString(), true);
+        answer0.setFont(answerFont);
         JRadioButton answer1 = new AnswerRadioButton(possibleAnswers[1].toString(), false);
+        answer1.setFont(answerFont);
         JRadioButton answer2 = new AnswerRadioButton(possibleAnswers[2].toString(), false);
+        answer2.setFont(answerFont);
         JRadioButton answer3 = new AnswerRadioButton(possibleAnswers[3].toString(),false );
+        answer3.setFont(answerFont);
 
         JRadioButton[] buttons = {answer0, answer1, answer2, answer3};
 
