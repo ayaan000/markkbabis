@@ -12,8 +12,8 @@ import java.io.IOException;
 public class GameStatsController {
     GameStatsInputBoundary gameStatsInteractor;
 
-    public GameStatsController(GameStatsInputBoundary gameStatsInteractor){
-        this.gameStatsInteractor = gameStatsInteractor;
+    public GameStatsController(GameStatsInputBoundary gameStatsInputBoundary){
+        this.gameStatsInteractor = gameStatsInputBoundary;
     }
 
     public void execute(Player player, Computer computer){
