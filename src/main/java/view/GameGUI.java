@@ -1,5 +1,12 @@
 package view;
 
+import audio.AePlayWave;
+import com.ibm.cloud.sdk.core.security.IamAuthenticator;
+import com.ibm.watson.text_to_speech.v1.TextToSpeech;
+import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
+import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
+import entity.Question;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -7,19 +14,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import entity.Question;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 
 public class GameGUI extends JFrame {
 
+    private int questionCounter = 0;
     Question[] questions;
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private int cardCount = 5; // Change this to the number of cards you want
 
     public GameGUI(Question[] questions) {
+
         this.questions = questions;
         setTitle("CardLayout Example");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,13 +54,26 @@ public class GameGUI extends JFrame {
 
         add(cardPanel, BorderLayout.CENTER);
 
+        generateSound(questions[0]);
+        AePlayWave aw = new AePlayWave("game.wav");
+        aw.start();
+
         // Create buttons to navigate through cards
 
         JButton nextButton = new JButton("Next");
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.next(cardPanel);
+                if (questionCounter < questions.length) {
+                    cardLayout.next(cardPanel);
+                    generateSound(questions[++questionCounter]);
+                    AePlayWave aw = new AePlayWave("game.wav");
+                    aw.start();
+                }
+                else{
+
+                }
+
             }
         });
 
@@ -56,7 +86,7 @@ public class GameGUI extends JFrame {
         setVisible(true);
     }
 
-    private JPanel createCard(Question question) {
+    public JPanel createCard(Question question) {
         JPanel mainPanel = new JPanel();
 
         String q = question.getQuestion();
@@ -93,23 +123,32 @@ public class GameGUI extends JFrame {
         // can I get the possible answers from initialize_game use case output data?
         Object[] possibleAnswers = question.getPossibleAnswers().toArray();
 
-        JRadioButton answer0 = new JRadioButton(possibleAnswers[0].toString());
-        JRadioButton answer1 = new JRadioButton(possibleAnswers[1].toString());
-        JRadioButton answer2 = new JRadioButton(possibleAnswers[2].toString());
-        JRadioButton answer3 = new JRadioButton(possibleAnswers[3].toString());
+        int corrIndex = question.getIndexAnswer();
+        boolean correctness = false;
 
+
+        JRadioButton answer0 = new AnswerRadioButton(possibleAnswers[0].toString(), true);
+        JRadioButton answer1 = new AnswerRadioButton(possibleAnswers[1].toString(), false);
+        JRadioButton answer2 = new AnswerRadioButton(possibleAnswers[2].toString(), false);
+        JRadioButton answer3 = new AnswerRadioButton(possibleAnswers[3].toString(),false );
+
+        JRadioButton[] buttons = {answer0, answer1, answer2, answer3};
+
+        Collections.shuffle(Arrays.asList(buttons));
+
+        System.out.println(question.getCorrectAnswer());
         // group all the buttons in one area (functionality)
         ButtonGroup group = new ButtonGroup();
-        group.add(answer0);
-        group.add(answer1);
-        group.add(answer2);
-        group.add(answer3);
+        group.add(buttons[0]);
+        group.add(buttons[1]);
+        group.add(buttons[2]);
+        group.add(buttons[3]);
 
         // add all buttons to panel (visual purposes)
-        answersPanel.add(answer0);
-        answersPanel.add(answer1);
-        answersPanel.add(answer2);
-        answersPanel.add(answer3);
+        answersPanel.add(buttons[0]);
+        answersPanel.add(buttons[1]);
+        answersPanel.add(buttons[2]);
+        answersPanel.add(buttons[3]);
 
         mainPanel.add(answersPanel, BorderLayout.CENTER);
 
@@ -120,13 +159,26 @@ public class GameGUI extends JFrame {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
+                    AnswerRadioButton selectedButton = (AnswerRadioButton) e.getSource();
                     System.out.println("You selected: " + e.getItem());
+
+                    if (selectedButton.isCorrect()){
+                        selectedButton.setBackground(Color.GREEN);
+
+                    } else {
+                        selectedButton.setBackground(Color.RED);
+                        answer0.setBackground(Color.GREEN);
+                    }
+
+                    answer0.setEnabled(false);
+                    answer1.setEnabled(false);
+                    answer2.setEnabled(false);
+                    answer3.setEnabled(false);
                     //cardLayout.next(cardPanel);
                     // add action here (color change, correct answer)
                 }
             }
         };
-
 
         answer0.addItemListener(listener);
         answer1.addItemListener(listener);
@@ -134,6 +186,41 @@ public class GameGUI extends JFrame {
         answer3.addItemListener(listener);
 
         return mainPanel;
+    }
+
+
+    private void generateSound(Question question){
+        String apikey = "S4mwBQqs-D5XTBqUCZpUR0EA56Ns2QmKGjW0ARPumXN3";
+        IamAuthenticator authenticator = new IamAuthenticator(apikey);
+        TextToSpeech tts = new TextToSpeech(authenticator);
+        tts.setServiceUrl("https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/ed398db9-abab-406a-a985-9aa246224ca8");
+        try {
+            SynthesizeOptions synthesizeOptions =
+                    new SynthesizeOptions.Builder()
+                            .text(question.getQuestion() + ", ," + question.getPossibleAnswers().toArray()[0]+ ", , "
+                                    + question.getPossibleAnswers().toArray()[1]+ ", ," +
+                                    question.getPossibleAnswers().toArray()[2]+ ", ," +
+                                    question.getPossibleAnswers().toArray()[3])
+                            .accept("audio/wav")
+                            .voice("en-US_AllisonVoice")
+                            .build();
+            InputStream inputStream =
+                    tts.synthesize(synthesizeOptions).execute().getResult();
+            InputStream in = WaveUtils.reWriteWaveHeader(inputStream);
+
+            OutputStream out = new FileOutputStream("game.wav");
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = in.read(buffer)) > 0) {
+                out.write(buffer, 0, length);
+            }
+            out.close();
+            in.close();
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {
@@ -150,4 +237,20 @@ public class GameGUI extends JFrame {
 //        new CardLayoutExample(questionlist);
         //SwingUtilities.invokeLater(() -> new CardLayoutExample([question1]);
     }
+
+}
+
+
+class AnswerRadioButton extends JRadioButton {
+    private boolean isCorrect;
+
+    public AnswerRadioButton(String text, boolean isCorrect) {
+        super(text);
+        this.isCorrect = isCorrect;
+    }
+
+    public boolean isCorrect() {
+        return isCorrect;
+    }
+
 }

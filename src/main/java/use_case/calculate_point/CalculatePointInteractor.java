@@ -7,13 +7,13 @@ import entity.Question;
 import java.time.Duration;
 
 public class CalculatePointInteractor implements CalculatePointInputBoundary{
-    final CalculatePointOutputBoundary userPresenter;
+    final CalculatePointOutputBoundary calculatePointPresenter;
     private Player player;
     private Computer computer;
 
     public CalculatePointInteractor(CalculatePointOutputBoundary calculatePointOutputBoundary,
                                     Player player, Computer computer) {
-        this.userPresenter = calculatePointOutputBoundary;
+        this.calculatePointPresenter = calculatePointOutputBoundary;
         this.player = player;
         this.computer = computer;
     }
@@ -50,6 +50,6 @@ public class CalculatePointInteractor implements CalculatePointInputBoundary{
         // where am I supposed to do the actual calculations??
         CalculatePointOutputData calculatePointOutputData = new CalculatePointOutputData(totalPoints1, totalPoints2);
 
-        userPresenter.prepareSuccessView(calculatePointOutputData);
+        calculatePointPresenter.prepareSuccessView(calculatePointOutputData);
     }
 }
