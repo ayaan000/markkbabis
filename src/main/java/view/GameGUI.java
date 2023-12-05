@@ -5,7 +5,7 @@ import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
 import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
-import entity.Question;
+import entity.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -20,9 +20,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import entity.Computer;
-import entity.Player;
 import entity.Question;
+import interface_adapter.calculate_point.CalculatePointController;
+import use_case.calculate_point.CalculatePointInputData;
+import use_case.calculate_point.CalculatePointInteractor;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -36,13 +37,21 @@ public class GameGUI extends JFrame {
     Player player;
     Computer computer;
 
+    boolean isCorrect = false;
+
+    private long startTime = System.currentTimeMillis();
+    private long endTime = 0;
+
+    private long elapsedTime;
+
     private CardLayout cardLayout;
     private JPanel cardPanel;
     private int cardCount = 5; // Change this to the number of cards you want
 
-    public GameGUI(Question[] questions, Player player, Computer computer) {
+    public GameGUI(Game game, Player player, Computer computer) {
 
-        this.questions = questions;
+
+        this.questions = game.getQuestionList();
         this.player = player;
         this.computer = computer;
         setTitle("CardLayout Example");
@@ -68,11 +77,20 @@ public class GameGUI extends JFrame {
         // Create buttons to navigate through cards
 
         JButton nextButton = new JButton("Next");
+        CalculatePointInteractor calculatePointInteractor = new CalculatePointInteractor(player, computer);
+
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (questionCounter < questions.length) {
+                    CalculatePointInputData calculatePointInputData = new CalculatePointInputData(isCorrect, computer.getComResult(), elapsedTime, computer.getTimeDelay().getSeconds(), player, computer);
+                    calculatePointInteractor.execute(calculatePointInputData);
+                    System.out.println("Player points: " + player.getTotalPoints());
+                    System.out.println("Computer points: " + computer.getTotalPoints2());
+                    isCorrect = false;
                     cardLayout.next(cardPanel);
+                    System.out.println(elapsedTime);
+                    startTime = System.currentTimeMillis();
                     generateSound(questions[++questionCounter]);
                     AePlayWave aw = new AePlayWave("game.wav");
                     aw.start();
@@ -106,6 +124,7 @@ public class GameGUI extends JFrame {
 //        title.setTitleJustification(TitledBorder.CENTER);
 //
 //        answersPanel.setBorder(title);
+
 
         // POINTS TEXT
         Integer playerPtInput = player.getTotalPoints();
@@ -166,11 +185,15 @@ public class GameGUI extends JFrame {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
+                    endTime = System.currentTimeMillis();
+                    elapsedTime = (endTime - startTime)/1000;
+
                     AnswerRadioButton selectedButton = (AnswerRadioButton) e.getSource();
-                    System.out.println("You selected: " + e.getItem());
+                    System.out.println("You selected: " + selectedButton.getText());
 
                     if (selectedButton.isCorrect()){
                         selectedButton.setBackground(Color.GREEN);
+                        isCorrect = true;
 
                     } else {
                         selectedButton.setBackground(Color.RED);

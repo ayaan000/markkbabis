@@ -19,6 +19,7 @@ public class GameManager {
         InitializeGameOutputBoundary initializeGameOutputBoundary = new InitializeGamePresenter();
         InitializeGameInputBoundary initializeGameInteractor = new InitializeGameInteractor(userDataAccessObject, initializeGameOutputBoundary);
         InitializeGameController initializeGameController = new InitializeGameController(initializeGameInteractor);
+        
         new HomeGUI(initializeGameController);
 
 

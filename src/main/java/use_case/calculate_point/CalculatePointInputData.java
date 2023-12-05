@@ -8,13 +8,13 @@ import java.time.Duration;
 public class CalculatePointInputData {
     private boolean answerCorrectness1;
     private boolean answerCorrectness2;
-    private Duration time1;
-    private Duration time2;
+    private long time1;
+    private long time2;
     private Player player;
     private Computer computer;
 
-    public CalculatePointInputData(boolean answerCorrectness1, boolean answerCorrectness2, Duration time1,
-                                   Duration time2, Player player, Computer computer) {
+    public CalculatePointInputData(boolean answerCorrectness1, boolean answerCorrectness2,  long time1,
+                                   long time2, Player player, Computer computer) {
         this.answerCorrectness1 = answerCorrectness1;
         this.answerCorrectness2 = answerCorrectness2;
         this.time1 = time1;
@@ -31,11 +31,11 @@ public class CalculatePointInputData {
         return answerCorrectness2;
     }
 
-    public Duration getTime1() {
+    public long getTime1() {
         return time1;
     }
 
-    public Duration getTime2() {
+    public long getTime2() {
         return time2;
     }
 

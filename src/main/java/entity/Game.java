@@ -3,20 +3,20 @@ package entity;
 import java.util.ArrayList;
 
 public class Game {
-    private String currCategory;
+
     private Question currQuestion;
 
-    private ArrayList<Question> questionList;
+    private Question[] questionList;
 
-    private int questionnumber = 0;
+    private int numQuestions;
 
     private boolean gameEnd = false;
 
-    public Game(String currCategory, float timeLeft, Question currQuestion, ArrayList<Question> questionList)
+    public Game(Question[] questionList)
     {
-        this.currCategory = currCategory;
-        this.currQuestion = currQuestion;
         this.questionList = questionList;
+        this.numQuestions = questionList.length;
+        this.currQuestion = questionList[0];
     }
 
     public int computePoints()
@@ -58,22 +58,22 @@ public class Game {
         return this.currQuestion.getIndexAnswer();
     }
 
-    public ArrayList<Question> getQuestionList() {
+    public Question[] getQuestionList() {
         return questionList;
     }
 
     public int getNumQuestions() {
-        return questionList.size();
+        return questionList.length;
     }
 
-    public void nextQuestion()
-    {
-        if (questionnumber < questionList.size()) {
-            this.currQuestion = questionList.get(++questionnumber);
-        }
-        else {
-            this.gameEnd = true;
-        }
-    }
+//    public void nextQuestion()
+//    {
+//        if (questionnumber < questionList.size()) {
+//            this.currQuestion = questionList.get(++questionnumber);
+//        }
+//        else {
+//            this.gameEnd = true;
+//        }
+//    }
 
 }

@@ -17,7 +17,7 @@ public class InitializeGamePresenter implements InitializeGameOutputBoundary {
 
     @Override
     public void prepareSuccessView(InitializeGameOutputData initializeGameOutputData) {
-        new GameGUI(initializeGameOutputData.getData(),
+        new GameGUI(initializeGameOutputData.getGame(),
                 initializeGameOutputData.getPlayer(),
                 initializeGameOutputData.getComputer());
         //Pass question list from outputdata to GameGUI

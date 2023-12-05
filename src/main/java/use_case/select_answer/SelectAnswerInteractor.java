@@ -32,12 +32,12 @@ public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
         boolean computerCorrectness = computer.getComResult();
         Duration computerTimeLeft = computer.getTimeDelay();
         if (userAnswer == questionAnswer) {             // correct
-            calculatePointController.execute(true, computerCorrectness, Duration.ofSeconds(5), computerTimeLeft,
+            calculatePointController.execute(true, computerCorrectness, 5, 5,
                     player, computer);
             SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(userAnswer, questionAnswer, true);
             selectAnswerPresenter.prepareSuccessView(selectAnswerOutputData);
         } else {                                        // false
-            calculatePointController.execute(false, computerCorrectness, Duration.ofSeconds(5), computerTimeLeft,
+            calculatePointController.execute(false, computerCorrectness, 5, 5,
                     player, computer);
             SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(userAnswer, questionAnswer, false);
             selectAnswerPresenter.prepareSuccessView(selectAnswerOutputData);
