@@ -3,57 +3,54 @@ package entity;
 import java.util.ArrayList;
 
 public class Game {
-    private String currCategory;
+
     private Question currQuestion;
 
-    private ArrayList<Question> questionList;
+    private Question[] questionList;
 
-    private int questionNumber = 0;
+    private int numQuestions;
 
     private boolean gameEnd = false;
 
-    public Game(String currCategory, Question currQuestion, ArrayList<Question> questionList)
+    public Game(Question[] questionList)
     {
-        this.currCategory = currCategory;
-        this.currQuestion = currQuestion;
         this.questionList = questionList;
+        this.numQuestions = questionList.length;
+        this.currQuestion = questionList[0];
     }
 
-//    public int computePoints()
-//    {
-//        return Math.round(100);
-//
-//    }
+    public int computePoints()
+    {
+        return Math.round(100);
+
+    }
 //    public int computePoints()
 //    {
 //        return Math.round(100 * this.timeLeft);
 //
 //    }
-//    String getPlayerAns()
-//    {
-//        return "";
-//    }
 
-//    public boolean checkCorrect(int playerAnswer)
-//    {
-//        int correctAnswer = this.getAns();
-//
-//        if (playerAnswer == correctAnswer){
-//            return true;
-//        }
-//
-//        else {
-//            return false;
-//        }
-//    }
+    String getPlayerAns()
+    {
+        return "";
+    }
+
+    public boolean checkCorrect(int playerAnswer)
+    {
+        int correctAnswer = this.getAns();
+
+        if (playerAnswer == correctAnswer){
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
 
     public Question getCurrQuestion()
     {
         return this.currQuestion;
-    }
-
-    public void setCurrQuestion(Question currQuestion) {
-        this.currQuestion = currQuestion;
     }
 
     public int getAns()
@@ -61,25 +58,22 @@ public class Game {
         return this.currQuestion.getIndexAnswer();
     }
 
-    public ArrayList<Question> getQuestionList() {
+    public Question[] getQuestionList() {
         return questionList;
     }
 
-    public void setQuestionList(ArrayList<Question> questionList) {
-        this.questionList = questionList;
-    }
     public int getNumQuestions() {
-        return questionList.size();
+        return questionList.length;
     }
 
-    public void nextQuestion()
-    {
-        if (questionNumber < questionList.size()) {
-            this.currQuestion = questionList.get(++questionNumber);
-        }
-        else {
-            this.gameEnd = true;
-        }
-    }
+//    public void nextQuestion()
+//    {
+//        if (questionnumber < questionList.size()) {
+//            this.currQuestion = questionList.get(++questionnumber);
+//        }
+//        else {
+//            this.gameEnd = true;
+//        }
+//    }
 
 }

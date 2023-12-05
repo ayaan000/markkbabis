@@ -14,13 +14,12 @@ public class Player {
     // POTENTIAL ADDITIONAL ATTRIBUTES: currAnswerChoice
 
     // constructor
-    public Player(int totalPoints, List<Byte> avatar, List<GameStats> games, Game currGame, int numCorrectAns) {
+    public Player(int totalPoints, List<Byte> avatar, List<GameStats> games, Game currGame) {
         this.totalPoints = totalPoints;
         this.avatar = avatar;
         this.games = games;
         this.currGame = currGame;
         this.numCorrectAns = 0;
-        this.numCorrectAns = numCorrectAns;
     }
 
     // getters and setters

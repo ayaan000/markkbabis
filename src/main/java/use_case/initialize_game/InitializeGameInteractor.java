@@ -1,9 +1,16 @@
 package use_case.initialize_game;
 
-import entity.Question;
+import entity.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 import data_access.JsonConverter;
+
+import javax.swing.*;
+
 public class InitializeGameInteractor implements InitializeGameInputBoundary{
     final InitializeGameDataAccessInterface initializeGameDataAccessObject;
     final InitializeGameOutputBoundary initializeGamePresenter;
@@ -35,7 +42,11 @@ public class InitializeGameInteractor implements InitializeGameInputBoundary{
         String jsonString = initializeGameDataAccessObject.callApi(initializeGameInputData.getCategory(), initializeGameInputData.getDifficulty(), initializeGameInputData.getNumQuestions());
         JsonConverter JsonObject = JsonConverter.create(initializeGameInputData.getNumQuestions()); //Singleton
         Question[] questionList = JsonObject.convert(jsonString);
-        InitializeGameOutputData initializeGameOutputData = new InitializeGameOutputData(questionList);
+
+        Game game = new Game(questionList);
+        Player player = new Player(0, new ArrayList<Byte>(), new ArrayList<GameStats>(), game);
+        Computer computer = new Computer(initializeGameInputData.getDifficulty());
+        InitializeGameOutputData initializeGameOutputData = new InitializeGameOutputData(game, player, computer);
         initializeGamePresenter.prepareSuccessView(initializeGameOutputData);
     }
 }
