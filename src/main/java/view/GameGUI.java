@@ -91,8 +91,11 @@ public class GameGUI extends JFrame {
         JPanel mainPanel = new JPanel();
         mainPanel.setBorder(BorderFactory.createEmptyBorder(500, 350, 300, 400));
 
+        Font largeFont = new Font("Arial", Font.PLAIN, 20);
+
         String q = question.getQuestion();
         JLabel questionText = new JLabel(q);
+        questionText.setFont(largeFont);
         mainPanel.add(questionText, BorderLayout.NORTH);
 
         // POINTS TEXT
@@ -102,7 +105,7 @@ public class GameGUI extends JFrame {
         JLabel playerText = new JLabel(playerTitle);
         mainPanel.add(playerText, BorderLayout.WEST);
 
-        Integer compPtInput = 1;
+        Integer compPtInput = 10;
         String compPoint = compPtInput.toString();
         String compTitle = "Computer: " + compPoint;
         JLabel compText = new JLabel(compTitle);
