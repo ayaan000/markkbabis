@@ -12,33 +12,32 @@ public class GameStatsOutputData {
     // Computer/ Player 2 amt of correct answers (Indirectly displays the amt of questions)
     // Time played
 
-    private String difficulty;
-    private int numQuestions;
+//    private String difficulty;
+//    private int numQuestions;
     // points1 is  automatically assigned to Player1
     private int playerPoints;
     private int computerPoints;
     //numCorrectAnswers1 is  automatically assigned to Player1
-    private int numCorrectAnswers1;
-    private int numCorrectAnswers2;
+//    private int numCorrectAnswers1;
+//    private int numCorrectAnswers2;
 
-    public GameStatsOutputData(String difficulty, int numQuestions, int playerPoints, int computerPoints,
-                               int numCorrectAnswers1, int numCorrectAnswers2) {
-    this.difficulty = difficulty;
-    this.numQuestions = numQuestions;
+    public GameStatsOutputData(int playerPoints, int computerPoints) {
+//    this.difficulty = difficulty;
+//    this.numQuestions = numQuestions;
     this.playerPoints = playerPoints;
     this.computerPoints = computerPoints;
-    this.numCorrectAnswers1 = numCorrectAnswers1;
-    this.numCorrectAnswers2 = numCorrectAnswers2;
+//    this.numCorrectAnswers1 = numCorrectAnswers1;
+//    this.numCorrectAnswers2 = numCorrectAnswers2;
     }
 
 
-    public String getDifficulty() {
-        return difficulty;
-    }
-
-    public int getNumQuestions() {
-        return numQuestions;
-    }
+//    public String getDifficulty() {
+//        return difficulty;
+//    }
+//
+//    public int getNumQuestions() {
+//        return numQuestions;
+//    }
 
     public int getPoints1() {
         return playerPoints;
@@ -48,11 +47,11 @@ public class GameStatsOutputData {
         return computerPoints;
     }
 
-    public int getNumCorrectAnswers1() {
-        return numCorrectAnswers1;
-    }
-
-    public int getNumCorrectAnswers2() {
-        return numCorrectAnswers2;
-    }
+//    public int getNumCorrectAnswers1() {
+//        return numCorrectAnswers1;
+//    }
+//
+//    public int getNumCorrectAnswers2() {
+//        return numCorrectAnswers2;
+//    }
 }
