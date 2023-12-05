@@ -40,6 +40,7 @@ public class GameGUI extends JFrame {
         this.questions = questions;
         setTitle("CardLayout Example");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setSize(400, 300);
 
         cardLayout = new CardLayout();
@@ -88,17 +89,11 @@ public class GameGUI extends JFrame {
 
     public JPanel createCard(Question question) {
         JPanel mainPanel = new JPanel();
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(500, 350, 300, 400));
 
         String q = question.getQuestion();
         JLabel questionText = new JLabel(q);
         mainPanel.add(questionText, BorderLayout.NORTH);
-
-        TitledBorder title;
-//            String question = "Which is the best animal?";
-//        title = BorderFactory.createTitledBorder(question);
-//        title.setTitleJustification(TitledBorder.CENTER);
-//
-//        answersPanel.setBorder(title);
 
         // POINTS TEXT
         Integer playerPtInput = 0;
@@ -115,12 +110,6 @@ public class GameGUI extends JFrame {
 
 //        // POSSIBLE ANSWERS
         JPanel answersPanel = new JPanel();
-        //answersPanel.setBorder(BorderFactory.createEmptyBorder(500, 400, 250, 400));
-//        answersPanel.setLayout(new GridLayout(1,3, 100, 100));
-
-        // create the buttons for the possible answers
-        // TASK: need to somehow get the answers from somewhere and randomly assign them to different buttons
-        // can I get the possible answers from initialize_game use case output data?
         Object[] possibleAnswers = question.getPossibleAnswers().toArray();
 
         int corrIndex = question.getIndexAnswer();
