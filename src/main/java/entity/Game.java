@@ -10,7 +10,6 @@ public class Game {
 
     private int numQuestions;
 
-    private boolean gameEnd = false;
 
     public Game(Question[] questionList)
     {
@@ -18,36 +17,6 @@ public class Game {
         this.numQuestions = questionList.length;
         this.currQuestion = questionList[0];
     }
-
-    public int computePoints()
-    {
-        return Math.round(100);
-
-    }
-//    public int computePoints()
-//    {
-//        return Math.round(100 * this.timeLeft);
-//
-//    }
-
-    String getPlayerAns()
-    {
-        return "";
-    }
-
-    public boolean checkCorrect(int playerAnswer)
-    {
-        int correctAnswer = this.getAns();
-
-        if (playerAnswer == correctAnswer){
-            return true;
-        }
-
-        else {
-            return false;
-        }
-    }
-
     public Question getCurrQuestion()
     {
         return this.currQuestion;
@@ -66,14 +35,6 @@ public class Game {
         return questionList.length;
     }
 
-//    public void nextQuestion()
-//    {
-//        if (questionnumber < questionList.size()) {
-//            this.currQuestion = questionList.get(++questionnumber);
-//        }
-//        else {
-//            this.gameEnd = true;
-//        }
-//    }
+
 
 }

@@ -17,7 +17,6 @@ public class GameStats {
         this.computerPoints = computerPoints;
 
     }
-
     public int getPlayerPoints() {
         return playerPoints;
     }
