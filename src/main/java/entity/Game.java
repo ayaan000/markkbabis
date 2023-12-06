@@ -32,7 +32,7 @@ public class Game {
     }
 
     public int getNumQuestions() {
-        return questionList.length;
+        return numQuestions;
     }
 
 
