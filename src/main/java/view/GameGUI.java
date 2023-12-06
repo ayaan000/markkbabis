@@ -5,7 +5,7 @@ import com.ibm.cloud.sdk.core.security.IamAuthenticator;
 import com.ibm.watson.text_to_speech.v1.TextToSpeech;
 import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
 import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
-import entity.Question;
+import entity.*;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -29,6 +29,11 @@ import use_case.game_stats.GameStatsInteractor;
 import use_case.game_stats.GameStatsOutputBoundary;
 import use_case.game_stats.GameStatsOutputData;
 
+import interface_adapter.game_stats.GameStatsPresenter;
+import interface_adapter.calculate_point.CalculatePointController;
+import use_case.calculate_point.CalculatePointInputData;
+import use_case.calculate_point.CalculatePointInteractor;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -41,30 +46,40 @@ public class GameGUI extends JFrame {
     Player player;
     Computer computer;
 
+    boolean isCorrect = false;
+
+    private long startTime = System.currentTimeMillis();
+    private long endTime = 0;
+
+    private long elapsedTime;
+
     private CardLayout cardLayout;
     private JPanel cardPanel;
-    private int cardCount = 5; // Change this to the number of cards you want
 
-    public GameGUI(Question[] questions, Player player, Computer computer) {
+    public GameGUI(Game game, Player player, Computer computer) {
 
-        this.questions = questions;
+
+        this.questions = game.getQuestionList();
         this.player = player;
         this.computer = computer;
         setTitle("CardLayout Example");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setSize(400, 300);
 
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
         // Create and add cards to the cardPanel
-        for (int i = 0; i < questions.length; i++) {
+        for (int i = 0; i < game.getNumQuestions(); i++) {
             String cardName = "Card " + (i + 1);
-            JPanel card = createCard(questions[i]);
+            JPanel card = createCard(questions[i], i + 1);
             cardPanel.add(card, cardName);
         }
 
         add(cardPanel, BorderLayout.CENTER);
+
+        //Code for Sound
 
         generateSound(questions[0]);
         AePlayWave aw = new AePlayWave("game.wav");
@@ -73,21 +88,30 @@ public class GameGUI extends JFrame {
         // Create buttons to navigate through cards
 
         JButton nextButton = new JButton("Next");
+        CalculatePointInteractor calculatePointInteractor = new CalculatePointInteractor(player, computer);
+
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (questionCounter < questions.length) {
+                if (questionCounter < game.getNumQuestions() - 1) {
+                    CalculatePointInputData calculatePointInputData = new CalculatePointInputData(isCorrect, computer.getComResult(), elapsedTime, computer.getTimeDelay().getSeconds());
+                    calculatePointInteractor.execute(calculatePointInputData);
+                    System.out.println("Player points: " + player.getTotalPoints());
+                    System.out.println("Computer points: " + computer.getTotalPoints2());
+                    isCorrect = false;
                     cardLayout.next(cardPanel);
+                    System.out.println(elapsedTime);
+                    startTime = System.currentTimeMillis();
                     generateSound(questions[++questionCounter]);
                     AePlayWave aw = new AePlayWave("game.wav");
                     aw.start();
-                }
-                else{
+                } else {
+                    //GameStats Connection
                     GameStatsOutputBoundary gameStatsOutputBoundary = new GameStatsPresenter();
                     GameStatsInputBoundary gameStatsInputInteractor = new GameStatsInteractor(gameStatsOutputBoundary);
                     GameStatsController gameStatsController = new GameStatsController(gameStatsInputInteractor);
                     gameStatsController.execute(player, computer);
-
+                    GameGUI.super.dispose();
                 }
 
             }
@@ -102,57 +126,46 @@ public class GameGUI extends JFrame {
         setVisible(true);
     }
 
-    public JPanel createCard(Question question) {
+    public JPanel createCard(Question question, int questionNumber) {
         JPanel mainPanel = new JPanel();
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(350, 350, 400, 400));
 
-        String q = question.getQuestion();
+        Font largeFont = new Font("Calibri", Font.PLAIN, 28);
+
+        String q = "Question #" + questionNumber + ": " + question.getQuestion() + "    ";
         JLabel questionText = new JLabel(q);
+        questionText.setFont(largeFont);
         mainPanel.add(questionText, BorderLayout.NORTH);
 
+
         TitledBorder title;
-//            String question = "Which is the best animal?";
-//        title = BorderFactory.createTitledBorder(question);
-//        title.setTitleJustification(TitledBorder.CENTER);
-//
-//        answersPanel.setBorder(title);
 
-        // POINTS TEXT
-        Integer playerPtInput = player.getTotalPoints();
-        String playerPoint = playerPtInput.toString();
-        String playerTitle = "Player: " + playerPoint;
-        JLabel playerText = new JLabel(playerTitle);
-        mainPanel.add(playerText, BorderLayout.WEST);
-
-        Integer compPtInput = computer.getTotalPoints2();
-        String compPoint = compPtInput.toString();
-        String compTitle = "Computer: " + compPoint;
-        JLabel compText = new JLabel(compTitle);
-        mainPanel.add(compText, BorderLayout.EAST);
-
-//        // POSSIBLE ANSWERS
+        // POSSIBLE ANSWERS
         JPanel answersPanel = new JPanel();
-        //answersPanel.setBorder(BorderFactory.createEmptyBorder(500, 400, 250, 400));
-//        answersPanel.setLayout(new GridLayout(1,3, 100, 100));
+
 
         // create the buttons for the possible answers
-        // TASK: need to somehow get the answers from somewhere and randomly assign them to different buttons
-        // can I get the possible answers from initialize_game use case output data?
         Object[] possibleAnswers = question.getPossibleAnswers().toArray();
 
-        int corrIndex = question.getIndexAnswer();
-        boolean correctness = false;
+        int answerTextSize = 20;
+
+        Font answerFont = new Font("Arial", Font.BOLD, answerTextSize);
 
 
         JRadioButton answer0 = new AnswerRadioButton(possibleAnswers[0].toString(), true);
+        answer0.setFont(answerFont);
         JRadioButton answer1 = new AnswerRadioButton(possibleAnswers[1].toString(), false);
+        answer1.setFont(answerFont);
         JRadioButton answer2 = new AnswerRadioButton(possibleAnswers[2].toString(), false);
-        JRadioButton answer3 = new AnswerRadioButton(possibleAnswers[3].toString(),false );
+        answer2.setFont(answerFont);
+        JRadioButton answer3 = new AnswerRadioButton(possibleAnswers[3].toString(), false);
+        answer3.setFont(answerFont);
 
         JRadioButton[] buttons = {answer0, answer1, answer2, answer3};
 
+        //Show the buttons in random order everytime
         Collections.shuffle(Arrays.asList(buttons));
 
-        System.out.println(question.getCorrectAnswer());
         // group all the buttons in one area (functionality)
         ButtonGroup group = new ButtonGroup();
         group.add(buttons[0]);
@@ -169,17 +182,19 @@ public class GameGUI extends JFrame {
         mainPanel.add(answersPanel, BorderLayout.CENTER);
 
 
-        // ACTION RESPONSE TO THE BUTTONS
-        // ItemListener invokes changes based on changed states of buttons
         ItemListener listener = new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
-                    AnswerRadioButton selectedButton = (AnswerRadioButton) e.getSource();
-                    System.out.println("You selected: " + e.getItem());
+                    endTime = System.currentTimeMillis();
+                    elapsedTime = (endTime - startTime) / 1000;
 
-                    if (selectedButton.isCorrect()){
+                    AnswerRadioButton selectedButton = (AnswerRadioButton) e.getSource();
+                    System.out.println("You selected: " + selectedButton.getText());
+
+                    if (selectedButton.isCorrect()) {
                         selectedButton.setBackground(Color.GREEN);
+                        isCorrect = true;
 
                     } else {
                         selectedButton.setBackground(Color.RED);
@@ -190,8 +205,7 @@ public class GameGUI extends JFrame {
                     answer1.setEnabled(false);
                     answer2.setEnabled(false);
                     answer3.setEnabled(false);
-                    //cardLayout.next(cardPanel);
-                    // add action here (color change, correct answer)
+
                 }
             }
         };
@@ -205,7 +219,7 @@ public class GameGUI extends JFrame {
     }
 
 
-    private void generateSound(Question question){
+    private void generateSound(Question question) {
         String apikey = "S4mwBQqs-D5XTBqUCZpUR0EA56Ns2QmKGjW0ARPumXN3";
         IamAuthenticator authenticator = new IamAuthenticator(apikey);
         TextToSpeech tts = new TextToSpeech(authenticator);
@@ -213,9 +227,9 @@ public class GameGUI extends JFrame {
         try {
             SynthesizeOptions synthesizeOptions =
                     new SynthesizeOptions.Builder()
-                            .text(question.getQuestion() + ", ," + question.getPossibleAnswers().toArray()[0]+ ", , "
-                                    + question.getPossibleAnswers().toArray()[1]+ ", ," +
-                                    question.getPossibleAnswers().toArray()[2]+ ", ," +
+                            .text(question.getQuestion() + ", ," + question.getPossibleAnswers().toArray()[0] + ", , "
+                                    + question.getPossibleAnswers().toArray()[1] + ", ," +
+                                    question.getPossibleAnswers().toArray()[2] + ", ," +
                                     question.getPossibleAnswers().toArray()[3])
                             .accept("audio/wav")
                             .voice("en-US_AllisonVoice")
@@ -238,22 +252,6 @@ public class GameGUI extends JFrame {
         }
 
     }
-
-    public static void main(String[] args) {
-//        List<String> possibleAnswer = new ArrayList<>();
-//        possibleAnswer.add("ans1");
-//        possibleAnswer.add("ans2");
-//        possibleAnswer.add("ans3");
-//        possibleAnswer.add("ans4");
-//        Question question1 = new Question("Example question", possibleAnswer, "ans2");
-//        Question question2 = new Question("Example question #2", possibleAnswer, "ans3");
-//        Question[] questionlist = new Question[2];
-//        questionlist[0] = question1;
-//        questionlist[1] = question2;
-//        new CardLayoutExample(questionlist);
-        //SwingUtilities.invokeLater(() -> new CardLayoutExample([question1]);
-    }
-
 }
 
 

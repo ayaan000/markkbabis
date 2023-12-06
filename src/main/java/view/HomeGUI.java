@@ -42,23 +42,23 @@ public class HomeGUI extends JFrame implements ActionListener {
         );
 
 
-        JButton help = new JButton("Help");
-        help.addActionListener(
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if (e.getSource().equals(help)) {
-
-                        }
-                    }
-                }
-        );
+//        JButton help = new JButton("Help");
+//        help.addActionListener(
+//                new ActionListener() {
+//                    @Override
+//                    public void actionPerformed(ActionEvent e) {
+//                        if (e.getSource().equals(help)) {
+//
+//                        }
+//                    }
+//                }
+//        );
 
 
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(500, 400, 250, 400));
         buttonPanel.setLayout(new GridLayout(1,3, 100, 100));
         buttonPanel.add(singlePlayer);
-        buttonPanel.add(help);
+        //buttonPanel.add(help);
 
         frame.add(buttonPanel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,7 +82,7 @@ public class HomeGUI extends JFrame implements ActionListener {
         try {
             SynthesizeOptions synthesizeOptions =
                     new SynthesizeOptions.Builder()
-                            .text("Trivia Game! Play or Help")
+                            .text("Trivia Game! Click Play to Start")
                             .accept("audio/wav")
                             .voice("en-US_AllisonVoice")
                             .build();

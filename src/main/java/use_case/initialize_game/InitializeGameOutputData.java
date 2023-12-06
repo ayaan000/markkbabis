@@ -1,20 +1,26 @@
 package use_case.initialize_game;
 import entity.Computer;
+import entity.Game;
 import entity.Player;
 import entity.Question;
 public class InitializeGameOutputData {
-    private final Question[] data;
+
+    private final Game game;
     private Player player;
     private Computer computer;
 
-    public InitializeGameOutputData (Question[] data, Player player, Computer computer)  {
-        this.data = data;
+    public InitializeGameOutputData (Game game, Player player, Computer computer)  {
+        this.game = game;
         this.player = player;
         this.computer = computer;
     }
 
-    public Question[] getData() {
-        return data;
+    public Question[] getQuestionList() {
+        return game.getQuestionList();
+    }
+
+    public Game getGame(){
+        return game;
     }
 
     public Player getPlayer() {

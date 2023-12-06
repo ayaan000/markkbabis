@@ -7,10 +7,8 @@ public class CalculatePointPresenter{
     private CalculatePointViewModel calculatePointViewModel;
     private ViewModel viewModel;
 
-    public CalculatePointPresenter(CalculatePointViewModel calculatePointViewModel,
-                                   ViewModel viewModel) {
-        this.calculatePointViewModel = calculatePointViewModel;
-        this.viewModel = viewModel;
+    public CalculatePointPresenter() {
+
     }
 
 }
