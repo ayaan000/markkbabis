@@ -44,7 +44,7 @@ public class InitializeGameInteractor implements InitializeGameInputBoundary{
         Question[] questionList = JsonObject.convert(jsonString);
 
         Game game = new Game(questionList);
-        Player player = new Player(0, new ArrayList<Byte>(), new ArrayList<GameStats>(), game);
+        Player player = new Player(0);
         Computer computer = new Computer(initializeGameInputData.getDifficulty());
         InitializeGameOutputData initializeGameOutputData = new InitializeGameOutputData(game, player, computer);
         initializeGamePresenter.prepareSuccessView(initializeGameOutputData);
