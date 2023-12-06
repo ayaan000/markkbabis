@@ -35,18 +35,18 @@ public class QuestionEntityTests {
                 possibleAnswer, "Sloth" );
         assertEquals("Sloth", question.getCorrectAnswer());
     }
-    @Test
-    public void testSetCorrectAnswer() {
-        List<String> possibleAnswer = new ArrayList<String>();
-        possibleAnswer.add("Sloth");
-        possibleAnswer.add("Drove");
-        possibleAnswer.add("Tribe");
-        possibleAnswer.add("Husk");
-        Question question = new Question("What is the collective noun for bears?",
-                possibleAnswer, "Tribe" );
-        question.setCorrectAnswer("Sloth");
-        assertEquals("Sloth", question.getCorrectAnswer());
-    }
+//    @Test
+//    public void testSetCorrectAnswer() {
+//        List<String> possibleAnswer = new ArrayList<String>();
+//        possibleAnswer.add("Sloth");
+//        possibleAnswer.add("Drove");
+//        possibleAnswer.add("Tribe");
+//        possibleAnswer.add("Husk");
+//        Question question = new Question("What is the collective noun for bears?",
+//                possibleAnswer, "Tribe" );
+//        question.setCorrectAnswer("Sloth");
+//        assertEquals("Sloth", question.getCorrectAnswer());
+//    }
     @Test
     public void testGetIndexAnswer() {
         List<String> possibleAnswer = new ArrayList<String>();
@@ -60,37 +60,30 @@ public class QuestionEntityTests {
     }
     @Test
     public void testGetPossibleAnswer() {
-        List<String> possibleAnswer = new ArrayList<String>();
-        Question question = new Question("What is the collective noun for bears?",
-                possibleAnswer, "Sloth" );
-        List<String> possibleAnswer1 = new ArrayList<String>();
-        possibleAnswer1.add("Sloth");
-        possibleAnswer1.add("Drove");
-        possibleAnswer1.add("Tribe");
-        possibleAnswer1.add("Husk");
-        question.setPossibleAnswer(possibleAnswer1);
-        List<String> possibleAnswer2 = new ArrayList<String>();
-        possibleAnswer2.add("Sloth");
-        possibleAnswer2.add("Drove");
-        possibleAnswer2.add("Tribe");
-        possibleAnswer2.add("Husk");
-        question.setPossibleAnswer(possibleAnswer1);
-        assertEquals(possibleAnswer2, question.getPossibleAnswer());
+        List<String> possibleAnswers = new ArrayList<String>();
+        possibleAnswers.add("Sloth");
+        possibleAnswers.add("Drove");
+        possibleAnswers.add("Tribe");
+        possibleAnswers.add("Husk");
+        Question question = new Question("What is the collective noun for bears?", possibleAnswers,
+                "Sloth");
+        List<String> acqPossibleAnswers = question.getPossibleAnswers();
+        assertEquals(possibleAnswers, acqPossibleAnswers);
     }
-    @Test
-    public void testSetPossibleAnswer() {
-        Question question = new Question("What is the collective noun for bears?",
-                new ArrayList<String>(), "Sloth" );
-        List<String> possibleAnswer1 = new ArrayList<String>();
-        possibleAnswer1.add("Sloth");
-        possibleAnswer1.add("Drove");
-        possibleAnswer1.add("Tribe");
-        possibleAnswer1.add("Husk");
-        question.setPossibleAnswer(possibleAnswer1);
-        List<String> listPossibleAnswer = Arrays.asList("Sloth", "Drove", "Tribe", "Husk");
-        question.setPossibleAnswer(possibleAnswer1);
-        assertEquals(listPossibleAnswer, question.getPossibleAnswer());
-    }
+//    @Test
+//    public void testSetPossibleAnswer() {
+//        Question question = new Question("What is the collective noun for bears?",
+//                new ArrayList<String>(), "Sloth" );
+//        List<String> possibleAnswer1 = new ArrayList<String>();
+//        possibleAnswer1.add("Sloth");
+//        possibleAnswer1.add("Drove");
+//        possibleAnswer1.add("Tribe");
+//        possibleAnswer1.add("Husk");
+//        question.setPossibleAnswer(possibleAnswer1);
+//        List<String> listPossibleAnswer = Arrays.asList("Sloth", "Drove", "Tribe", "Husk");
+//        question.setPossibleAnswer(possibleAnswer1);
+//        assertEquals(listPossibleAnswer, question.getPossibleAnswers());
+//    }
     @Test
     public void testGetQuestion() {
         List<String> possibleAnswer = new ArrayList<String>();
@@ -99,21 +92,21 @@ public class QuestionEntityTests {
         possibleAnswer.add("Tribe");
         possibleAnswer.add("Husk");
         String ques = "What is the collective noun for bears?";
-        Question question = new Question("", possibleAnswer, "Sloth" );
-        question.setQuestion(ques);
-        assertEquals("What is the collective noun for bears?", question.getQuestion());
+        Question question = new Question(ques, possibleAnswer, "Sloth" );
+        String acqQues = question.getQuestion();
+        assertEquals(ques, acqQues);
     }
-    @Test
-    public void testSetQuestion() {
-        List<String> possibleAnswer = new ArrayList<String>();
-        possibleAnswer.add("Sloth");
-        possibleAnswer.add("Drove");
-        possibleAnswer.add("Tribe");
-        possibleAnswer.add("Husk");
-        String ques = "What is the collective noun for bears?";
-        Question question = new Question("", possibleAnswer, "Sloth" );
-        question.setQuestion(ques);
-        assertEquals("What is the collective noun for bears?", question.getQuestion());
-    }
+//    @Test
+//    public void testSetQuestion() {
+//        List<String> possibleAnswer = new ArrayList<String>();
+//        possibleAnswer.add("Sloth");
+//        possibleAnswer.add("Drove");
+//        possibleAnswer.add("Tribe");
+//        possibleAnswer.add("Husk");
+//        String ques = "What is the collective noun for bears?";
+//        Question question = new Question("", possibleAnswer, "Sloth" );
+//        question.setQuestion(ques);
+//        assertEquals("What is the collective noun for bears?", question.getQuestion());
+//    }
 
 }

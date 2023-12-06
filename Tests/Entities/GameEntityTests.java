@@ -21,9 +21,9 @@ public class GameEntityTests {
         possibleAnswer.add("Husk");
         Question question = new Question("What is the collective noun for bears?",
                 possibleAnswer, "Sloth");
-        ArrayList<Question> questions = new ArrayList<Question>();
-        questions.add(question);
-        Game game = new Game("Animals", question, questions);
+        Question[] questions = new Question[1];
+        questions[0] = question;
+        Game game = new Game(questions);
     }
 
     @Test
@@ -108,3 +108,4 @@ public class GameEntityTests {
         assertEquals(question1, game.getCurrQuestion());
     }
 }
+
