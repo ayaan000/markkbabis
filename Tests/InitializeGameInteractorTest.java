@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 public class InitializeGameInteractorTest {
     // IDEA: given some input data, does it produce the correct output data?
     @Test
-    void successTest() throws IOException, InterruptedException {
+    public void successTest() throws IOException, InterruptedException {
         InitializeGameInputData inputData = new InitializeGameInputData("Animals",
                 "medium", 5);
 //        TriviaDataAccessObject dataCollecter = new TriviaDataAccessObject();
