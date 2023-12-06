@@ -84,3 +84,4 @@ public class GameEntityTests {
         assertEquals(1, game.getNumQuestions());
     }
 }
+

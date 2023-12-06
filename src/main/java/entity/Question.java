@@ -23,10 +23,10 @@ import java.util.List;
         public String getQuestion() {
             return question;
         }
-
         public List<String> getPossibleAnswers(){
             return possibleAnswer;
         }
+
 
     }
 
