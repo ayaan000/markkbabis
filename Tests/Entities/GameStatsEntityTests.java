@@ -3,30 +3,26 @@ package Entities;
 import entity.*;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
 public class GameStatsEntityTests {
     @Test
     public void InitialiseGameStats1() {
 
-        List<Byte> avatar = new ArrayList<Byte>();
+//        List<Byte> avatar = new ArrayList<Byte>();
+//
+//        List<String> possibleAnswer = new ArrayList<String>();
+//        possibleAnswer.add("Sloth");
+//        possibleAnswer.add("Drove");
+//        possibleAnswer.add("Tribe");
+//        possibleAnswer.add("Husk");
+//        Question question = new Question("What is the collective noun for bears?",
+//                possibleAnswer, "Sloth");
+//        Question[] questions = new Question[1];
+//        questions[0] = question;
+//        Game game = new Game(questions);
+//
+//        List<GameStats> gameStatsList = new ArrayList<GameStats>();
 
-        List<String> possibleAnswer = new ArrayList<String>();
-        possibleAnswer.add("Sloth");
-        possibleAnswer.add("Drove");
-        possibleAnswer.add("Tribe");
-        possibleAnswer.add("Husk");
-        Question question = new Question("What is the collective noun for bears?",
-                possibleAnswer, "Sloth");
-        Question[] questions = new Question[1];
-        questions[0] = question;
-        Game game = new Game(questions);
-
-        List<GameStats> gameStatsList = new ArrayList<GameStats>();
-
-        Player player = new Player(0, avatar, new ArrayList<GameStats>(), game);
+        Player player = new Player(0);
         Computer computer = new Computer("easy");
 
         int playerPoints = player.getTotalPoints();
@@ -41,22 +37,22 @@ public class GameStatsEntityTests {
     @Test
     public void InitialiseGameStats2() {
 
-        List<Byte> avatar = new ArrayList<Byte>();
+//        List<Byte> avatar = new ArrayList<Byte>();
+//
+//        List<String> possibleAnswer = new ArrayList<String>();
+//        possibleAnswer.add("Sloth");
+//        possibleAnswer.add("Drove");
+//        possibleAnswer.add("Tribe");
+//        possibleAnswer.add("Husk");
+//        Question question = new Question("What is the collective noun for bears?",
+//                possibleAnswer, "Sloth");
+//        Question[] questions = new Question[1];
+//        questions[0] = question;
+//        Game game = new Game(questions);
+//
+//        List<GameStats> gameStatsList = new ArrayList<GameStats>();
 
-        List<String> possibleAnswer = new ArrayList<String>();
-        possibleAnswer.add("Sloth");
-        possibleAnswer.add("Drove");
-        possibleAnswer.add("Tribe");
-        possibleAnswer.add("Husk");
-        Question question = new Question("What is the collective noun for bears?",
-                possibleAnswer, "Sloth");
-        Question[] questions = new Question[1];
-        questions[0] = question;
-        Game game = new Game(questions);
-
-        List<GameStats> gameStatsList = new ArrayList<GameStats>();
-
-        Player player = new Player(0, avatar, new ArrayList<GameStats>(), game);
+        Player player = new Player(0);
         Computer computer = new Computer("easy");
 
         player.setAdditionalPoints(25);
@@ -74,22 +70,22 @@ public class GameStatsEntityTests {
     @Test
     public void InitialiseGameStats3() {
 
-        List<Byte> avatar = new ArrayList<Byte>();
+//        List<Byte> avatar = new ArrayList<Byte>();
+//
+//        List<String> possibleAnswer = new ArrayList<String>();
+//        possibleAnswer.add("Sloth");
+//        possibleAnswer.add("Drove");
+//        possibleAnswer.add("Tribe");
+//        possibleAnswer.add("Husk");
+//        Question question = new Question("What is the collective noun for bears?",
+//                possibleAnswer, "Sloth");
+//        Question[] questions = new Question[1];
+//        questions[0] = question;
+//        Game game = new Game(questions);
+//
+//        List<GameStats> gameStatsList = new ArrayList<GameStats>();
 
-        List<String> possibleAnswer = new ArrayList<String>();
-        possibleAnswer.add("Sloth");
-        possibleAnswer.add("Drove");
-        possibleAnswer.add("Tribe");
-        possibleAnswer.add("Husk");
-        Question question = new Question("What is the collective noun for bears?",
-                possibleAnswer, "Sloth");
-        Question[] questions = new Question[1];
-        questions[0] = question;
-        Game game = new Game(questions);
-
-        List<GameStats> gameStatsList = new ArrayList<GameStats>();
-
-        Player player = new Player(0, avatar, new ArrayList<GameStats>(), game);
+        Player player = new Player(0);
         Computer computer = new Computer("easy");
 
         player.setAdditionalPoints(0);
