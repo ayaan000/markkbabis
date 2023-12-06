@@ -25,6 +25,9 @@ public class Computer {
 
     }
 
+    public String getDifficultyRating() {
+        return difficultyRating;
+    }
 
     public Duration getTimeDelay() {
         return timeDelay;
