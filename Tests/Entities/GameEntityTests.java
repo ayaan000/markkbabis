@@ -108,3 +108,4 @@ public class GameEntityTests {
         assertEquals(question1, game.getCurrQuestion());
     }
 }
+
