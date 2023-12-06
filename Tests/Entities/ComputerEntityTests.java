@@ -1,7 +1,6 @@
 package Entities;
 
 import entity.Computer;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.Test;
 
 import java.time.Duration;
