@@ -9,7 +9,6 @@ public class Player {
 
     public Player(int totalPoints) {
         this.totalPoints = totalPoints;
-
     }
 
     // getters and setters

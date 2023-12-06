@@ -17,36 +17,6 @@ public class Game {
         this.numQuestions = questionList.length;
         this.currQuestion = questionList[0];
     }
-
-    public int computePoints()
-    {
-        return Math.round(100);
-
-    }
-//    public int computePoints()
-//    {
-//        return Math.round(100 * this.timeLeft);
-//
-//    }
-
-    String getPlayerAns()
-    {
-        return "";
-    }
-
-    public boolean checkCorrect(int playerAnswer)
-    {
-        int correctAnswer = this.getAns();
-
-        if (playerAnswer == correctAnswer){
-            return true;
-        }
-
-        else {
-            return false;
-        }
-    }
-
     public Question getCurrQuestion()
     {
         return this.currQuestion;
