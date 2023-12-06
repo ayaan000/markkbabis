@@ -10,7 +10,6 @@ public class Game {
 
     private int numQuestions;
 
-    private boolean gameEnd = false;
 
     public Game(Question[] questionList)
     {
@@ -66,14 +65,6 @@ public class Game {
         return questionList.length;
     }
 
-//    public void nextQuestion()
-//    {
-//        if (questionnumber < questionList.size()) {
-//            this.currQuestion = questionList.get(++questionnumber);
-//        }
-//        else {
-//            this.gameEnd = true;
-//        }
-//    }
+
 
 }
