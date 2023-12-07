@@ -9,7 +9,7 @@ public class SelectAnswerController {
     public void SelectAnswerController(SelectAnswerInputBoundary selectAnswerInputBoundary) {
         this.selectAnswerInputBoundary = selectAnswerInputBoundary;
     }
-    public void execute(int answer) {
+    public void execute(String answer) {
         SelectAnswerInputData selectAnswerInputData = new SelectAnswerInputData(answer);
         selectAnswerInputBoundary.execute(selectAnswerInputData);
     }
