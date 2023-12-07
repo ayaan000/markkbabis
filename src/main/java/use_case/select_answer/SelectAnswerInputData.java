@@ -4,8 +4,8 @@ import entity.Question;
 
 public class SelectAnswerInputData {
     // private Question question;
-    private int answer;
-    public SelectAnswerInputData(int answer) {
+    private String answer;
+    public SelectAnswerInputData(String answer) {
         this.answer = answer;
     }
 //    public Question getQuestion() {
@@ -14,10 +14,10 @@ public class SelectAnswerInputData {
 //    public void setQuestion(Question question) {
 //        this.question = question;
 //    }
-    public int getAnswer() {
+    public String getAnswer() {
         return answer;
     }
-    public void setAnswer(int answer) {
+    public void setAnswer(String answer) {
         this.answer = answer;
     }
 }
