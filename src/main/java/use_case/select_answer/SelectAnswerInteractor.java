@@ -12,34 +12,21 @@ import java.time.Duration;
 public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
     // final SelectAnswerDataAccessInterface userDataAccessObject;
     final SelectAnswerOutputBoundary selectAnswerPresenter;
-    private Game game;
-    private Player player;
-    private Computer computer;
-    private CalculatePointController calculatePointController;
-    public SelectAnswerInteractor(SelectAnswerOutputBoundary selectAnswerOutputBoundary, Game game, Player player,
-                                  Computer computer ) {
+    Question question;
+    public SelectAnswerInteractor(SelectAnswerOutputBoundary selectAnswerOutputBoundary, Question question) {
         this.selectAnswerPresenter = selectAnswerOutputBoundary;
-        this.game = game;
-        this.player = player;
-        this.computer = computer;
+        this.question = question;
     }
 
     @Override
     public void execute(SelectAnswerInputData selectAnswerInputData) {
-        int userAnswer = selectAnswerInputData.getAnswer();
-        Question question = game.getCurrQuestion();
-        int questionAnswer = question.getIndexAnswer();
-        boolean computerCorrectness = computer.getComResult();
-        Duration computerTimeLeft = computer.getTimeDelay();
-        if (userAnswer == questionAnswer) {             // correct
-            calculatePointController.execute(true, computerCorrectness, 5, 5,
-                    player, computer);
-            SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(userAnswer, questionAnswer, true);
+        String userAnswer = selectAnswerInputData.getAnswer();
+        String questionAnswer = question.getCorrectAnswer();
+        if (userAnswer.equals(questionAnswer)){             // correct
+            SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(true);
             selectAnswerPresenter.prepareSuccessView(selectAnswerOutputData);
         } else {                                        // false
-            calculatePointController.execute(false, computerCorrectness, 5, 5,
-                    player, computer);
-            SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(userAnswer, questionAnswer, false);
+            SelectAnswerOutputData selectAnswerOutputData = new SelectAnswerOutputData(false);
             selectAnswerPresenter.prepareSuccessView(selectAnswerOutputData);
         }
     }
