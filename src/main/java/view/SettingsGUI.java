@@ -1,23 +1,19 @@
 package view;
 
 
-
-import audio.AePlayWave;
-import com.ibm.cloud.sdk.core.security.IamAuthenticator;
-import com.ibm.watson.text_to_speech.v1.TextToSpeech;
-import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
-import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
+import data_access.SoundDataAccessObject;
+import interface_adapter.generate_sound.SoundController;
+import interface_adapter.generate_sound.SoundPresenter;
 import interface_adapter.initialize_game.InitializeGameController;
+import use_case.generate_sound.SoundInputBoundary;
+import use_case.generate_sound.SoundInteractor;
+import use_case.generate_sound.SoundOutputBoundary;
 
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 
 public class SettingsGUI {
@@ -28,8 +24,6 @@ public class SettingsGUI {
     {
         this.initializeGameController = initializeGameController;
 
-        //Creating audio file
-        generateSound();
 
 
         //creating UI
@@ -106,40 +100,17 @@ public class SettingsGUI {
         frame.pack();
         frame.setVisible(true);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        AePlayWave aw = new AePlayWave("settings.wav");
-        aw.start();
+        generateSound();
 
 
     }
     private void generateSound(){
-        String apikey = "S4mwBQqs-D5XTBqUCZpUR0EA56Ns2QmKGjW0ARPumXN3";
-        IamAuthenticator authenticator = new IamAuthenticator(apikey);
-        TextToSpeech tts = new TextToSpeech(authenticator);
-        tts.setServiceUrl("https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/ed398db9-abab-406a-a985-9aa246224ca8");
-        try {
-            SynthesizeOptions synthesizeOptions =
-                    new SynthesizeOptions.Builder()
-                            .text("Enter the difficulty, number of questions, and category and press enter.")
-                            .accept("audio/wav")
-                            .voice("en-US_AllisonVoice")
-                            .build();
-            InputStream inputStream =
-                    tts.synthesize(synthesizeOptions).execute().getResult();
-            InputStream in = WaveUtils.reWriteWaveHeader(inputStream);
 
-            OutputStream out = new FileOutputStream("settings.wav");
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = in.read(buffer)) > 0) {
-                out.write(buffer, 0, length);
-            }
-            out.close();
-            in.close();
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SoundDataAccessObject soundDataAccessObject = new SoundDataAccessObject();
+        SoundOutputBoundary soundOutputBoundary = new SoundPresenter();
+        SoundInputBoundary soundInteractor = new SoundInteractor(soundOutputBoundary, soundDataAccessObject);
+        SoundController soundController = new SoundController(soundInteractor);
+        soundController.execute("settings.wav", "Enter the difficulty, number of questions, and category and press enter.");
     }
-
 
 }

@@ -1,20 +1,18 @@
 package view;
 
-import audio.AePlayWave;
-import com.ibm.cloud.sdk.core.security.IamAuthenticator;
-import com.ibm.watson.text_to_speech.v1.TextToSpeech;
-import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
-import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
+import data_access.SoundDataAccessObject;
+import interface_adapter.generate_sound.SoundController;
+import interface_adapter.generate_sound.SoundPresenter;
 import interface_adapter.initialize_game.InitializeGameController;
+import use_case.generate_sound.SoundInputBoundary;
+import use_case.generate_sound.SoundInteractor;
+import use_case.generate_sound.SoundOutputBoundary;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+
 
 
 public class HomeGUI extends JFrame implements ActionListener {
@@ -22,7 +20,6 @@ public class HomeGUI extends JFrame implements ActionListener {
 
     public HomeGUI(InitializeGameController initializeGameController){
 
-        generateSound();
         JLabel background = new JLabel();
         JPanel buttonPanel = new JPanel();
         JFrame frame = new JFrame();
@@ -67,41 +64,20 @@ public class HomeGUI extends JFrame implements ActionListener {
         frame.pack();
         frame.setVisible(true);
         frame.setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
-        AePlayWave aw = new AePlayWave("home.wav");
-        aw.start();
+        generateSound();
     }
     public void actionPerformed(ActionEvent evt) {
     System.out.println("Cancel not implemented yet.");
 }
 
     private void generateSound(){
-        String apikey = "S4mwBQqs-D5XTBqUCZpUR0EA56Ns2QmKGjW0ARPumXN3";
-        IamAuthenticator authenticator = new IamAuthenticator(apikey);
-        TextToSpeech tts = new TextToSpeech(authenticator);
-        tts.setServiceUrl("https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/ed398db9-abab-406a-a985-9aa246224ca8");
-        try {
-            SynthesizeOptions synthesizeOptions =
-                    new SynthesizeOptions.Builder()
-                            .text("Trivia Game! Click Play to Start")
-                            .accept("audio/wav")
-                            .voice("en-US_AllisonVoice")
-                            .build();
-            InputStream inputStream =
-                    tts.synthesize(synthesizeOptions).execute().getResult();
-            InputStream in = WaveUtils.reWriteWaveHeader(inputStream);
+        SoundDataAccessObject soundDataAccessObject = new SoundDataAccessObject();
+        SoundOutputBoundary soundOutputBoundary = new SoundPresenter();
+        SoundInputBoundary soundInteractor = new SoundInteractor(soundOutputBoundary, soundDataAccessObject);
+        SoundController soundController = new SoundController(soundInteractor);
+        soundController.execute("home.wav", "Trivia Game! Click Play to Start");
 
-            OutputStream out = new FileOutputStream("home.wav");
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = in.read(buffer)) > 0) {
-                out.write(buffer, 0, length);
-            }
-            out.close();
-            in.close();
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
+
 }
 

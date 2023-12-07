@@ -20,7 +20,7 @@ public class GameStatsInteractorTests {
         computer.setAdditionPoints(points);
         GameStatsInputData gameStatsInputData = new GameStatsInputData(player, computer);
 
-        GameStatsOutputBoundary successPresenter = new GameStatsOutputBoundary() {
+       GameStatsOutputBoundary successPresenter = new GameStatsOutputBoundary() {
             @Override
             public void prepareSuccessView(GameStatsOutputData gameStatsOutputData) {
                 assertEquals(points, gameStatsOutputData.getComputerPoints());

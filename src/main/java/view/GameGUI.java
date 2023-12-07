@@ -1,10 +1,6 @@
 package view;
 
-import audio.AePlayWave;
-import com.ibm.cloud.sdk.core.security.IamAuthenticator;
-import com.ibm.watson.text_to_speech.v1.TextToSpeech;
-import com.ibm.watson.text_to_speech.v1.model.SynthesizeOptions;
-import com.ibm.watson.text_to_speech.v1.util.WaveUtils;
+import data_access.SoundDataAccessObject;
 import entity.*;
 
 import javax.swing.*;
@@ -15,29 +11,26 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 import entity.Computer;
 import entity.Player;
 import entity.Question;
 import interface_adapter.game_stats.GameStatsController;
+import interface_adapter.generate_sound.SoundController;
+import interface_adapter.generate_sound.SoundPresenter;
 import use_case.game_stats.GameStatsInputBoundary;
 import use_case.game_stats.GameStatsInteractor;
 import use_case.game_stats.GameStatsOutputBoundary;
-import use_case.game_stats.GameStatsOutputData;
 
 import interface_adapter.game_stats.GameStatsPresenter;
-import interface_adapter.calculate_point.CalculatePointController;
 import use_case.calculate_point.CalculatePointInputData;
 import use_case.calculate_point.CalculatePointInteractor;
+import use_case.generate_sound.SoundInputBoundary;
+import use_case.generate_sound.SoundInteractor;
+import use_case.generate_sound.SoundOutputBoundary;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 public class GameGUI extends JFrame {
 
@@ -82,8 +75,6 @@ public class GameGUI extends JFrame {
         //Code for Sound
 
         generateSound(questions[0]);
-        AePlayWave aw = new AePlayWave("game.wav");
-        aw.start();
 
         // Create buttons to navigate through cards
 
@@ -103,8 +94,7 @@ public class GameGUI extends JFrame {
                     System.out.println(elapsedTime);
                     startTime = System.currentTimeMillis();
                     generateSound(questions[++questionCounter]);
-                    AePlayWave aw = new AePlayWave("game.wav");
-                    aw.start();
+
                 } else {
                     //GameStats Connection
                     GameStatsOutputBoundary gameStatsOutputBoundary = new GameStatsPresenter();
@@ -138,7 +128,6 @@ public class GameGUI extends JFrame {
         mainPanel.add(questionText, BorderLayout.NORTH);
 
 
-        TitledBorder title;
 
         // POSSIBLE ANSWERS
         JPanel answersPanel = new JPanel();
@@ -220,36 +209,11 @@ public class GameGUI extends JFrame {
 
 
     private void generateSound(Question question) {
-        String apikey = "S4mwBQqs-D5XTBqUCZpUR0EA56Ns2QmKGjW0ARPumXN3";
-        IamAuthenticator authenticator = new IamAuthenticator(apikey);
-        TextToSpeech tts = new TextToSpeech(authenticator);
-        tts.setServiceUrl("https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/ed398db9-abab-406a-a985-9aa246224ca8");
-        try {
-            SynthesizeOptions synthesizeOptions =
-                    new SynthesizeOptions.Builder()
-                            .text(question.getQuestion() + ", ," + question.getPossibleAnswers().toArray()[0] + ", , "
-                                    + question.getPossibleAnswers().toArray()[1] + ", ," +
-                                    question.getPossibleAnswers().toArray()[2] + ", ," +
-                                    question.getPossibleAnswers().toArray()[3])
-                            .accept("audio/wav")
-                            .voice("en-US_AllisonVoice")
-                            .build();
-            InputStream inputStream =
-                    tts.synthesize(synthesizeOptions).execute().getResult();
-            InputStream in = WaveUtils.reWriteWaveHeader(inputStream);
-
-            OutputStream out = new FileOutputStream("game.wav");
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = in.read(buffer)) > 0) {
-                out.write(buffer, 0, length);
-            }
-            out.close();
-            in.close();
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SoundDataAccessObject soundDataAccessObject = new SoundDataAccessObject();
+        SoundOutputBoundary soundOutputBoundary = new SoundPresenter();
+        SoundInputBoundary soundInteractor = new SoundInteractor(soundOutputBoundary, soundDataAccessObject);
+        SoundController soundController = new SoundController(soundInteractor);
+        soundController.execute("game.wav", question);
 
     }
 }
