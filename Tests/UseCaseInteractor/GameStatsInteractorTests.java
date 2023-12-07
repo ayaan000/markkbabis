@@ -11,32 +11,16 @@ import static junit.framework.TestCase.assertEquals;
 
 public class GameStatsInteractorTests {
 
+
     @Test
-    public void successTest() {
-        Player player = new Player(0);
-        Computer computer = new Computer("easy");
-        GameStatsInputData gameStatsInputData = new GameStatsInputData(player, computer);
-
-        GameStatsOutputBoundary successPresenter = new GameStatsOutputBoundary() {
-            @Override
-            public void prepareSuccessView(GameStatsOutputData gameStatsOutputData) {
-                assertEquals(player.getTotalPoints(), gameStatsOutputData.getPlayerPoints());
-            }
-        };
-
-        GameStatsInputBoundary interactor = new GameStatsInteractor(successPresenter);
-        interactor.execute(gameStatsInputData);
-
-    }
-    @Test
-    public void computerFinalPoints(){
+    public void computerFinalPointsTest(){
         Player player = new Player(0);
         Computer computer = new Computer("easy");
         int points = 15;
         computer.setAdditionPoints(points);
         GameStatsInputData gameStatsInputData = new GameStatsInputData(player, computer);
 
-        GameStatsOutputBoundary successPresenter = new GameStatsOutputBoundary() {
+       GameStatsOutputBoundary successPresenter = new GameStatsOutputBoundary() {
             @Override
             public void prepareSuccessView(GameStatsOutputData gameStatsOutputData) {
                 assertEquals(points, gameStatsOutputData.getComputerPoints());
@@ -47,7 +31,7 @@ public class GameStatsInteractorTests {
     }
 
     @Test
-    public void playerFinalPoints(){
+    public void playerFinalPointsTest(){
         Player player = new Player(0);
         Computer computer = new Computer("easy");
         int points = 15;

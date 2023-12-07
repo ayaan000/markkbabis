@@ -1,16 +1,9 @@
 package UseCaseInteractor;
 
-import entity.Game;
 import entity.Question;
-import interface_adapter.GameState;
-import interface_adapter.ViewManagerModel;
-import interface_adapter.ViewModel;
-import interface_adapter.game_stats.GameStatsPresenter;
-import interface_adapter.select_answer.SelectAnswerPresenter;
 import org.junit.jupiter.api.Test;
 import use_case.select_answer.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 

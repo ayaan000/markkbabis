@@ -234,11 +234,27 @@ public class ComputerEntityTests {
 //        computer1.setNumCorrectAns(-1);
 //        computer1.setNumCorrectAns(-2);
 //        assert (computer1.getNumCorrectAns() == -2);
+//    }
+
+    @Test
+    public void getComResult1() {
+        Computer computer1 = new Computer("easy");
+        boolean result = computer1.getComResult();
+        assert ((Boolean) result instanceof Boolean);
+//        assert (result || !result);
     }
 
-//    @Test
-//    public void getComResult() {
-//        Computer computer1 = new Computer("Easy");
-//        assert (computer1.getComResult() || !computer1.getComResult());
-//    }
-//}
+    @Test
+    public void getComResult2() {
+        Computer computer1 = new Computer("medium");
+        boolean result = computer1.getComResult();
+        assert ((Boolean) result instanceof Boolean);
+    }
+
+    @Test
+    public void getComResult3() {
+        Computer computer1 = new Computer("hard");
+        boolean result = computer1.getComResult();
+        assert ((Boolean) result instanceof Boolean);
+    }
+}

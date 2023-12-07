@@ -1,13 +1,9 @@
 package use_case.select_answer;
 
-import entity.Computer;
-import entity.Game;
-import entity.Question;
-import entity.Player;
-import interface_adapter.calculate_point.CalculatePointController;
-import use_case.calculate_point.CalculatePointInputBoundary;
 
-import java.time.Duration;
+import entity.Question;
+
+
 
 public class SelectAnswerInteractor implements SelectAnswerInputBoundary{
     // final SelectAnswerDataAccessInterface userDataAccessObject;
