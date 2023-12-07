@@ -55,7 +55,7 @@ public class GameGUI extends JFrame {
         this.questions = game.getQuestionList();
         this.player = player;
         this.computer = computer;
-        setTitle("CardLayout Example");
+        setTitle("Trivia Game - Markk Babis");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setSize(400, 300);
@@ -97,6 +97,8 @@ public class GameGUI extends JFrame {
 
                 } else {
                     //GameStats Connection
+                    CalculatePointInputData calculatePointInputData = new CalculatePointInputData(isCorrect, computer.getComResult(), elapsedTime, computer.getTimeDelay().getSeconds());
+                    calculatePointInteractor.execute(calculatePointInputData);
                     GameStatsOutputBoundary gameStatsOutputBoundary = new GameStatsPresenter();
                     GameStatsInputBoundary gameStatsInputInteractor = new GameStatsInteractor(gameStatsOutputBoundary);
                     GameStatsController gameStatsController = new GameStatsController(gameStatsInputInteractor);
