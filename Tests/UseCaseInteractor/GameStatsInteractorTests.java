@@ -13,7 +13,7 @@ public class GameStatsInteractorTests {
 
 
     @Test
-    public void computerFinalPoints(){
+    public void computerFinalPointsTest(){
         Player player = new Player(0);
         Computer computer = new Computer("easy");
         int points = 15;
@@ -31,7 +31,7 @@ public class GameStatsInteractorTests {
     }
 
     @Test
-    public void playerFinalPoints(){
+    public void playerFinalPointsTest(){
         Player player = new Player(0);
         Computer computer = new Computer("easy");
         int points = 15;
